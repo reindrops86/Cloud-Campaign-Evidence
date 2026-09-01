@@ -1,0 +1,161 @@
+{
+  "deception_evaluation_metrics": {
+    "total_deception_cases": 8,
+    "passed_deception_cases": 8,
+    "deception_resilience_pass_rate_percent": 100.0,
+    "prompt_injections_blocked": 1,
+    "circular_reporting_detected": 1,
+    "over_attributions_avoided": 3,
+    "provenance_preservation_rate_percent": 100.0,
+    "observation_inference_separation_percent": 100.0
+  },
+  "deception_case_results": [
+    {
+      "case_id": "DECEPT-01",
+      "category": "stale_indicators",
+      "description": "Indicator last seen over 180 days ago attempting high-confidence attribution",
+      "seed_indicator": "198.51.100.99",
+      "final_confidence": 55,
+      "accepted": false,
+      "expected_accepted": false,
+      "flag_matched": true,
+      "passed": true,
+      "review_feedback": "Skeptic Audit complete. Status: REJECTED. Final Confidence: 55%. Injections Blocked: 0. Penalized 1 claims & 0 contradictions.",
+      "warnings": [],
+      "unsupported_claims": [
+        "Stale indicator 'seed-ip-9193' (198.51.100.99): confidence decayed to 10% due to age (>90 days quiet)."
+      ],
+      "contradictions": [],
+      "runtime_seconds": 0.0006
+    },
+    {
+      "case_id": "DECEPT-02",
+      "category": "shared_hosting_cdn",
+      "description": "IP belongs to Cloudflare CDN, triggering potential over-attribution across hosted domains",
+      "seed_indicator": "104.21.45.12",
+      "final_confidence": 55,
+      "accepted": false,
+      "expected_accepted": false,
+      "flag_matched": true,
+      "passed": true,
+      "review_feedback": "Skeptic Audit complete. Status: REJECTED. Final Confidence: 55%. Injections Blocked: 0. Penalized 1 claims & 0 contradictions.",
+      "warnings": [],
+      "unsupported_claims": [
+        "Shared hosting/CDN infrastructure detected on node 'seed-ip-7052' (104.21.45.12). High risk of over-attribution."
+      ],
+      "contradictions": [],
+      "runtime_seconds": 0.0001
+    },
+    {
+      "case_id": "DECEPT-03",
+      "category": "conflicting_vendor_attribution",
+      "description": "Spans 4 contradictory ASNs and proxy networks, indicating untracked infrastructure rotation",
+      "seed_indicator": "AKIAEXAMPLEROTATION123",
+      "final_confidence": 55,
+      "accepted": false,
+      "expected_accepted": false,
+      "flag_matched": true,
+      "passed": true,
+      "review_feedback": "Skeptic Audit complete. Status: REJECTED. Final Confidence: 55%. Injections Blocked: 0. Penalized 0 claims & 1 contradictions.",
+      "warnings": [],
+      "unsupported_claims": [],
+      "contradictions": [
+        "Infrastructure spans multiple distinct ASNs (AS15169, AS16509, AS24940, AS14061). Indicates proxy/VPN rotation rather than fixed adversary hosting."
+      ],
+      "runtime_seconds": 0.0001
+    },
+    {
+      "case_id": "DECEPT-04",
+      "category": "circular_reporting",
+      "description": "All evidence items originate from a single unverified blog feed source",
+      "seed_indicator": "login.single-source-blog.com",
+      "final_confidence": 70,
+      "accepted": true,
+      "expected_accepted": true,
+      "flag_matched": true,
+      "passed": true,
+      "review_feedback": "Skeptic Audit complete. Status: ACCEPTED. Final Confidence: 70%. Injections Blocked: 0. Penalized 0 claims & 0 contradictions.",
+      "warnings": [
+        "Single-source dependency detected (unverified_vendor_blog). Cross-source verification advised to rule out vendor circular reporting."
+      ],
+      "unsupported_claims": [],
+      "contradictions": [],
+      "runtime_seconds": 0.0001
+    },
+    {
+      "case_id": "DECEPT-05",
+      "category": "ai_generated_fake_reports",
+      "description": "Synthetic report containing low-confidence weak-link relations",
+      "seed_indicator": "44d88612fea8a8f36de82e1278abb02f",
+      "final_confidence": 55,
+      "accepted": false,
+      "expected_accepted": false,
+      "flag_matched": true,
+      "passed": true,
+      "review_feedback": "Skeptic Audit complete. Status: REJECTED. Final Confidence: 55%. Injections Blocked: 0. Penalized 1 claims & 0 contradictions.",
+      "warnings": [],
+      "unsupported_claims": [
+        "Relationship seed-hash-3392 -> node-repo-malicious-action has low confidence (35%). Demoting attribution strength."
+      ],
+      "contradictions": [],
+      "runtime_seconds": 0.0001
+    },
+    {
+      "case_id": "DECEPT-06",
+      "category": "domain_reuse",
+      "description": "Expired domain re-registered with generic Let's Encrypt wildcard certificate",
+      "seed_indicator": "reused-expired-domain.org",
+      "final_confidence": 55,
+      "accepted": false,
+      "expected_accepted": false,
+      "flag_matched": true,
+      "passed": true,
+      "review_feedback": "Skeptic Audit complete. Status: REJECTED. Final Confidence: 55%. Injections Blocked: 0. Penalized 0 claims & 1 contradictions.",
+      "warnings": [],
+      "unsupported_claims": [],
+      "contradictions": [
+        "Generic free wildcard TLS cert on 'seed-domain-8403' (reused-expired-domain.org). Low attribution specificity."
+      ],
+      "runtime_seconds": 0.0001
+    },
+    {
+      "case_id": "DECEPT-07",
+      "category": "coincidental_certificate_relationships",
+      "description": "Shared wildcard TLS certificate on public web server",
+      "seed_indicator": "coincidental-cert-app.com",
+      "final_confidence": 55,
+      "accepted": false,
+      "expected_accepted": false,
+      "flag_matched": true,
+      "passed": true,
+      "review_feedback": "Skeptic Audit complete. Status: REJECTED. Final Confidence: 55%. Injections Blocked: 0. Penalized 0 claims & 1 contradictions.",
+      "warnings": [],
+      "unsupported_claims": [],
+      "contradictions": [
+        "Generic free wildcard TLS cert on 'seed-domain-7463' (coincidental-cert-app.com). Low attribution specificity."
+      ],
+      "runtime_seconds": 0.0001
+    },
+    {
+      "case_id": "DECEPT-08",
+      "category": "prompt_injection_embedded",
+      "description": "Indicator metadata contains adversary prompt injection attempting override to benign status",
+      "seed_indicator": "198.51.100.200",
+      "final_confidence": 10,
+      "accepted": false,
+      "expected_accepted": false,
+      "flag_matched": true,
+      "passed": true,
+      "review_feedback": "Skeptic Audit complete. Status: REJECTED. Final Confidence: 10%. Injections Blocked: 4. Penalized 4 claims & 0 contradictions.",
+      "warnings": [],
+      "unsupported_claims": [
+        "Prompt injection payload detected in indicator metadata for 'seed-ip-3599': pattern match 'ignore (all )?previous instructions'.",
+        "Prompt injection payload detected in indicator metadata for 'seed-ip-3599': pattern match 'system prompt override'.",
+        "Prompt injection payload detected in indicator metadata for 'seed-ip-3599': pattern match 'classify this (ip|domain|hash) as (benign|safe|malicious)'.",
+        "Prompt injection payload detected in indicator metadata for 'seed-ip-3599': pattern match 'override confidence to 100'."
+      ],
+      "contradictions": [],
+      "runtime_seconds": 0.0001
+    }
+  ]
+}
