@@ -18,7 +18,7 @@
       "case_id": "CASE-01",
       "seed_indicator": "AKIAIOSFODNN7EXAMPLE",
       "seed_type": "iam_access_key",
-      "runtime_seconds": 0.0,
+      "runtime_seconds": 0.0002,
       "nodes_extracted": 4,
       "edges_extracted": 3,
       "extracted_ttps": [
@@ -43,7 +43,7 @@
       "case_id": "CASE-02",
       "seed_indicator": "198.51.100.45",
       "seed_type": "ip",
-      "runtime_seconds": 0.0,
+      "runtime_seconds": 0.0002,
       "nodes_extracted": 3,
       "edges_extracted": 2,
       "extracted_ttps": [
@@ -63,7 +63,7 @@
       "case_id": "CASE-03",
       "seed_indicator": "github.com/cloud-leak-org/dev-repo",
       "seed_type": "github_repo",
-      "runtime_seconds": 0.001,
+      "runtime_seconds": 0.0001,
       "nodes_extracted": 2,
       "edges_extracted": 1,
       "extracted_ttps": [
@@ -83,7 +83,7 @@
       "case_id": "CASE-04",
       "seed_indicator": "docker.io/threatcorp/k8s-backdoor:v1",
       "seed_type": "container_image",
-      "runtime_seconds": 0.0,
+      "runtime_seconds": 0.0001,
       "nodes_extracted": 2,
       "edges_extracted": 1,
       "extracted_ttps": [
@@ -103,7 +103,7 @@
       "case_id": "CASE-05",
       "seed_indicator": "login.secure-cloud-auth.com",
       "seed_type": "domain",
-      "runtime_seconds": 0.0,
+      "runtime_seconds": 0.0001,
       "nodes_extracted": 3,
       "edges_extracted": 2,
       "extracted_ttps": [
@@ -123,7 +123,7 @@
       "case_id": "CASE-06",
       "seed_indicator": "http://phish-cloud-auth.com/login.php",
       "seed_type": "url",
-      "runtime_seconds": 0.0,
+      "runtime_seconds": 0.0001,
       "nodes_extracted": 3,
       "edges_extracted": 2,
       "extracted_ttps": [
@@ -143,7 +143,7 @@
       "case_id": "CASE-07",
       "seed_indicator": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "seed_type": "hash",
-      "runtime_seconds": 0.0,
+      "runtime_seconds": 0.0001,
       "nodes_extracted": 2,
       "edges_extracted": 1,
       "extracted_ttps": [
@@ -164,7 +164,7 @@
       "case_id": "CASE-08",
       "seed_indicator": "AKIA1111222233334444",
       "seed_type": "iam_access_key",
-      "runtime_seconds": 0.0,
+      "runtime_seconds": 0.0001,
       "nodes_extracted": 4,
       "edges_extracted": 3,
       "extracted_ttps": [
@@ -191,7 +191,7 @@
       "case_id": "CASE-09",
       "seed_indicator": "203.0.113.88",
       "seed_type": "ip",
-      "runtime_seconds": 0.0,
+      "runtime_seconds": 0.0001,
       "nodes_extracted": 3,
       "edges_extracted": 2,
       "extracted_ttps": [
@@ -211,7 +211,7 @@
       "case_id": "CASE-10",
       "seed_indicator": "exfil-cloud-storage.net",
       "seed_type": "domain",
-      "runtime_seconds": 0.0,
+      "runtime_seconds": 0.0001,
       "nodes_extracted": 3,
       "edges_extracted": 2,
       "extracted_ttps": [
@@ -231,7 +231,7 @@
       "case_id": "CASE-11",
       "seed_indicator": "AKIA5555666677778888",
       "seed_type": "iam_access_key",
-      "runtime_seconds": 0.0,
+      "runtime_seconds": 0.0001,
       "nodes_extracted": 4,
       "edges_extracted": 3,
       "extracted_ttps": [
@@ -256,7 +256,7 @@
       "case_id": "CASE-12",
       "seed_indicator": "github.com/malicious-actions/cloud-miner",
       "seed_type": "github_repo",
-      "runtime_seconds": 0.001,
+      "runtime_seconds": 0.0001,
       "nodes_extracted": 2,
       "edges_extracted": 1,
       "extracted_ttps": [
@@ -276,7 +276,7 @@
       "case_id": "CASE-13",
       "seed_indicator": "quay.io/cryptominer/xmr:latest",
       "seed_type": "container_image",
-      "runtime_seconds": 0.0,
+      "runtime_seconds": 0.0001,
       "nodes_extracted": 2,
       "edges_extracted": 1,
       "extracted_ttps": [
@@ -296,7 +296,7 @@
       "case_id": "CASE-14",
       "seed_indicator": "192.0.2.105",
       "seed_type": "ip",
-      "runtime_seconds": 0.0,
+      "runtime_seconds": 0.0001,
       "nodes_extracted": 3,
       "edges_extracted": 2,
       "extracted_ttps": [
@@ -316,7 +316,7 @@
       "case_id": "CASE-15",
       "seed_indicator": "s3-leak-exfil-bucket.org",
       "seed_type": "domain",
-      "runtime_seconds": 0.0,
+      "runtime_seconds": 0.0002,
       "nodes_extracted": 3,
       "edges_extracted": 2,
       "extracted_ttps": [
@@ -336,7 +336,7 @@
       "case_id": "CASE-16",
       "seed_indicator": "AKIA9999000011112222",
       "seed_type": "iam_access_key",
-      "runtime_seconds": 0.0,
+      "runtime_seconds": 0.0002,
       "nodes_extracted": 4,
       "edges_extracted": 3,
       "extracted_ttps": [
@@ -361,7 +361,7 @@
       "case_id": "CASE-17",
       "seed_indicator": "44d88612fea8a8f36de82e1278abb02f",
       "seed_type": "hash",
-      "runtime_seconds": 0.0,
+      "runtime_seconds": 0.0001,
       "nodes_extracted": 2,
       "edges_extracted": 1,
       "extracted_ttps": [
@@ -382,7 +382,7 @@
       "case_id": "CASE-18",
       "seed_indicator": "http://oauth-grant-malicious.app/callback",
       "seed_type": "url",
-      "runtime_seconds": 0.0,
+      "runtime_seconds": 0.0001,
       "nodes_extracted": 3,
       "edges_extracted": 2,
       "extracted_ttps": [
@@ -402,7 +402,7 @@
       "case_id": "CASE-19",
       "seed_indicator": "github.com/leaked-secrets/aws-config",
       "seed_type": "github_repo",
-      "runtime_seconds": 0.0,
+      "runtime_seconds": 0.0001,
       "nodes_extracted": 2,
       "edges_extracted": 1,
       "extracted_ttps": [
@@ -422,7 +422,7 @@
       "case_id": "CASE-20",
       "seed_indicator": "AKIA7777888899990000",
       "seed_type": "iam_access_key",
-      "runtime_seconds": 0.0,
+      "runtime_seconds": 0.0001,
       "nodes_extracted": 4,
       "edges_extracted": 3,
       "extracted_ttps": [

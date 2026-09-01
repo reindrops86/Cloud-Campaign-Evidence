@@ -1,6 +1,13 @@
-# Cloud Campaign Evidence Graph
+# 🛡️ Cloud Campaign Evidence Graph
 
-A defensible, agentic threat intelligence pipeline that ingests cloud-related seed indicators (IAM credentials, IPs, domains, container images, GitHub repos, phishing URLs) and outputs time-bounded campaign investigations, evidence graphs, ATT&CK mappings, skeptic-reviewed analytical judgments, STIX 2.1 bundles, and detection rules.
+> **Defensible, Agentic Cloud Threat Intelligence Pipeline & STIX 2.1 Graph Generator**
+
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
+[![STIX 2.1 Compliant](https://img.shields.io/badge/STIX-2.1%20Validated-brightgreen.svg)](https://oasis-open.github.io/cti-documentation/stix/intro.html)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Benchmark Evaluation](https://img.shields.io/badge/Benchmark-100%25%20Pass%20(20%2F20)-success.svg)](eval/evaluation_report.json)
+[![Deception Resilience](https://img.shields.io/badge/Deception--Resilience-100%25%20Pass%20(8%2F8)-success.svg)](eval/deception_evaluation_report.json)
+[![CI/CD Pipeline](https://img.shields.io/badge/CI%2FCD-Passing-brightgreen.svg)](.github/workflows/ci.yml)
 
 ## Pipeline Architecture
 
