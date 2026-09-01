@@ -74,6 +74,30 @@ python eval/deception_evaluator.py --cases eval/deception_cases.json --output ev
 | **Provenance Preservation** | Ensures every graph node maintains explicit source attribution tags | **100% Provenance Coverage** |
 | **Observation vs Inference Separation** | Separates raw deterministic graph nodes from agentic analytical inferences | **100% Separation Rate** |
 
+## 📦 STIX 2.1, TAXII 2.1, & OpenCTI Interoperability
+
+The pipeline includes full **STIX 2.1 validation**, an **emulated TAXII 2.1 server**, an **OpenCTI GraphQL mutation converter**, and an **HTML/PDF Report Exporter**:
+
+1. **STIX 2.1 Validation**: Programmatically validates bundle schema & SDO/SRO relationships (`app/stix/stix_validator.py`).
+2. **TAXII 2.1 Server Emulation**: Emulates TAXII 2.1 Discovery, API-Root, Collections, and POST Object publishing (`app/stix/taxii_emulator.py`).
+3. **OpenCTI GraphQL Converter**: Transforms graph nodes & STIX objects into OpenCTI GraphQL mutations (`app/stix/opencti_exporter.py`).
+4. **HTML/PDF CTI Report Exporter**: Generates standalone, formatted executive CTI reports (`app/reports/report_exporter.py`).
+
+Validate any generated bundle programmatically:
+
+```python
+from app.stix.stix_validator import STIX21Validator
+from app.stix.taxii_emulator import TAXII21ServerEmulator
+
+validator = STIX21Validator()
+is_valid, errors = validator.validate_bundle(stix_bundle_json)
+
+# Publish bundle to TAXII 2.1 collection
+taxii_server = TAXII21ServerEmulator()
+publish_status = taxii_server.publish_stix_bundle("91a7b520-2ceb-478b-aebd-47ee21074e2d", stix_bundle_json)
+print(f"STIX Valid: {is_valid} | TAXII Delivered Objects: {publish_status['success_count']}")
+```
+
 ## Key Metrics Evaluated
 
 - IOC Extraction Precision & Recall
