@@ -24,18 +24,57 @@ def main() -> None:
 
     # Sidebar setup
     st.sidebar.header("Investigation Controls")
-    seed = st.sidebar.text_input("Seed Indicator", value="AKIAIOSFODNN7EXAMPLE")
+    seed = st.sidebar.text_input("Seed Indicator", value="AKIACOMPROMISEDKEY01")
     seed_type = st.sidebar.selectbox(
         "Indicator Type",
         options=["auto", "iam_access_key", "ip", "domain", "url", "hash", "container_image", "github_repo"],
     )
+
+    st.sidebar.divider()
+    st.sidebar.subheader("Evidence Source")
+    source_mode = st.sidebar.radio(
+        "Telemetry Source",
+        options=["synthetic", "file", "aws"],
+        help="synthetic = demo data, file = exported CloudTrail JSON, aws = live LookupEvents",
+    )
+
+    cloudtrail_file = None
+    iam_snapshot = None
+    profile = None
+    region = "us-east-1"
+    simulate = False
+
+    if source_mode == "file":
+        cloudtrail_file = st.sidebar.text_input(
+            "CloudTrail JSON Path", value="data/cloudtrail_samples/compromised_key.json"
+        )
+        iam_snapshot = st.sidebar.text_input(
+            "IAM Snapshot Path", value="data/iam_snapshots/account_111122223333.json"
+        )
+    elif source_mode == "aws":
+        profile = st.sidebar.text_input("AWS Profile", value="investigation-readonly")
+        region = st.sidebar.text_input("Region", value="us-east-1")
+        simulate = st.sidebar.checkbox("Use IAM Policy Simulator", value=True)
+        st.sidebar.caption(
+            "Credentials resolve through the AWS credential chain (SSO or assumed role). "
+            "This tool never accepts a secret access key."
+        )
 
     run_button = st.sidebar.button("Run Campaign Investigation", type="primary")
 
     if run_button or seed:
         st_type = None if seed_type == "auto" else seed_type
         with st.spinner("Executing agentic investigation pipeline..."):
-            res = run_pipeline(seed, st_type)
+            res = run_pipeline(
+                seed,
+                st_type,
+                source_mode=source_mode,
+                cloudtrail_file=cloudtrail_file,
+                iam_snapshot=iam_snapshot,
+                profile=profile,
+                region=region,
+                simulate=simulate,
+            )
 
         # Overview Header
         col1, col2, col3, col4 = st.columns(4)
@@ -47,12 +86,82 @@ def main() -> None:
         st.divider()
 
         # Tabs
-        tab_summary, tab_graph, tab_ttps, tab_skeptic, tab_stix, tab_rules = st.tabs(
-            ["📋 Research Report", "🕸️ Evidence Graph", "🎯 ATT&CK Mappings", "🔍 Skeptic Audit", "📦 STIX 2.1 Bundle", "⚡ Detection Rules"]
+        (
+            tab_summary,
+            tab_paths,
+            tab_graph,
+            tab_ttps,
+            tab_skeptic,
+            tab_stix,
+            tab_rules,
+        ) = st.tabs(
+            [
+                "📋 Research Report",
+                "🔑 Identity Attack Paths",
+                "🕸️ Evidence Graph",
+                "🎯 ATT&CK Mappings",
+                "🔍 Skeptic Audit",
+                "📦 STIX 2.1 Bundle",
+                "⚡ Detection Rules",
+            ]
         )
 
         with tab_summary:
             st.markdown(res["markdown_report"])
+
+        with tab_paths:
+            aws = res.get("aws_telemetry")
+            if not aws:
+                st.info(
+                    "No AWS telemetry loaded. Choose the `file` or `aws` evidence source "
+                    "in the sidebar to run effective-permission analysis."
+                )
+            else:
+                summary = aws["attack_path_summary"]
+                c1, c2, c3, c4, c5 = st.columns(5)
+                c1.metric("OBSERVED", summary["observed"], help="CloudTrail proves the action occurred")
+                c2.metric("CONFIRMED", summary["confirmed_allowed"], help="IAM simulator evaluated as allowed")
+                c3.metric("POTENTIAL", summary["potential"], help="Policy configuration permits it")
+                c4.metric("UNRESOLVED", summary["unresolved"], help="Conditions could not be evaluated")
+                c5.metric("BLOCKED", summary["blocked"], help="Explicit deny or boundary")
+
+                st.caption(
+                    f"{aws['event_count']} CloudTrail events "
+                    f"({aws['management_events']} management, {aws['data_events']} data). "
+                    "Management-only telemetry cannot prove object-level data access."
+                )
+
+                for path in aws["attack_paths"]:
+                    badge = {
+                        "OBSERVED": "🔴",
+                        "CONFIRMED_ALLOWED": "🟠",
+                        "POTENTIAL": "🟡",
+                        "UNRESOLVED": "⚪",
+                        "BLOCKED": "🟢",
+                    }.get(path["status"], "⚪")
+
+                    with st.expander(
+                        f"{badge} [{path['status']}] {path['title']} — risk {path['risk_score']}/100"
+                    ):
+                        st.write(" → ".join(f"`{s['label']}`" for s in path["steps"]))
+
+                        for contradiction in path["contradictions"]:
+                            st.error(f"⚠️ {contradiction}")
+
+                        st.write("**Scoring rationale:**")
+                        for reason in path["scoring_rationale"]:
+                            st.write(f"- {reason}")
+
+                        refs = [r for s in path["steps"] for r in s["evidence_refs"]]
+                        if refs:
+                            st.write("**Evidence references:**")
+                            st.code("\n".join(refs))
+
+                        st.write(f"**ATT&CK:** {', '.join(path['attack_technique_ids']) or 'n/a'}")
+
+                if aws.get("iam_graph", {}).get("node_count"):
+                    st.subheader("Permission Graph")
+                    st.dataframe(aws["iam_graph"]["edges"], use_container_width=True)
 
         with tab_graph:
             st.subheader("Evidence Graph & Timeline")

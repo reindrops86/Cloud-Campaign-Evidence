@@ -85,6 +85,8 @@ class EvidenceGraphEngine:
         evidence_basis: str,
         first_observed: str,
         last_observed: str,
+        evidence_refs: Optional[List[str]] = None,
+        observed: bool = False,
     ) -> EvidenceEdge:
         # Avoid exact duplicate edges
         for edge in self.edges:
@@ -95,6 +97,10 @@ class EvidenceGraphEngine:
             ):
                 edge.confidence = max(edge.confidence, confidence)
                 edge.last_observed = max(edge.last_observed, last_observed)
+                edge.observed = edge.observed or observed
+                for ref in evidence_refs or []:
+                    if ref not in edge.evidence_refs:
+                        edge.evidence_refs.append(ref)
                 return edge
 
         edge = EvidenceEdge(
@@ -105,6 +111,8 @@ class EvidenceGraphEngine:
             evidence_basis=evidence_basis,
             first_observed=first_observed,
             last_observed=last_observed,
+            evidence_refs=list(evidence_refs or []),
+            observed=observed,
         )
         self.edges.append(edge)
         return edge
@@ -168,6 +176,8 @@ class EvidenceGraphEngine:
                     "evidence_basis": e.evidence_basis,
                     "first_observed": e.first_observed,
                     "last_observed": e.last_observed,
+                    "evidence_refs": e.evidence_refs,
+                    "observed": e.observed,
                 }
                 for e in self.edges
             ],

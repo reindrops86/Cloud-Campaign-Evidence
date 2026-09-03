@@ -59,6 +59,54 @@ python app/main.py --seed "AKIAIOSFODNN7EXAMPLE" --seed-type "iam_access_key" --
 python eval/evaluate.py --cases eval/benchmark_cases.json --output eval/evaluation_report.json
 ```
 
+## ☁️ AWS Telemetry & Effective-Permission Attack Paths
+
+The pipeline analyzes **real AWS CloudTrail telemetry** and the **IAM configuration behind it**, so conclusions rest on logged events and evaluated permissions rather than assumption.
+
+### Run against exported CloudTrail JSON (no AWS account needed)
+
+```powershell
+python app/main.py --seed "AKIACOMPROMISEDKEY01" --seed-type iam_access_key `
+  --source file `
+  --cloudtrail-file data/cloudtrail_samples/compromised_key.json `
+  --iam-snapshot data/iam_snapshots/account_111122223333.json `
+  --start-time 2026-08-01T00:00:00Z --end-time 2026-09-01T00:00:00Z
+```
+
+### Run against a live account (read-only)
+
+```powershell
+python app/main.py --seed "AKIA..." --seed-type iam_access_key `
+  --source aws --profile investigation-readonly --region us-east-1 --simulate
+```
+
+Credentials resolve through the standard AWS credential chain (IAM Identity Center locally, an assumed read-only role in deployment). **The tool never accepts a secret access key** — the key you supply is the key under investigation.
+
+### Evidence-status labels
+
+Every attack path carries an explicit status so possibility is never mistaken for proof:
+
+| Status | Meaning |
+|---|---|
+| `OBSERVED` | CloudTrail shows the action was actually invoked |
+| `CONFIRMED_ALLOWED` | `SimulatePrincipalPolicy` evaluated the action as allowed |
+| `POTENTIAL` | Policy configuration permits it, but it was never evaluated or seen |
+| `UNRESOLVED` | A policy condition (e.g. `aws:MultiFactorAuthPresent`) could not be evaluated |
+| `BLOCKED` | An explicit deny or permissions boundary defeats the path |
+
+An explicit deny is never overridden by telemetry. When CloudTrail shows an action that policy evaluation denies, the path stays `BLOCKED` and the disagreement is surfaced as a **contradiction** for the analyst to resolve.
+
+### Telemetry scope limits
+
+`LookupEvents` returns management and Insights events only. S3/Lambda **data events are not logged by default**, so the pipeline reports management and data event counts separately and will not assert data exfiltration from a management event such as `PutBucketPolicy`. Prove object access with a CloudTrail S3 log export or CloudTrail Lake.
+
+### Sample result: compromised vs. benign key
+
+| Fixture | Events | Paths | OBSERVED | BLOCKED | Highest Risk |
+|---|---|---|---|---|---|
+| `compromised_key.json` | 6 | 9 | 3 | 2 | 100/100 |
+| `benign_automation.json` | 3 | 1 | 0 | 0 | 55/100 |
+
 ## 🛡️ CTI Quality & Deception Benchmark Evaluator
 
 Security teams require proof that agentic research systems resist manipulation, detect circular reporting, and reject over-attribution.

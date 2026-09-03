@@ -75,11 +75,17 @@ class SkepticReviewerAgent:
                 )
 
         # 4. Stale Indicator Decay Audit
+        # Compare against the node's own baseline so low-severity context nodes
+        # are not mistaken for aged indicators.
         for n in self.graph_engine.nodes.values():
+            if n.reputation_score <= 0:
+                continue
             decayed = calculate_half_life_decay(n.reputation_score, n.last_seen)
-            if decayed < 30:
+            retained = decayed / n.reputation_score
+            if retained < 0.5:
                 unsupported_claims.append(
-                    f"Stale indicator '{n.id}' ({n.value}): confidence decayed to {decayed}% due to age (>90 days quiet)."
+                    f"Stale indicator '{n.id}' ({n.value}): retains only {int(retained * 100)}% "
+                    f"of its original confidence after >90 days quiet."
                 )
 
         # 5. Coincidental Certificate & Domain Reuse Audit

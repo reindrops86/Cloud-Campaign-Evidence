@@ -30,6 +30,91 @@ class EvidenceEdge:
     evidence_basis: str
     first_observed: str
     last_observed: str
+    evidence_refs: List[str] = field(default_factory=list)
+    observed: bool = False  # True only when a raw telemetry record proves this edge
+
+
+@dataclass
+class EvidenceRecord:
+    """A single raw provider telemetry record that graph edges cite as proof."""
+
+    evidence_id: str
+    provider: str  # aws, azure, gcp
+    source: str  # cloudtrail_lookup_events, cloudtrail_s3_export, iam_api
+    event_id: str
+    event_time: str
+    account_id: Optional[str]
+    region: Optional[str]
+    principal_arn: Optional[str]
+    access_key_id: Optional[str]
+    source_ip: Optional[str]
+    event_source: str
+    event_name: str
+    event_category: str = "Management"  # Management, Data, Insight
+    resources: List[Dict[str, Any]] = field(default_factory=list)
+    raw_event: Dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass
+class IAMPrincipal:
+    arn: str
+    name: str
+    principal_type: str  # user, role, group
+    account_id: Optional[str] = None
+    attached_policy_arns: List[str] = field(default_factory=list)
+    inline_policy_names: List[str] = field(default_factory=list)
+    group_names: List[str] = field(default_factory=list)
+    permissions_boundary_arn: Optional[str] = None
+    trust_policy: Optional[Dict[str, Any]] = None
+    tags: Dict[str, str] = field(default_factory=dict)
+
+
+@dataclass
+class PolicyStatement:
+    policy_arn: str
+    policy_name: str
+    sid: Optional[str]
+    effect: str  # Allow, Deny
+    actions: List[str]
+    resources: List[str]
+    conditions: Dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass
+class PermissionEvaluation:
+    """Result of evaluating one action against one principal."""
+
+    principal_arn: str
+    action: str
+    resource_arn: str
+    decision: str  # allowed, explicitDeny, implicitDeny, unresolved
+    status: str  # POTENTIAL, CONFIRMED_ALLOWED, OBSERVED, BLOCKED, UNRESOLVED
+    matched_statements: List[str] = field(default_factory=list)
+    unresolved_conditions: List[str] = field(default_factory=list)
+    evaluation_source: str = "graph"  # graph, policy_simulator, access_analyzer
+    via_role_arn: Optional[str] = None  # set when the permission is only reachable after assume-role
+
+
+@dataclass
+class AttackPathStep:
+    node_id: str
+    node_type: str  # access_key, iam_user, iam_role, aws_action, resource
+    label: str
+    status: str  # POTENTIAL, CONFIRMED_ALLOWED, OBSERVED, BLOCKED, UNRESOLVED
+    evidence_refs: List[str] = field(default_factory=list)
+
+
+@dataclass
+class AttackPath:
+    path_id: str
+    title: str
+    risk_category: str  # privilege_escalation, credential_creation, secret_access, storage_access, defense_impairment
+    steps: List[AttackPathStep]
+    status: str  # worst/most-conservative status across all steps
+    risk_score: int  # 0 to 100
+    scoring_rationale: List[str] = field(default_factory=list)
+    attack_technique_ids: List[str] = field(default_factory=list)
+    contradictions: List[str] = field(default_factory=list)
 
 
 @dataclass

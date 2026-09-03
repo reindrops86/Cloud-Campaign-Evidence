@@ -1,0 +1,73 @@
+{
+  "Records": [
+    {
+      "eventVersion": "1.09",
+      "eventID": "b1f0a2c4-1111-4a2b-9c3d-000000000001",
+      "eventTime": "2026-08-14T03:05:11Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "ListBuckets",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.42.7.19",
+      "userAgent": "aws-cli/2.15.0 Python/3.11.6",
+      "readOnly": true,
+      "managementEvent": true,
+      "recipientAccountId": "111122223333",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::111122223333:user/ci-backup-runner",
+        "accountId": "111122223333",
+        "userName": "ci-backup-runner",
+        "accessKeyId": "AKIABENIGNEXAMPLE001"
+      },
+      "requestParameters": {},
+      "responseElements": null,
+      "resources": []
+    },
+    {
+      "eventVersion": "1.09",
+      "eventID": "b1f0a2c4-1111-4a2b-9c3d-000000000002",
+      "eventTime": "2026-08-14T03:05:44Z",
+      "eventSource": "sts.amazonaws.com",
+      "eventName": "GetCallerIdentity",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.42.7.19",
+      "userAgent": "aws-cli/2.15.0 Python/3.11.6",
+      "readOnly": true,
+      "managementEvent": true,
+      "recipientAccountId": "111122223333",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::111122223333:user/ci-backup-runner",
+        "accountId": "111122223333",
+        "userName": "ci-backup-runner",
+        "accessKeyId": "AKIABENIGNEXAMPLE001"
+      },
+      "requestParameters": {},
+      "responseElements": null,
+      "resources": []
+    },
+    {
+      "eventVersion": "1.09",
+      "eventID": "b1f0a2c4-1111-4a2b-9c3d-000000000003",
+      "eventTime": "2026-08-15T03:05:09Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "ListBuckets",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.42.7.19",
+      "userAgent": "aws-cli/2.15.0 Python/3.11.6",
+      "readOnly": true,
+      "managementEvent": true,
+      "recipientAccountId": "111122223333",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::111122223333:user/ci-backup-runner",
+        "accountId": "111122223333",
+        "userName": "ci-backup-runner",
+        "accessKeyId": "AKIABENIGNEXAMPLE001"
+      },
+      "requestParameters": {},
+      "responseElements": null,
+      "resources": []
+    }
+  ]
+}

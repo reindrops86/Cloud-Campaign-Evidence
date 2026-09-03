@@ -1,0 +1,2683 @@
+{
+  "investigation_id": "INV-2026-7019",
+  "seed_indicator": "AKIACOMPROMISEDKEY01",
+  "defanged_indicator": "AKIACOMPROMISEDKEY01",
+  "seed_type": "iam_access_key",
+  "timestamp": "2026-09-03T18:31:30+00:00",
+  "evidence_graph": {
+    "node_count": 13,
+    "edge_count": 11,
+    "nodes": [
+      {
+        "id": "seed-iam_access_key-7019",
+        "value": "AKIACOMPROMISEDKEY01",
+        "defanged_value": "AKIACOMPROMISEDKEY01",
+        "indicator_type": "iam_access_key",
+        "first_seen": "2026-09-03T18:31:30+00:00",
+        "last_seen": "2026-09-03T18:31:30+00:00",
+        "reputation_score": 75,
+        "decayed_reputation": 74,
+        "sources": [
+          "seed_collector"
+        ],
+        "metadata": {
+          "seed_role": "primary_investigation_target"
+        }
+      },
+      {
+        "id": "seed-iam_access_key-AKIACOMPROMISEDKEY01",
+        "value": "AKIACOMPROMISEDKEY01",
+        "defanged_value": "AKIACOMPROMISEDKEY01",
+        "indicator_type": "iam_access_key",
+        "first_seen": "2026-08-28T21:14:02Z",
+        "last_seen": "2026-08-28T21:38:52Z",
+        "reputation_score": 75,
+        "decayed_reputation": 71,
+        "sources": [
+          "aws_cloudtrail"
+        ],
+        "metadata": {
+          "event_count": 6
+        }
+      },
+      {
+        "id": "node-ip-198-51-100-45",
+        "value": "198.51.100.45",
+        "defanged_value": "198[\\.]51[\\.]100[\\.]45",
+        "indicator_type": "ip",
+        "first_seen": "2026-08-28T21:14:02Z",
+        "last_seen": "2026-08-28T21:16:37Z",
+        "reputation_score": 50,
+        "decayed_reputation": 47,
+        "sources": [
+          "aws_cloudtrail"
+        ],
+        "metadata": {
+          "account_id": "111122223333",
+          "region": "us-east-1"
+        }
+      },
+      {
+        "id": "node-action-sts-GetCallerIdentity",
+        "value": "sts:GetCallerIdentity",
+        "defanged_value": "sts:GetCallerIdentity",
+        "indicator_type": "aws_action",
+        "first_seen": "2026-08-28T21:14:02Z",
+        "last_seen": "2026-08-28T21:14:02Z",
+        "reputation_score": 40,
+        "decayed_reputation": 38,
+        "sources": [
+          "aws_cloudtrail"
+        ],
+        "metadata": {
+          "event_category": "Management"
+        }
+      },
+      {
+        "id": "node-action-iam-ListAttachedUserPolicies",
+        "value": "iam:ListAttachedUserPolicies",
+        "defanged_value": "iam:ListAttachedUserPolicies",
+        "indicator_type": "aws_action",
+        "first_seen": "2026-08-28T21:16:37Z",
+        "last_seen": "2026-08-28T21:16:37Z",
+        "reputation_score": 40,
+        "decayed_reputation": 38,
+        "sources": [
+          "aws_cloudtrail"
+        ],
+        "metadata": {
+          "event_category": "Management"
+        }
+      },
+      {
+        "id": "node-ip-203-0-113-88",
+        "value": "203.0.113.88",
+        "defanged_value": "203[\\.]0[\\.]113[\\.]88",
+        "indicator_type": "ip",
+        "first_seen": "2026-08-28T21:22:15Z",
+        "last_seen": "2026-08-28T21:38:52Z",
+        "reputation_score": 50,
+        "decayed_reputation": 47,
+        "sources": [
+          "aws_cloudtrail"
+        ],
+        "metadata": {
+          "account_id": "111122223333",
+          "region": "us-east-1"
+        }
+      },
+      {
+        "id": "node-action-sts-AssumeRole",
+        "value": "sts:AssumeRole",
+        "defanged_value": "sts:AssumeRole",
+        "indicator_type": "aws_action",
+        "first_seen": "2026-08-28T21:22:15Z",
+        "last_seen": "2026-08-28T21:22:15Z",
+        "reputation_score": 40,
+        "decayed_reputation": 38,
+        "sources": [
+          "aws_cloudtrail"
+        ],
+        "metadata": {
+          "event_category": "Management"
+        }
+      },
+      {
+        "id": "node-resource-18544",
+        "value": "arn:aws:iam::111122223333:role/prod-data-reader",
+        "defanged_value": "arn:aws:iam::111122223333:role/prod-data-reader",
+        "indicator_type": "aws_resource",
+        "first_seen": "2026-08-28T21:22:15Z",
+        "last_seen": "2026-08-28T21:22:15Z",
+        "reputation_score": 30,
+        "decayed_reputation": 28,
+        "sources": [
+          "aws_cloudtrail"
+        ],
+        "metadata": {
+          "resource_type": "AWS::IAM::Role"
+        }
+      },
+      {
+        "id": "node-action-secretsmanager-GetSecretValue",
+        "value": "secretsmanager:GetSecretValue",
+        "defanged_value": "secretsmanager:GetSecretValue",
+        "indicator_type": "aws_action",
+        "first_seen": "2026-08-28T21:24:48Z",
+        "last_seen": "2026-08-28T21:24:48Z",
+        "reputation_score": 40,
+        "decayed_reputation": 38,
+        "sources": [
+          "aws_cloudtrail"
+        ],
+        "metadata": {
+          "event_category": "Management"
+        }
+      },
+      {
+        "id": "node-resource-50494",
+        "value": "arn:aws:secretsmanager:us-east-1:111122223333:secret:prod/db/master-AbC123",
+        "defanged_value": "arn:aws:secretsmanager:us-east-1:111122223333:secret:prod/db/master-AbC123",
+        "indicator_type": "aws_resource",
+        "first_seen": "2026-08-28T21:24:48Z",
+        "last_seen": "2026-08-28T21:24:48Z",
+        "reputation_score": 30,
+        "decayed_reputation": 28,
+        "sources": [
+          "aws_cloudtrail"
+        ],
+        "metadata": {
+          "resource_type": "AWS::SecretsManager::Secret"
+        }
+      },
+      {
+        "id": "node-action-iam-CreateAccessKey",
+        "value": "iam:CreateAccessKey",
+        "defanged_value": "iam:CreateAccessKey",
+        "indicator_type": "aws_action",
+        "first_seen": "2026-08-28T21:31:09Z",
+        "last_seen": "2026-08-28T21:31:09Z",
+        "reputation_score": 40,
+        "decayed_reputation": 38,
+        "sources": [
+          "aws_cloudtrail"
+        ],
+        "metadata": {
+          "event_category": "Management"
+        }
+      },
+      {
+        "id": "node-action-cloudtrail-StopLogging",
+        "value": "cloudtrail:StopLogging",
+        "defanged_value": "cloudtrail:StopLogging",
+        "indicator_type": "aws_action",
+        "first_seen": "2026-08-28T21:38:52Z",
+        "last_seen": "2026-08-28T21:38:52Z",
+        "reputation_score": 40,
+        "decayed_reputation": 38,
+        "sources": [
+          "aws_cloudtrail"
+        ],
+        "metadata": {
+          "event_category": "Management"
+        }
+      },
+      {
+        "id": "node-resource-65257",
+        "value": "arn:aws:cloudtrail:us-east-1:111122223333:trail/org-audit-trail",
+        "defanged_value": "arn:aws:cloudtrail:us-east-1:111122223333:trail/org-audit-trail",
+        "indicator_type": "aws_resource",
+        "first_seen": "2026-08-28T21:38:52Z",
+        "last_seen": "2026-08-28T21:38:52Z",
+        "reputation_score": 30,
+        "decayed_reputation": 28,
+        "sources": [
+          "aws_cloudtrail"
+        ],
+        "metadata": {
+          "resource_type": "AWS::CloudTrail::Trail"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "source_id": "seed-iam_access_key-AKIACOMPROMISEDKEY01",
+        "target_id": "node-ip-198-51-100-45",
+        "relation_type": "observed_from",
+        "confidence": 100,
+        "evidence_basis": "CloudTrail GetCallerIdentity from 198.51.100.45",
+        "first_observed": "2026-08-28T21:14:02Z",
+        "last_observed": "2026-08-28T21:16:37Z",
+        "evidence_refs": [
+          "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000001",
+          "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000002"
+        ],
+        "observed": true
+      },
+      {
+        "source_id": "seed-iam_access_key-AKIACOMPROMISEDKEY01",
+        "target_id": "node-action-sts-GetCallerIdentity",
+        "relation_type": "performed",
+        "confidence": 100,
+        "evidence_basis": "CloudTrail event c9d3e5a7-2222-4b3c-8d4e-000000000001",
+        "first_observed": "2026-08-28T21:14:02Z",
+        "last_observed": "2026-08-28T21:14:02Z",
+        "evidence_refs": [
+          "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000001"
+        ],
+        "observed": true
+      },
+      {
+        "source_id": "seed-iam_access_key-AKIACOMPROMISEDKEY01",
+        "target_id": "node-action-iam-ListAttachedUserPolicies",
+        "relation_type": "performed",
+        "confidence": 100,
+        "evidence_basis": "CloudTrail event c9d3e5a7-2222-4b3c-8d4e-000000000002",
+        "first_observed": "2026-08-28T21:16:37Z",
+        "last_observed": "2026-08-28T21:16:37Z",
+        "evidence_refs": [
+          "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000002"
+        ],
+        "observed": true
+      },
+      {
+        "source_id": "seed-iam_access_key-AKIACOMPROMISEDKEY01",
+        "target_id": "node-ip-203-0-113-88",
+        "relation_type": "observed_from",
+        "confidence": 100,
+        "evidence_basis": "CloudTrail AssumeRole from 203.0.113.88",
+        "first_observed": "2026-08-28T21:22:15Z",
+        "last_observed": "2026-08-28T21:38:52Z",
+        "evidence_refs": [
+          "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000003",
+          "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000004",
+          "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000005",
+          "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000006"
+        ],
+        "observed": true
+      },
+      {
+        "source_id": "seed-iam_access_key-AKIACOMPROMISEDKEY01",
+        "target_id": "node-action-sts-AssumeRole",
+        "relation_type": "performed",
+        "confidence": 100,
+        "evidence_basis": "CloudTrail event c9d3e5a7-2222-4b3c-8d4e-000000000003",
+        "first_observed": "2026-08-28T21:22:15Z",
+        "last_observed": "2026-08-28T21:22:15Z",
+        "evidence_refs": [
+          "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000003"
+        ],
+        "observed": true
+      },
+      {
+        "source_id": "node-action-sts-AssumeRole",
+        "target_id": "node-resource-18544",
+        "relation_type": "affected",
+        "confidence": 100,
+        "evidence_basis": "CloudTrail AssumeRole targeted arn:aws:iam::111122223333:role/prod-data-reader",
+        "first_observed": "2026-08-28T21:22:15Z",
+        "last_observed": "2026-08-28T21:22:15Z",
+        "evidence_refs": [
+          "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000003"
+        ],
+        "observed": true
+      },
+      {
+        "source_id": "seed-iam_access_key-AKIACOMPROMISEDKEY01",
+        "target_id": "node-action-secretsmanager-GetSecretValue",
+        "relation_type": "performed",
+        "confidence": 100,
+        "evidence_basis": "CloudTrail event c9d3e5a7-2222-4b3c-8d4e-000000000004",
+        "first_observed": "2026-08-28T21:24:48Z",
+        "last_observed": "2026-08-28T21:24:48Z",
+        "evidence_refs": [
+          "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000004"
+        ],
+        "observed": true
+      },
+      {
+        "source_id": "node-action-secretsmanager-GetSecretValue",
+        "target_id": "node-resource-50494",
+        "relation_type": "affected",
+        "confidence": 100,
+        "evidence_basis": "CloudTrail GetSecretValue targeted arn:aws:secretsmanager:us-east-1:111122223333:secret:prod/db/master-AbC123",
+        "first_observed": "2026-08-28T21:24:48Z",
+        "last_observed": "2026-08-28T21:24:48Z",
+        "evidence_refs": [
+          "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000004"
+        ],
+        "observed": true
+      },
+      {
+        "source_id": "seed-iam_access_key-AKIACOMPROMISEDKEY01",
+        "target_id": "node-action-iam-CreateAccessKey",
+        "relation_type": "performed",
+        "confidence": 100,
+        "evidence_basis": "CloudTrail event c9d3e5a7-2222-4b3c-8d4e-000000000005",
+        "first_observed": "2026-08-28T21:31:09Z",
+        "last_observed": "2026-08-28T21:31:09Z",
+        "evidence_refs": [
+          "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000005"
+        ],
+        "observed": true
+      },
+      {
+        "source_id": "seed-iam_access_key-AKIACOMPROMISEDKEY01",
+        "target_id": "node-action-cloudtrail-StopLogging",
+        "relation_type": "performed",
+        "confidence": 100,
+        "evidence_basis": "CloudTrail event c9d3e5a7-2222-4b3c-8d4e-000000000006",
+        "first_observed": "2026-08-28T21:38:52Z",
+        "last_observed": "2026-08-28T21:38:52Z",
+        "evidence_refs": [
+          "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000006"
+        ],
+        "observed": true
+      },
+      {
+        "source_id": "node-action-cloudtrail-StopLogging",
+        "target_id": "node-resource-65257",
+        "relation_type": "affected",
+        "confidence": 100,
+        "evidence_basis": "CloudTrail StopLogging targeted arn:aws:cloudtrail:us-east-1:111122223333:trail/org-audit-trail",
+        "first_observed": "2026-08-28T21:38:52Z",
+        "last_observed": "2026-08-28T21:38:52Z",
+        "evidence_refs": [
+          "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000006"
+        ],
+        "observed": true
+      }
+    ],
+    "timeline": [
+      {
+        "timestamp": "2026-08-28T21:14:02Z",
+        "event_type": "indicator_first_seen",
+        "id": "seed-iam_access_key-AKIACOMPROMISEDKEY01",
+        "summary": "First observed iam_access_key (AKIACOMPROMISEDKEY01)",
+        "sources": [
+          "aws_cloudtrail"
+        ]
+      },
+      {
+        "timestamp": "2026-08-28T21:14:02Z",
+        "event_type": "indicator_first_seen",
+        "id": "node-ip-198-51-100-45",
+        "summary": "First observed ip (198[\\.]51[\\.]100[\\.]45)",
+        "sources": [
+          "aws_cloudtrail"
+        ]
+      },
+      {
+        "timestamp": "2026-08-28T21:14:02Z",
+        "event_type": "indicator_first_seen",
+        "id": "node-action-sts-GetCallerIdentity",
+        "summary": "First observed aws_action (sts:GetCallerIdentity)",
+        "sources": [
+          "aws_cloudtrail"
+        ]
+      },
+      {
+        "timestamp": "2026-08-28T21:14:02Z",
+        "event_type": "relationship_observed",
+        "id": "seed-iam_access_key-AKIACOMPROMISEDKEY01->node-ip-198-51-100-45",
+        "summary": "Relationship [observed_from]: AKIACOMPROMISEDKEY01 -> 198[\\.]51[\\.]100[\\.]45 (CloudTrail GetCallerIdentity from 198.51.100.45)",
+        "confidence": 100
+      },
+      {
+        "timestamp": "2026-08-28T21:14:02Z",
+        "event_type": "relationship_observed",
+        "id": "seed-iam_access_key-AKIACOMPROMISEDKEY01->node-action-sts-GetCallerIdentity",
+        "summary": "Relationship [performed]: AKIACOMPROMISEDKEY01 -> sts:GetCallerIdentity (CloudTrail event c9d3e5a7-2222-4b3c-8d4e-000000000001)",
+        "confidence": 100
+      },
+      {
+        "timestamp": "2026-08-28T21:16:37Z",
+        "event_type": "indicator_first_seen",
+        "id": "node-action-iam-ListAttachedUserPolicies",
+        "summary": "First observed aws_action (iam:ListAttachedUserPolicies)",
+        "sources": [
+          "aws_cloudtrail"
+        ]
+      },
+      {
+        "timestamp": "2026-08-28T21:16:37Z",
+        "event_type": "relationship_observed",
+        "id": "seed-iam_access_key-AKIACOMPROMISEDKEY01->node-action-iam-ListAttachedUserPolicies",
+        "summary": "Relationship [performed]: AKIACOMPROMISEDKEY01 -> iam:ListAttachedUserPolicies (CloudTrail event c9d3e5a7-2222-4b3c-8d4e-000000000002)",
+        "confidence": 100
+      },
+      {
+        "timestamp": "2026-08-28T21:22:15Z",
+        "event_type": "indicator_first_seen",
+        "id": "node-ip-203-0-113-88",
+        "summary": "First observed ip (203[\\.]0[\\.]113[\\.]88)",
+        "sources": [
+          "aws_cloudtrail"
+        ]
+      },
+      {
+        "timestamp": "2026-08-28T21:22:15Z",
+        "event_type": "indicator_first_seen",
+        "id": "node-action-sts-AssumeRole",
+        "summary": "First observed aws_action (sts:AssumeRole)",
+        "sources": [
+          "aws_cloudtrail"
+        ]
+      },
+      {
+        "timestamp": "2026-08-28T21:22:15Z",
+        "event_type": "indicator_first_seen",
+        "id": "node-resource-18544",
+        "summary": "First observed aws_resource (arn:aws:iam::111122223333:role/prod-data-reader)",
+        "sources": [
+          "aws_cloudtrail"
+        ]
+      },
+      {
+        "timestamp": "2026-08-28T21:22:15Z",
+        "event_type": "relationship_observed",
+        "id": "seed-iam_access_key-AKIACOMPROMISEDKEY01->node-ip-203-0-113-88",
+        "summary": "Relationship [observed_from]: AKIACOMPROMISEDKEY01 -> 203[\\.]0[\\.]113[\\.]88 (CloudTrail AssumeRole from 203.0.113.88)",
+        "confidence": 100
+      },
+      {
+        "timestamp": "2026-08-28T21:22:15Z",
+        "event_type": "relationship_observed",
+        "id": "seed-iam_access_key-AKIACOMPROMISEDKEY01->node-action-sts-AssumeRole",
+        "summary": "Relationship [performed]: AKIACOMPROMISEDKEY01 -> sts:AssumeRole (CloudTrail event c9d3e5a7-2222-4b3c-8d4e-000000000003)",
+        "confidence": 100
+      },
+      {
+        "timestamp": "2026-08-28T21:22:15Z",
+        "event_type": "relationship_observed",
+        "id": "node-action-sts-AssumeRole->node-resource-18544",
+        "summary": "Relationship [affected]: sts:AssumeRole -> arn:aws:iam::111122223333:role/prod-data-reader (CloudTrail AssumeRole targeted arn:aws:iam::111122223333:role/prod-data-reader)",
+        "confidence": 100
+      },
+      {
+        "timestamp": "2026-08-28T21:24:48Z",
+        "event_type": "indicator_first_seen",
+        "id": "node-action-secretsmanager-GetSecretValue",
+        "summary": "First observed aws_action (secretsmanager:GetSecretValue)",
+        "sources": [
+          "aws_cloudtrail"
+        ]
+      },
+      {
+        "timestamp": "2026-08-28T21:24:48Z",
+        "event_type": "indicator_first_seen",
+        "id": "node-resource-50494",
+        "summary": "First observed aws_resource (arn:aws:secretsmanager:us-east-1:111122223333:secret:prod/db/master-AbC123)",
+        "sources": [
+          "aws_cloudtrail"
+        ]
+      },
+      {
+        "timestamp": "2026-08-28T21:24:48Z",
+        "event_type": "relationship_observed",
+        "id": "seed-iam_access_key-AKIACOMPROMISEDKEY01->node-action-secretsmanager-GetSecretValue",
+        "summary": "Relationship [performed]: AKIACOMPROMISEDKEY01 -> secretsmanager:GetSecretValue (CloudTrail event c9d3e5a7-2222-4b3c-8d4e-000000000004)",
+        "confidence": 100
+      },
+      {
+        "timestamp": "2026-08-28T21:24:48Z",
+        "event_type": "relationship_observed",
+        "id": "node-action-secretsmanager-GetSecretValue->node-resource-50494",
+        "summary": "Relationship [affected]: secretsmanager:GetSecretValue -> arn:aws:secretsmanager:us-east-1:111122223333:secret:prod/db/master-AbC123 (CloudTrail GetSecretValue targeted arn:aws:secretsmanager:us-east-1:111122223333:secret:prod/db/master-AbC123)",
+        "confidence": 100
+      },
+      {
+        "timestamp": "2026-08-28T21:31:09Z",
+        "event_type": "indicator_first_seen",
+        "id": "node-action-iam-CreateAccessKey",
+        "summary": "First observed aws_action (iam:CreateAccessKey)",
+        "sources": [
+          "aws_cloudtrail"
+        ]
+      },
+      {
+        "timestamp": "2026-08-28T21:31:09Z",
+        "event_type": "relationship_observed",
+        "id": "seed-iam_access_key-AKIACOMPROMISEDKEY01->node-action-iam-CreateAccessKey",
+        "summary": "Relationship [performed]: AKIACOMPROMISEDKEY01 -> iam:CreateAccessKey (CloudTrail event c9d3e5a7-2222-4b3c-8d4e-000000000005)",
+        "confidence": 100
+      },
+      {
+        "timestamp": "2026-08-28T21:38:52Z",
+        "event_type": "indicator_first_seen",
+        "id": "node-action-cloudtrail-StopLogging",
+        "summary": "First observed aws_action (cloudtrail:StopLogging)",
+        "sources": [
+          "aws_cloudtrail"
+        ]
+      },
+      {
+        "timestamp": "2026-08-28T21:38:52Z",
+        "event_type": "indicator_first_seen",
+        "id": "node-resource-65257",
+        "summary": "First observed aws_resource (arn:aws:cloudtrail:us-east-1:111122223333:trail/org-audit-trail)",
+        "sources": [
+          "aws_cloudtrail"
+        ]
+      },
+      {
+        "timestamp": "2026-08-28T21:38:52Z",
+        "event_type": "relationship_observed",
+        "id": "seed-iam_access_key-AKIACOMPROMISEDKEY01->node-action-cloudtrail-StopLogging",
+        "summary": "Relationship [performed]: AKIACOMPROMISEDKEY01 -> cloudtrail:StopLogging (CloudTrail event c9d3e5a7-2222-4b3c-8d4e-000000000006)",
+        "confidence": 100
+      },
+      {
+        "timestamp": "2026-08-28T21:38:52Z",
+        "event_type": "relationship_observed",
+        "id": "node-action-cloudtrail-StopLogging->node-resource-65257",
+        "summary": "Relationship [affected]: cloudtrail:StopLogging -> arn:aws:cloudtrail:us-east-1:111122223333:trail/org-audit-trail (CloudTrail StopLogging targeted arn:aws:cloudtrail:us-east-1:111122223333:trail/org-audit-trail)",
+        "confidence": 100
+      },
+      {
+        "timestamp": "2026-09-03T18:31:30+00:00",
+        "event_type": "indicator_first_seen",
+        "id": "seed-iam_access_key-7019",
+        "summary": "First observed iam_access_key (AKIACOMPROMISEDKEY01)",
+        "sources": [
+          "seed_collector"
+        ]
+      }
+    ]
+  },
+  "ttp_mappings": [
+    {
+      "technique_id": "T1078.004",
+      "technique_name": "Valid Accounts: Cloud Accounts",
+      "tactic": "Initial Access / Defense Evasion",
+      "platform": "AWS / Azure IAM",
+      "confidence": 95
+    },
+    {
+      "technique_id": "T1552.005",
+      "technique_name": "Unsecured Credentials: Cloud Credentials",
+      "tactic": "Credential Access",
+      "platform": "AWS S3 / Azure Key Vault / GitHub",
+      "confidence": 90
+    }
+  ],
+  "hypothesis": {
+    "id": "HYP-2026-CLOUD-01",
+    "primary_claim": "Adversary activity cluster leveraging compromised cloud assets (AKIACOMPROMISEDKEY01, AKIACOMPROMISEDKEY01) to execute automated recon, credential access, and potential storage exfiltration across targeted cloud tenants.",
+    "alternative_hypotheses": [
+      "Legitimate developer key leakage without malicious exploitation (false positive alert trigger).",
+      "Third-party CI/CD automation tool misconfiguration exposing public read permissions.",
+      "Independent opportunistic scanner activity reusing public cloud infrastructure rather than a single coordinated campaign."
+    ],
+    "threat_actor": "UNC-CLOUD-HARVESTER"
+  },
+  "skeptic_review": {
+    "accepted": true,
+    "final_confidence": 85,
+    "unsupported_claims": [],
+    "circular_reporting_warnings": [],
+    "contradictions": [],
+    "feedback": "Skeptic Audit complete. Status: ACCEPTED. Final Confidence: 85%. Injections Blocked: 0. Penalized 0 claims & 0 contradictions."
+  },
+  "detection_rules": [
+    {
+      "rule_id": "SIGMA-AWS-IAM-001",
+      "title": "Suspicious API Activity from Compromised Cloud Credentials",
+      "format": "Sigma",
+      "target": "CloudTrail",
+      "content": "title: Suspicious API Activity from Compromised Cloud Credentials\nid: c1a7a0b1-4b89-4e5c-9c12-3a5678901234\nstatus: experimental\ndescription: Detects API calls originating from known compromised IAM access key AKIACOMPROMISEDKEY01 across unapproved ASNs.\nlogsource:\n  product: aws\n  service: cloudtrail\ndetection:\n  selection:\n    userIdentity.accessKeyId: 'AKIACOMPROMISEDKEY01'\n  condition: selection\nfalsepositives:\n  - Authorized cloud infrastructure automation scripts.\nlevel: high\ntags:\n  - attack.initial_access\n  - attack.t1078.004\n"
+    },
+    {
+      "rule_id": "KQL-AWS-IAM-001",
+      "title": "CloudTrail IAM Key Reuse Investigation Query",
+      "format": "KQL",
+      "target": "AzureActivity / AWSCloudTrail",
+      "content": "// KQL Query for Sentinel / Defender for Cloud\nAWSCloudTrail\n| where AccessKeyId == \"AKIACOMPROMISEDKEY01\"\n| summarize Count=count(), FirstSeen=min(TimeGenerated), LastSeen=max(TimeGenerated) by SourceIPAddress, EventName, UserIdentityArn\n| order by Count desc\n"
+    }
+  ],
+  "stix_bundle": {
+    "type": "bundle",
+    "id": "bundle--da53139a-7777-4000-8000-000000000000",
+    "spec_version": "2.1",
+    "objects": [
+      {
+        "type": "threat-actor",
+        "spec_version": "2.1",
+        "id": "threat-actor--cd9f2fd7-1111-4000-8000-000000000000",
+        "created": "2026-09-03T18:31:30+00:00",
+        "modified": "2026-09-03T18:31:30+00:00",
+        "name": "UNC-CLOUD-HARVESTER",
+        "description": "Adversary activity cluster leveraging compromised cloud assets (AKIACOMPROMISEDKEY01, AKIACOMPROMISEDKEY01) to execute automated recon, credential access, and potential storage exfiltration across targeted cloud tenants.",
+        "threat_actor_types": [
+          "crime-syndicate",
+          "cyberespionage"
+        ],
+        "confidence": 85
+      },
+      {
+        "type": "attack-pattern",
+        "spec_version": "2.1",
+        "id": "attack-pattern--27eee447-2222-4000-8000-000000000000",
+        "created": "2026-09-03T18:31:30+00:00",
+        "modified": "2026-09-03T18:31:30+00:00",
+        "name": "Valid Accounts: Cloud Accounts",
+        "description": "MITRE ATT&CK Cloud Technique T1078.004 (Initial Access / Defense Evasion)",
+        "external_references": [
+          {
+            "source_name": "mitre-attack",
+            "external_id": "T1078.004",
+            "url": "https://attack.mitre.org/techniques/T1078/004/"
+          }
+        ]
+      },
+      {
+        "type": "attack-pattern",
+        "spec_version": "2.1",
+        "id": "attack-pattern--228dba9a-2222-4000-8000-000000000000",
+        "created": "2026-09-03T18:31:30+00:00",
+        "modified": "2026-09-03T18:31:30+00:00",
+        "name": "Unsecured Credentials: Cloud Credentials",
+        "description": "MITRE ATT&CK Cloud Technique T1552.005 (Credential Access)",
+        "external_references": [
+          {
+            "source_name": "mitre-attack",
+            "external_id": "T1552.005",
+            "url": "https://attack.mitre.org/techniques/T1552/005/"
+          }
+        ]
+      },
+      {
+        "type": "indicator",
+        "spec_version": "2.1",
+        "id": "indicator--2cde41af-3333-4000-8000-000000000000",
+        "created": "2026-09-03T18:31:30+00:00",
+        "modified": "2026-09-03T18:31:30+00:00",
+        "name": "IAM_ACCESS_KEY: AKIACOMPROMISEDKEY01",
+        "indicator_types": [
+          "malicious-activity",
+          "anomalous-activity"
+        ],
+        "pattern": "[user-account:user_id = 'AKIACOMPROMISEDKEY01']",
+        "pattern_type": "stix",
+        "valid_from": "2026-09-03T18:31:30+00:00",
+        "confidence": 75
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--4387f13d-4444-4000-8000-000000000000",
+        "created": "2026-09-03T18:31:30+00:00",
+        "modified": "2026-09-03T18:31:30+00:00",
+        "relationship_type": "uses",
+        "source_ref": "threat-actor--cd9f2fd7-1111-4000-8000-000000000000",
+        "target_ref": "indicator--2cde41af-3333-4000-8000-000000000000"
+      },
+      {
+        "type": "indicator",
+        "spec_version": "2.1",
+        "id": "indicator--eb120d7a-3333-4000-8000-000000000000",
+        "created": "2026-08-28T21:14:02Z",
+        "modified": "2026-08-28T21:38:52Z",
+        "name": "IAM_ACCESS_KEY: AKIACOMPROMISEDKEY01",
+        "indicator_types": [
+          "malicious-activity",
+          "anomalous-activity"
+        ],
+        "pattern": "[user-account:user_id = 'AKIACOMPROMISEDKEY01']",
+        "pattern_type": "stix",
+        "valid_from": "2026-08-28T21:14:02Z",
+        "confidence": 75
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--ef12374a-4444-4000-8000-000000000000",
+        "created": "2026-09-03T18:31:30+00:00",
+        "modified": "2026-09-03T18:31:30+00:00",
+        "relationship_type": "uses",
+        "source_ref": "threat-actor--cd9f2fd7-1111-4000-8000-000000000000",
+        "target_ref": "indicator--eb120d7a-3333-4000-8000-000000000000"
+      },
+      {
+        "type": "indicator",
+        "spec_version": "2.1",
+        "id": "indicator--e2793845-3333-4000-8000-000000000000",
+        "created": "2026-08-28T21:14:02Z",
+        "modified": "2026-08-28T21:16:37Z",
+        "name": "IP: 198.51.100.45",
+        "indicator_types": [
+          "malicious-activity",
+          "anomalous-activity"
+        ],
+        "pattern": "[ipv4-addr:value = '198.51.100.45']",
+        "pattern_type": "stix",
+        "valid_from": "2026-08-28T21:14:02Z",
+        "confidence": 50
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--bc9f9dc9-4444-4000-8000-000000000000",
+        "created": "2026-09-03T18:31:30+00:00",
+        "modified": "2026-09-03T18:31:30+00:00",
+        "relationship_type": "uses",
+        "source_ref": "threat-actor--cd9f2fd7-1111-4000-8000-000000000000",
+        "target_ref": "indicator--e2793845-3333-4000-8000-000000000000"
+      },
+      {
+        "type": "indicator",
+        "spec_version": "2.1",
+        "id": "indicator--7dbbe5b1-3333-4000-8000-000000000000",
+        "created": "2026-08-28T21:14:02Z",
+        "modified": "2026-08-28T21:14:02Z",
+        "name": "AWS_ACTION: sts:GetCallerIdentity",
+        "indicator_types": [
+          "malicious-activity",
+          "anomalous-activity"
+        ],
+        "pattern": "[artifact:payload_bin = 'sts:GetCallerIdentity']",
+        "pattern_type": "stix",
+        "valid_from": "2026-08-28T21:14:02Z",
+        "confidence": 40
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--ea37a2a1-4444-4000-8000-000000000000",
+        "created": "2026-09-03T18:31:30+00:00",
+        "modified": "2026-09-03T18:31:30+00:00",
+        "relationship_type": "uses",
+        "source_ref": "threat-actor--cd9f2fd7-1111-4000-8000-000000000000",
+        "target_ref": "indicator--7dbbe5b1-3333-4000-8000-000000000000"
+      },
+      {
+        "type": "indicator",
+        "spec_version": "2.1",
+        "id": "indicator--9b403731-3333-4000-8000-000000000000",
+        "created": "2026-08-28T21:16:37Z",
+        "modified": "2026-08-28T21:16:37Z",
+        "name": "AWS_ACTION: iam:ListAttachedUserPolicies",
+        "indicator_types": [
+          "malicious-activity",
+          "anomalous-activity"
+        ],
+        "pattern": "[artifact:payload_bin = 'iam:ListAttachedUserPolicies']",
+        "pattern_type": "stix",
+        "valid_from": "2026-08-28T21:16:37Z",
+        "confidence": 40
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--3f3f08b4-4444-4000-8000-000000000000",
+        "created": "2026-09-03T18:31:30+00:00",
+        "modified": "2026-09-03T18:31:30+00:00",
+        "relationship_type": "uses",
+        "source_ref": "threat-actor--cd9f2fd7-1111-4000-8000-000000000000",
+        "target_ref": "indicator--9b403731-3333-4000-8000-000000000000"
+      },
+      {
+        "type": "indicator",
+        "spec_version": "2.1",
+        "id": "indicator--d7b405f8-3333-4000-8000-000000000000",
+        "created": "2026-08-28T21:22:15Z",
+        "modified": "2026-08-28T21:38:52Z",
+        "name": "IP: 203.0.113.88",
+        "indicator_types": [
+          "malicious-activity",
+          "anomalous-activity"
+        ],
+        "pattern": "[ipv4-addr:value = '203.0.113.88']",
+        "pattern_type": "stix",
+        "valid_from": "2026-08-28T21:22:15Z",
+        "confidence": 50
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--a578f48b-4444-4000-8000-000000000000",
+        "created": "2026-09-03T18:31:30+00:00",
+        "modified": "2026-09-03T18:31:30+00:00",
+        "relationship_type": "uses",
+        "source_ref": "threat-actor--cd9f2fd7-1111-4000-8000-000000000000",
+        "target_ref": "indicator--d7b405f8-3333-4000-8000-000000000000"
+      },
+      {
+        "type": "indicator",
+        "spec_version": "2.1",
+        "id": "indicator--f141a966-3333-4000-8000-000000000000",
+        "created": "2026-08-28T21:22:15Z",
+        "modified": "2026-08-28T21:22:15Z",
+        "name": "AWS_ACTION: sts:AssumeRole",
+        "indicator_types": [
+          "malicious-activity",
+          "anomalous-activity"
+        ],
+        "pattern": "[artifact:payload_bin = 'sts:AssumeRole']",
+        "pattern_type": "stix",
+        "valid_from": "2026-08-28T21:22:15Z",
+        "confidence": 40
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--998a5528-4444-4000-8000-000000000000",
+        "created": "2026-09-03T18:31:30+00:00",
+        "modified": "2026-09-03T18:31:30+00:00",
+        "relationship_type": "uses",
+        "source_ref": "threat-actor--cd9f2fd7-1111-4000-8000-000000000000",
+        "target_ref": "indicator--f141a966-3333-4000-8000-000000000000"
+      },
+      {
+        "type": "indicator",
+        "spec_version": "2.1",
+        "id": "indicator--60783817-3333-4000-8000-000000000000",
+        "created": "2026-08-28T21:22:15Z",
+        "modified": "2026-08-28T21:22:15Z",
+        "name": "AWS_RESOURCE: arn:aws:iam::111122223333:role/prod-data-reader",
+        "indicator_types": [
+          "malicious-activity",
+          "anomalous-activity"
+        ],
+        "pattern": "[artifact:payload_bin = 'arn:aws:iam::111122223333:role/prod-data-reader']",
+        "pattern_type": "stix",
+        "valid_from": "2026-08-28T21:22:15Z",
+        "confidence": 30
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--9b6ed68d-4444-4000-8000-000000000000",
+        "created": "2026-09-03T18:31:30+00:00",
+        "modified": "2026-09-03T18:31:30+00:00",
+        "relationship_type": "uses",
+        "source_ref": "threat-actor--cd9f2fd7-1111-4000-8000-000000000000",
+        "target_ref": "indicator--60783817-3333-4000-8000-000000000000"
+      },
+      {
+        "type": "indicator",
+        "spec_version": "2.1",
+        "id": "indicator--44a09709-3333-4000-8000-000000000000",
+        "created": "2026-08-28T21:24:48Z",
+        "modified": "2026-08-28T21:24:48Z",
+        "name": "AWS_ACTION: secretsmanager:GetSecretValue",
+        "indicator_types": [
+          "malicious-activity",
+          "anomalous-activity"
+        ],
+        "pattern": "[artifact:payload_bin = 'secretsmanager:GetSecretValue']",
+        "pattern_type": "stix",
+        "valid_from": "2026-08-28T21:24:48Z",
+        "confidence": 40
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--59899c3b-4444-4000-8000-000000000000",
+        "created": "2026-09-03T18:31:30+00:00",
+        "modified": "2026-09-03T18:31:30+00:00",
+        "relationship_type": "uses",
+        "source_ref": "threat-actor--cd9f2fd7-1111-4000-8000-000000000000",
+        "target_ref": "indicator--44a09709-3333-4000-8000-000000000000"
+      },
+      {
+        "type": "indicator",
+        "spec_version": "2.1",
+        "id": "indicator--14f069f3-3333-4000-8000-000000000000",
+        "created": "2026-08-28T21:24:48Z",
+        "modified": "2026-08-28T21:24:48Z",
+        "name": "AWS_RESOURCE: arn:aws:secretsmanager:us-east-1:111122223333:secret:prod/db/master-AbC123",
+        "indicator_types": [
+          "malicious-activity",
+          "anomalous-activity"
+        ],
+        "pattern": "[artifact:payload_bin = 'arn:aws:secretsmanager:us-east-1:111122223333:secret:prod/db/master-AbC123']",
+        "pattern_type": "stix",
+        "valid_from": "2026-08-28T21:24:48Z",
+        "confidence": 30
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--bac295c3-4444-4000-8000-000000000000",
+        "created": "2026-09-03T18:31:30+00:00",
+        "modified": "2026-09-03T18:31:30+00:00",
+        "relationship_type": "uses",
+        "source_ref": "threat-actor--cd9f2fd7-1111-4000-8000-000000000000",
+        "target_ref": "indicator--14f069f3-3333-4000-8000-000000000000"
+      },
+      {
+        "type": "indicator",
+        "spec_version": "2.1",
+        "id": "indicator--7aa2a8e0-3333-4000-8000-000000000000",
+        "created": "2026-08-28T21:31:09Z",
+        "modified": "2026-08-28T21:31:09Z",
+        "name": "AWS_ACTION: iam:CreateAccessKey",
+        "indicator_types": [
+          "malicious-activity",
+          "anomalous-activity"
+        ],
+        "pattern": "[artifact:payload_bin = 'iam:CreateAccessKey']",
+        "pattern_type": "stix",
+        "valid_from": "2026-08-28T21:31:09Z",
+        "confidence": 40
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--cde31492-4444-4000-8000-000000000000",
+        "created": "2026-09-03T18:31:30+00:00",
+        "modified": "2026-09-03T18:31:30+00:00",
+        "relationship_type": "uses",
+        "source_ref": "threat-actor--cd9f2fd7-1111-4000-8000-000000000000",
+        "target_ref": "indicator--7aa2a8e0-3333-4000-8000-000000000000"
+      },
+      {
+        "type": "indicator",
+        "spec_version": "2.1",
+        "id": "indicator--58122c9c-3333-4000-8000-000000000000",
+        "created": "2026-08-28T21:38:52Z",
+        "modified": "2026-08-28T21:38:52Z",
+        "name": "AWS_ACTION: cloudtrail:StopLogging",
+        "indicator_types": [
+          "malicious-activity",
+          "anomalous-activity"
+        ],
+        "pattern": "[artifact:payload_bin = 'cloudtrail:StopLogging']",
+        "pattern_type": "stix",
+        "valid_from": "2026-08-28T21:38:52Z",
+        "confidence": 40
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--acd0d04d-4444-4000-8000-000000000000",
+        "created": "2026-09-03T18:31:30+00:00",
+        "modified": "2026-09-03T18:31:30+00:00",
+        "relationship_type": "uses",
+        "source_ref": "threat-actor--cd9f2fd7-1111-4000-8000-000000000000",
+        "target_ref": "indicator--58122c9c-3333-4000-8000-000000000000"
+      },
+      {
+        "type": "indicator",
+        "spec_version": "2.1",
+        "id": "indicator--b8a34817-3333-4000-8000-000000000000",
+        "created": "2026-08-28T21:38:52Z",
+        "modified": "2026-08-28T21:38:52Z",
+        "name": "AWS_RESOURCE: arn:aws:cloudtrail:us-east-1:111122223333:trail/org-audit-trail",
+        "indicator_types": [
+          "malicious-activity",
+          "anomalous-activity"
+        ],
+        "pattern": "[artifact:payload_bin = 'arn:aws:cloudtrail:us-east-1:111122223333:trail/org-audit-trail']",
+        "pattern_type": "stix",
+        "valid_from": "2026-08-28T21:38:52Z",
+        "confidence": 30
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--66b731ac-4444-4000-8000-000000000000",
+        "created": "2026-09-03T18:31:30+00:00",
+        "modified": "2026-09-03T18:31:30+00:00",
+        "relationship_type": "uses",
+        "source_ref": "threat-actor--cd9f2fd7-1111-4000-8000-000000000000",
+        "target_ref": "indicator--b8a34817-3333-4000-8000-000000000000"
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--11ded712-5555-4000-8000-000000000000",
+        "created": "2026-08-28T21:14:02Z",
+        "modified": "2026-08-28T21:16:37Z",
+        "relationship_type": "observed_from",
+        "source_ref": "indicator--eb120d7a-3333-4000-8000-000000000000",
+        "target_ref": "indicator--e2793845-3333-4000-8000-000000000000",
+        "description": "CloudTrail GetCallerIdentity from 198.51.100.45",
+        "confidence": 100
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--c91a8c08-5555-4000-8000-000000000000",
+        "created": "2026-08-28T21:14:02Z",
+        "modified": "2026-08-28T21:14:02Z",
+        "relationship_type": "performed",
+        "source_ref": "indicator--eb120d7a-3333-4000-8000-000000000000",
+        "target_ref": "indicator--7dbbe5b1-3333-4000-8000-000000000000",
+        "description": "CloudTrail event c9d3e5a7-2222-4b3c-8d4e-000000000001",
+        "confidence": 100
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--cdfb4ef5-5555-4000-8000-000000000000",
+        "created": "2026-08-28T21:16:37Z",
+        "modified": "2026-08-28T21:16:37Z",
+        "relationship_type": "performed",
+        "source_ref": "indicator--eb120d7a-3333-4000-8000-000000000000",
+        "target_ref": "indicator--9b403731-3333-4000-8000-000000000000",
+        "description": "CloudTrail event c9d3e5a7-2222-4b3c-8d4e-000000000002",
+        "confidence": 100
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--bc08639b-5555-4000-8000-000000000000",
+        "created": "2026-08-28T21:22:15Z",
+        "modified": "2026-08-28T21:38:52Z",
+        "relationship_type": "observed_from",
+        "source_ref": "indicator--eb120d7a-3333-4000-8000-000000000000",
+        "target_ref": "indicator--d7b405f8-3333-4000-8000-000000000000",
+        "description": "CloudTrail AssumeRole from 203.0.113.88",
+        "confidence": 100
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--7dbdb0fa-5555-4000-8000-000000000000",
+        "created": "2026-08-28T21:22:15Z",
+        "modified": "2026-08-28T21:22:15Z",
+        "relationship_type": "performed",
+        "source_ref": "indicator--eb120d7a-3333-4000-8000-000000000000",
+        "target_ref": "indicator--f141a966-3333-4000-8000-000000000000",
+        "description": "CloudTrail event c9d3e5a7-2222-4b3c-8d4e-000000000003",
+        "confidence": 100
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--1291a6cd-5555-4000-8000-000000000000",
+        "created": "2026-08-28T21:22:15Z",
+        "modified": "2026-08-28T21:22:15Z",
+        "relationship_type": "affected",
+        "source_ref": "indicator--f141a966-3333-4000-8000-000000000000",
+        "target_ref": "indicator--60783817-3333-4000-8000-000000000000",
+        "description": "CloudTrail AssumeRole targeted arn:aws:iam::111122223333:role/prod-data-reader",
+        "confidence": 100
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--352e1751-5555-4000-8000-000000000000",
+        "created": "2026-08-28T21:24:48Z",
+        "modified": "2026-08-28T21:24:48Z",
+        "relationship_type": "performed",
+        "source_ref": "indicator--eb120d7a-3333-4000-8000-000000000000",
+        "target_ref": "indicator--44a09709-3333-4000-8000-000000000000",
+        "description": "CloudTrail event c9d3e5a7-2222-4b3c-8d4e-000000000004",
+        "confidence": 100
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--23eb27cc-5555-4000-8000-000000000000",
+        "created": "2026-08-28T21:24:48Z",
+        "modified": "2026-08-28T21:24:48Z",
+        "relationship_type": "affected",
+        "source_ref": "indicator--44a09709-3333-4000-8000-000000000000",
+        "target_ref": "indicator--14f069f3-3333-4000-8000-000000000000",
+        "description": "CloudTrail GetSecretValue targeted arn:aws:secretsmanager:us-east-1:111122223333:secret:prod/db/master-AbC123",
+        "confidence": 100
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--2c1954df-5555-4000-8000-000000000000",
+        "created": "2026-08-28T21:31:09Z",
+        "modified": "2026-08-28T21:31:09Z",
+        "relationship_type": "performed",
+        "source_ref": "indicator--eb120d7a-3333-4000-8000-000000000000",
+        "target_ref": "indicator--7aa2a8e0-3333-4000-8000-000000000000",
+        "description": "CloudTrail event c9d3e5a7-2222-4b3c-8d4e-000000000005",
+        "confidence": 100
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--3dcede2f-5555-4000-8000-000000000000",
+        "created": "2026-08-28T21:38:52Z",
+        "modified": "2026-08-28T21:38:52Z",
+        "relationship_type": "performed",
+        "source_ref": "indicator--eb120d7a-3333-4000-8000-000000000000",
+        "target_ref": "indicator--58122c9c-3333-4000-8000-000000000000",
+        "description": "CloudTrail event c9d3e5a7-2222-4b3c-8d4e-000000000006",
+        "confidence": 100
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--61b67076-5555-4000-8000-000000000000",
+        "created": "2026-08-28T21:38:52Z",
+        "modified": "2026-08-28T21:38:52Z",
+        "relationship_type": "affected",
+        "source_ref": "indicator--58122c9c-3333-4000-8000-000000000000",
+        "target_ref": "indicator--b8a34817-3333-4000-8000-000000000000",
+        "description": "CloudTrail StopLogging targeted arn:aws:cloudtrail:us-east-1:111122223333:trail/org-audit-trail",
+        "confidence": 100
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--18a554f3-6666-4000-8000-000000000000",
+        "created": "2026-09-03T18:31:30+00:00",
+        "modified": "2026-09-03T18:31:30+00:00",
+        "relationship_type": "uses",
+        "source_ref": "threat-actor--cd9f2fd7-1111-4000-8000-000000000000",
+        "target_ref": "attack-pattern--27eee447-2222-4000-8000-000000000000"
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--4c1b5480-6666-4000-8000-000000000000",
+        "created": "2026-09-03T18:31:30+00:00",
+        "modified": "2026-09-03T18:31:30+00:00",
+        "relationship_type": "uses",
+        "source_ref": "threat-actor--cd9f2fd7-1111-4000-8000-000000000000",
+        "target_ref": "attack-pattern--228dba9a-2222-4000-8000-000000000000"
+      }
+    ]
+  },
+  "markdown_report": "# Cloud Threat Investigation Report: INV-2026-7019\n**Date:** 2026-09-03T18:31:30+00:00  |  **Seed Indicator:** `AKIACOMPROMISEDKEY01` (`iam_access_key`)  |  **Confidence Score:** 85%\n\n## Executive Summary\nAdversary activity cluster leveraging compromised cloud assets (AKIACOMPROMISEDKEY01, AKIACOMPROMISEDKEY01) to execute automated recon, credential access, and potential storage exfiltration across targeted cloud tenants.\n\n## Analytical Judgments & Skeptic Audit\n**Review Status:** `ACCEPTED`\n- **Analyst Feedback:** Skeptic Audit complete. Status: ACCEPTED. Final Confidence: 85%. Injections Blocked: 0. Penalized 0 claims & 0 contradictions.\n\n## Competing Hypotheses (ACH Analysis)\n### Alternative Explanations Evaluated\n- Legitimate developer key leakage without malicious exploitation (false positive alert trigger).\n- Third-party CI/CD automation tool misconfiguration exposing public read permissions.\n- Independent opportunistic scanner activity reusing public cloud infrastructure rather than a single coordinated campaign.\n\n## MITRE ATT&CK Cloud Mappings\n- **[T1078.004] Valid Accounts: Cloud Accounts** (Initial Access / Defense Evasion) - Platform: `AWS / Azure IAM` (Confidence: 95%)\n- **[T1552.005] Unsecured Credentials: Cloud Credentials** (Credential Access) - Platform: `AWS S3 / Azure Key Vault / GitHub` (Confidence: 90%)\n\n## Evidence Graph & Timeline\n- `2026-08-28T21:14:02Z`: First observed iam_access_key (AKIACOMPROMISEDKEY01)\n- `2026-08-28T21:14:02Z`: First observed ip (198[\\.]51[\\.]100[\\.]45)\n- `2026-08-28T21:14:02Z`: First observed aws_action (sts:GetCallerIdentity)\n- `2026-08-28T21:14:02Z`: Relationship [observed_from]: AKIACOMPROMISEDKEY01 -> 198[\\.]51[\\.]100[\\.]45 (CloudTrail GetCallerIdentity from 198.51.100.45)\n- `2026-08-28T21:14:02Z`: Relationship [performed]: AKIACOMPROMISEDKEY01 -> sts:GetCallerIdentity (CloudTrail event c9d3e5a7-2222-4b3c-8d4e-000000000001)\n- `2026-08-28T21:16:37Z`: First observed aws_action (iam:ListAttachedUserPolicies)\n- `2026-08-28T21:16:37Z`: Relationship [performed]: AKIACOMPROMISEDKEY01 -> iam:ListAttachedUserPolicies (CloudTrail event c9d3e5a7-2222-4b3c-8d4e-000000000002)\n- `2026-08-28T21:22:15Z`: First observed ip (203[\\.]0[\\.]113[\\.]88)\n- `2026-08-28T21:22:15Z`: First observed aws_action (sts:AssumeRole)\n- `2026-08-28T21:22:15Z`: First observed aws_resource (arn:aws:iam::111122223333:role/prod-data-reader)\n- `2026-08-28T21:22:15Z`: Relationship [observed_from]: AKIACOMPROMISEDKEY01 -> 203[\\.]0[\\.]113[\\.]88 (CloudTrail AssumeRole from 203.0.113.88)\n- `2026-08-28T21:22:15Z`: Relationship [performed]: AKIACOMPROMISEDKEY01 -> sts:AssumeRole (CloudTrail event c9d3e5a7-2222-4b3c-8d4e-000000000003)\n- `2026-08-28T21:22:15Z`: Relationship [affected]: sts:AssumeRole -> arn:aws:iam::111122223333:role/prod-data-reader (CloudTrail AssumeRole targeted arn:aws:iam::111122223333:role/prod-data-reader)\n- `2026-08-28T21:24:48Z`: First observed aws_action (secretsmanager:GetSecretValue)\n- `2026-08-28T21:24:48Z`: First observed aws_resource (arn:aws:secretsmanager:us-east-1:111122223333:secret:prod/db/master-AbC123)\n- `2026-08-28T21:24:48Z`: Relationship [performed]: AKIACOMPROMISEDKEY01 -> secretsmanager:GetSecretValue (CloudTrail event c9d3e5a7-2222-4b3c-8d4e-000000000004)\n- `2026-08-28T21:24:48Z`: Relationship [affected]: secretsmanager:GetSecretValue -> arn:aws:secretsmanager:us-east-1:111122223333:secret:prod/db/master-AbC123 (CloudTrail GetSecretValue targeted arn:aws:secretsmanager:us-east-1:111122223333:secret:prod/db/master-AbC123)\n- `2026-08-28T21:31:09Z`: First observed aws_action (iam:CreateAccessKey)\n- `2026-08-28T21:31:09Z`: Relationship [performed]: AKIACOMPROMISEDKEY01 -> iam:CreateAccessKey (CloudTrail event c9d3e5a7-2222-4b3c-8d4e-000000000005)\n- `2026-08-28T21:38:52Z`: First observed aws_action (cloudtrail:StopLogging)\n- `2026-08-28T21:38:52Z`: First observed aws_resource (arn:aws:cloudtrail:us-east-1:111122223333:trail/org-audit-trail)\n- `2026-08-28T21:38:52Z`: Relationship [performed]: AKIACOMPROMISEDKEY01 -> cloudtrail:StopLogging (CloudTrail event c9d3e5a7-2222-4b3c-8d4e-000000000006)\n- `2026-08-28T21:38:52Z`: Relationship [affected]: cloudtrail:StopLogging -> arn:aws:cloudtrail:us-east-1:111122223333:trail/org-audit-trail (CloudTrail StopLogging targeted arn:aws:cloudtrail:us-east-1:111122223333:trail/org-audit-trail)\n- `2026-09-03T18:31:30+00:00`: First observed iam_access_key (AKIACOMPROMISEDKEY01)\n\n## Detection Rules\n### Suspicious API Activity from Compromised Cloud Credentials (Sigma)\n```yaml\ntitle: Suspicious API Activity from Compromised Cloud Credentials\nid: c1a7a0b1-4b89-4e5c-9c12-3a5678901234\nstatus: experimental\ndescription: Detects API calls originating from known compromised IAM access key AKIACOMPROMISEDKEY01 across unapproved ASNs.\nlogsource:\n  product: aws\n  service: cloudtrail\ndetection:\n  selection:\n    userIdentity.accessKeyId: 'AKIACOMPROMISEDKEY01'\n  condition: selection\nfalsepositives:\n  - Authorized cloud infrastructure automation scripts.\nlevel: high\ntags:\n  - attack.initial_access\n  - attack.t1078.004\n\n```\n\n### CloudTrail IAM Key Reuse Investigation Query (KQL)\n```yaml\n// KQL Query for Sentinel / Defender for Cloud\nAWSCloudTrail\n| where AccessKeyId == \"AKIACOMPROMISEDKEY01\"\n| summarize Count=count(), FirstSeen=min(TimeGenerated), LastSeen=max(TimeGenerated) by SourceIPAddress, EventName, UserIdentityArn\n| order by Count desc\n\n```\n",
+  "aws_telemetry": {
+    "access_key_id": "AKIACOMPROMISEDKEY01",
+    "seed_node_id": "seed-iam_access_key-AKIACOMPROMISEDKEY01",
+    "window": {
+      "start": "2026-06-05T18:31:30.456436+00:00",
+      "end": "2026-09-03T18:31:30.456436+00:00"
+    },
+    "event_count": 6,
+    "management_events": 6,
+    "data_events": 0,
+    "evidence_records": [
+      {
+        "evidence_id": "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000001",
+        "provider": "aws",
+        "source": "cloudtrail_file_export",
+        "event_id": "c9d3e5a7-2222-4b3c-8d4e-000000000001",
+        "event_time": "2026-08-28T21:14:02Z",
+        "account_id": "111122223333",
+        "region": "us-east-1",
+        "principal_arn": "arn:aws:iam::111122223333:user/deploy-svc",
+        "access_key_id": "AKIACOMPROMISEDKEY01",
+        "source_ip": "198.51.100.45",
+        "event_source": "sts.amazonaws.com",
+        "event_name": "GetCallerIdentity",
+        "event_category": "Management",
+        "resources": [],
+        "raw_event": {
+          "eventVersion": "1.09",
+          "eventID": "c9d3e5a7-2222-4b3c-8d4e-000000000001",
+          "eventTime": "2026-08-28T21:14:02Z",
+          "eventSource": "sts.amazonaws.com",
+          "eventName": "GetCallerIdentity",
+          "awsRegion": "us-east-1",
+          "sourceIPAddress": "198.51.100.45",
+          "userAgent": "Boto3/1.34.0 Python/3.11.4 Linux/5.15",
+          "readOnly": true,
+          "managementEvent": true,
+          "recipientAccountId": "111122223333",
+          "userIdentity": {
+            "type": "IAMUser",
+            "arn": "arn:aws:iam::111122223333:user/deploy-svc",
+            "accountId": "111122223333",
+            "userName": "deploy-svc",
+            "accessKeyId": "AKIACOMPROMISEDKEY01"
+          },
+          "requestParameters": {},
+          "responseElements": null,
+          "resources": []
+        }
+      },
+      {
+        "evidence_id": "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000002",
+        "provider": "aws",
+        "source": "cloudtrail_file_export",
+        "event_id": "c9d3e5a7-2222-4b3c-8d4e-000000000002",
+        "event_time": "2026-08-28T21:16:37Z",
+        "account_id": "111122223333",
+        "region": "us-east-1",
+        "principal_arn": "arn:aws:iam::111122223333:user/deploy-svc",
+        "access_key_id": "AKIACOMPROMISEDKEY01",
+        "source_ip": "198.51.100.45",
+        "event_source": "iam.amazonaws.com",
+        "event_name": "ListAttachedUserPolicies",
+        "event_category": "Management",
+        "resources": [],
+        "raw_event": {
+          "eventVersion": "1.09",
+          "eventID": "c9d3e5a7-2222-4b3c-8d4e-000000000002",
+          "eventTime": "2026-08-28T21:16:37Z",
+          "eventSource": "iam.amazonaws.com",
+          "eventName": "ListAttachedUserPolicies",
+          "awsRegion": "us-east-1",
+          "sourceIPAddress": "198.51.100.45",
+          "userAgent": "Boto3/1.34.0 Python/3.11.4 Linux/5.15",
+          "readOnly": true,
+          "managementEvent": true,
+          "recipientAccountId": "111122223333",
+          "userIdentity": {
+            "type": "IAMUser",
+            "arn": "arn:aws:iam::111122223333:user/deploy-svc",
+            "accountId": "111122223333",
+            "userName": "deploy-svc",
+            "accessKeyId": "AKIACOMPROMISEDKEY01"
+          },
+          "requestParameters": {
+            "userName": "deploy-svc"
+          },
+          "responseElements": null,
+          "resources": []
+        }
+      },
+      {
+        "evidence_id": "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000003",
+        "provider": "aws",
+        "source": "cloudtrail_file_export",
+        "event_id": "c9d3e5a7-2222-4b3c-8d4e-000000000003",
+        "event_time": "2026-08-28T21:22:15Z",
+        "account_id": "111122223333",
+        "region": "us-east-1",
+        "principal_arn": "arn:aws:iam::111122223333:user/deploy-svc",
+        "access_key_id": "AKIACOMPROMISEDKEY01",
+        "source_ip": "203.0.113.88",
+        "event_source": "sts.amazonaws.com",
+        "event_name": "AssumeRole",
+        "event_category": "Management",
+        "resources": [
+          {
+            "ARN": "arn:aws:iam::111122223333:role/prod-data-reader",
+            "type": "AWS::IAM::Role"
+          }
+        ],
+        "raw_event": {
+          "eventVersion": "1.09",
+          "eventID": "c9d3e5a7-2222-4b3c-8d4e-000000000003",
+          "eventTime": "2026-08-28T21:22:15Z",
+          "eventSource": "sts.amazonaws.com",
+          "eventName": "AssumeRole",
+          "awsRegion": "us-east-1",
+          "sourceIPAddress": "203.0.113.88",
+          "userAgent": "Boto3/1.34.0 Python/3.11.4 Linux/5.15",
+          "readOnly": false,
+          "managementEvent": true,
+          "recipientAccountId": "111122223333",
+          "userIdentity": {
+            "type": "IAMUser",
+            "arn": "arn:aws:iam::111122223333:user/deploy-svc",
+            "accountId": "111122223333",
+            "userName": "deploy-svc",
+            "accessKeyId": "AKIACOMPROMISEDKEY01"
+          },
+          "requestParameters": {
+            "roleArn": "arn:aws:iam::111122223333:role/prod-data-reader",
+            "roleSessionName": "s-9182"
+          },
+          "responseElements": {
+            "assumedRoleUser": {
+              "arn": "arn:aws:sts::111122223333:assumed-role/prod-data-reader/s-9182"
+            }
+          },
+          "resources": [
+            {
+              "ARN": "arn:aws:iam::111122223333:role/prod-data-reader",
+              "type": "AWS::IAM::Role"
+            }
+          ]
+        }
+      },
+      {
+        "evidence_id": "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000004",
+        "provider": "aws",
+        "source": "cloudtrail_file_export",
+        "event_id": "c9d3e5a7-2222-4b3c-8d4e-000000000004",
+        "event_time": "2026-08-28T21:24:48Z",
+        "account_id": "111122223333",
+        "region": "us-east-1",
+        "principal_arn": "arn:aws:iam::111122223333:user/deploy-svc",
+        "access_key_id": "AKIACOMPROMISEDKEY01",
+        "source_ip": "203.0.113.88",
+        "event_source": "secretsmanager.amazonaws.com",
+        "event_name": "GetSecretValue",
+        "event_category": "Management",
+        "resources": [
+          {
+            "ARN": "arn:aws:secretsmanager:us-east-1:111122223333:secret:prod/db/master-AbC123",
+            "type": "AWS::SecretsManager::Secret"
+          }
+        ],
+        "raw_event": {
+          "eventVersion": "1.09",
+          "eventID": "c9d3e5a7-2222-4b3c-8d4e-000000000004",
+          "eventTime": "2026-08-28T21:24:48Z",
+          "eventSource": "secretsmanager.amazonaws.com",
+          "eventName": "GetSecretValue",
+          "awsRegion": "us-east-1",
+          "sourceIPAddress": "203.0.113.88",
+          "userAgent": "Boto3/1.34.0 Python/3.11.4 Linux/5.15",
+          "readOnly": true,
+          "managementEvent": true,
+          "recipientAccountId": "111122223333",
+          "userIdentity": {
+            "type": "IAMUser",
+            "arn": "arn:aws:iam::111122223333:user/deploy-svc",
+            "accountId": "111122223333",
+            "userName": "deploy-svc",
+            "accessKeyId": "AKIACOMPROMISEDKEY01"
+          },
+          "requestParameters": {
+            "secretId": "arn:aws:secretsmanager:us-east-1:111122223333:secret:prod/db/master-AbC123"
+          },
+          "responseElements": null,
+          "resources": [
+            {
+              "ARN": "arn:aws:secretsmanager:us-east-1:111122223333:secret:prod/db/master-AbC123",
+              "type": "AWS::SecretsManager::Secret"
+            }
+          ]
+        }
+      },
+      {
+        "evidence_id": "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000005",
+        "provider": "aws",
+        "source": "cloudtrail_file_export",
+        "event_id": "c9d3e5a7-2222-4b3c-8d4e-000000000005",
+        "event_time": "2026-08-28T21:31:09Z",
+        "account_id": "111122223333",
+        "region": "us-east-1",
+        "principal_arn": "arn:aws:iam::111122223333:user/deploy-svc",
+        "access_key_id": "AKIACOMPROMISEDKEY01",
+        "source_ip": "203.0.113.88",
+        "event_source": "iam.amazonaws.com",
+        "event_name": "CreateAccessKey",
+        "event_category": "Management",
+        "resources": [],
+        "raw_event": {
+          "eventVersion": "1.09",
+          "eventID": "c9d3e5a7-2222-4b3c-8d4e-000000000005",
+          "eventTime": "2026-08-28T21:31:09Z",
+          "eventSource": "iam.amazonaws.com",
+          "eventName": "CreateAccessKey",
+          "awsRegion": "us-east-1",
+          "sourceIPAddress": "203.0.113.88",
+          "userAgent": "Boto3/1.34.0 Python/3.11.4 Linux/5.15",
+          "readOnly": false,
+          "managementEvent": true,
+          "recipientAccountId": "111122223333",
+          "userIdentity": {
+            "type": "IAMUser",
+            "arn": "arn:aws:iam::111122223333:user/deploy-svc",
+            "accountId": "111122223333",
+            "userName": "deploy-svc",
+            "accessKeyId": "AKIACOMPROMISEDKEY01"
+          },
+          "requestParameters": {
+            "userName": "deploy-svc"
+          },
+          "responseElements": {
+            "accessKey": {
+              "accessKeyId": "AKIAPERSISTENCEKEY99",
+              "status": "Active"
+            }
+          },
+          "resources": []
+        }
+      },
+      {
+        "evidence_id": "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000006",
+        "provider": "aws",
+        "source": "cloudtrail_file_export",
+        "event_id": "c9d3e5a7-2222-4b3c-8d4e-000000000006",
+        "event_time": "2026-08-28T21:38:52Z",
+        "account_id": "111122223333",
+        "region": "us-east-1",
+        "principal_arn": "arn:aws:iam::111122223333:user/deploy-svc",
+        "access_key_id": "AKIACOMPROMISEDKEY01",
+        "source_ip": "203.0.113.88",
+        "event_source": "cloudtrail.amazonaws.com",
+        "event_name": "StopLogging",
+        "event_category": "Management",
+        "resources": [
+          {
+            "ARN": "arn:aws:cloudtrail:us-east-1:111122223333:trail/org-audit-trail",
+            "type": "AWS::CloudTrail::Trail"
+          }
+        ],
+        "raw_event": {
+          "eventVersion": "1.09",
+          "eventID": "c9d3e5a7-2222-4b3c-8d4e-000000000006",
+          "eventTime": "2026-08-28T21:38:52Z",
+          "eventSource": "cloudtrail.amazonaws.com",
+          "eventName": "StopLogging",
+          "awsRegion": "us-east-1",
+          "sourceIPAddress": "203.0.113.88",
+          "userAgent": "Boto3/1.34.0 Python/3.11.4 Linux/5.15",
+          "readOnly": false,
+          "managementEvent": true,
+          "recipientAccountId": "111122223333",
+          "userIdentity": {
+            "type": "IAMUser",
+            "arn": "arn:aws:iam::111122223333:user/deploy-svc",
+            "accountId": "111122223333",
+            "userName": "deploy-svc",
+            "accessKeyId": "AKIACOMPROMISEDKEY01"
+          },
+          "requestParameters": {
+            "name": "arn:aws:cloudtrail:us-east-1:111122223333:trail/org-audit-trail"
+          },
+          "responseElements": null,
+          "resources": [
+            {
+              "ARN": "arn:aws:cloudtrail:us-east-1:111122223333:trail/org-audit-trail",
+              "type": "AWS::CloudTrail::Trail"
+            }
+          ]
+        }
+      }
+    ],
+    "attack_paths": [
+      {
+        "path_id": "PATH-002",
+        "title": "deploy-svc \u2192 sts:AssumeRole on arn:aws:iam::111122223333:role/prod-data-reader",
+        "risk_category": "privilege_escalation",
+        "status": "OBSERVED",
+        "risk_score": 100,
+        "scoring_rationale": [
+          "Base risk for privilege_escalation: 75",
+          "CloudTrail confirms the action was invoked (+25)",
+          "Target resource is tagged/named as sensitive (+10)"
+        ],
+        "attack_technique_ids": [
+          "T1548",
+          "T1078.004"
+        ],
+        "contradictions": [],
+        "steps": [
+          {
+            "node_id": "key::AKIACOMPROMISEDKEY01",
+            "node_type": "access_key",
+            "label": "AKIACOMPROMISEDKEY01",
+            "status": "OBSERVED",
+            "evidence_refs": []
+          },
+          {
+            "node_id": "principal::arn:aws:iam::111122223333:user/deploy-svc",
+            "node_type": "iam_user",
+            "label": "deploy-svc",
+            "status": "OBSERVED",
+            "evidence_refs": []
+          },
+          {
+            "node_id": "action::sts:AssumeRole",
+            "node_type": "aws_action",
+            "label": "sts:AssumeRole",
+            "status": "OBSERVED",
+            "evidence_refs": [
+              "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000003"
+            ]
+          },
+          {
+            "node_id": "resource::arn:aws:iam::111122223333:role/prod-data-reader",
+            "node_type": "resource",
+            "label": "arn:aws:iam::111122223333:role/prod-data-reader",
+            "status": "OBSERVED",
+            "evidence_refs": []
+          }
+        ]
+      },
+      {
+        "path_id": "PATH-008",
+        "title": "deploy-svc \u2192 secretsmanager:GetSecretValue on arn:aws:secretsmanager:us-east-1:111122223333:secret:prod/*",
+        "risk_category": "secret_access",
+        "status": "OBSERVED",
+        "risk_score": 100,
+        "scoring_rationale": [
+          "Base risk for secret_access: 65",
+          "CloudTrail confirms the action was invoked (+25)",
+          "Path pivots through an assumable role (+10)",
+          "Wildcard resource scope broadens blast radius (+10)",
+          "Target resource is tagged/named as sensitive (+10)"
+        ],
+        "attack_technique_ids": [
+          "T1552.005"
+        ],
+        "contradictions": [],
+        "steps": [
+          {
+            "node_id": "key::AKIACOMPROMISEDKEY01",
+            "node_type": "access_key",
+            "label": "AKIACOMPROMISEDKEY01",
+            "status": "OBSERVED",
+            "evidence_refs": []
+          },
+          {
+            "node_id": "principal::arn:aws:iam::111122223333:user/deploy-svc",
+            "node_type": "iam_user",
+            "label": "deploy-svc",
+            "status": "OBSERVED",
+            "evidence_refs": []
+          },
+          {
+            "node_id": "principal::arn:aws:iam::111122223333:role/prod-data-reader",
+            "node_type": "iam_role",
+            "label": "prod-data-reader",
+            "status": "OBSERVED",
+            "evidence_refs": []
+          },
+          {
+            "node_id": "action::secretsmanager:GetSecretValue",
+            "node_type": "aws_action",
+            "label": "secretsmanager:GetSecretValue",
+            "status": "OBSERVED",
+            "evidence_refs": [
+              "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000004"
+            ]
+          },
+          {
+            "node_id": "resource::arn:aws:secretsmanager:us-east-1:111122223333:secret:prod/*",
+            "node_type": "resource",
+            "label": "arn:aws:secretsmanager:us-east-1:111122223333:secret:prod/*",
+            "status": "OBSERVED",
+            "evidence_refs": []
+          }
+        ]
+      },
+      {
+        "path_id": "PATH-001",
+        "title": "deploy-svc \u2192 iam:CreateAccessKey on arn:aws:iam::111122223333:user/deploy-svc",
+        "risk_category": "credential_creation",
+        "status": "OBSERVED",
+        "risk_score": 95,
+        "scoring_rationale": [
+          "Base risk for credential_creation: 70",
+          "CloudTrail confirms the action was invoked (+25)"
+        ],
+        "attack_technique_ids": [
+          "T1098.001"
+        ],
+        "contradictions": [],
+        "steps": [
+          {
+            "node_id": "key::AKIACOMPROMISEDKEY01",
+            "node_type": "access_key",
+            "label": "AKIACOMPROMISEDKEY01",
+            "status": "OBSERVED",
+            "evidence_refs": []
+          },
+          {
+            "node_id": "principal::arn:aws:iam::111122223333:user/deploy-svc",
+            "node_type": "iam_user",
+            "label": "deploy-svc",
+            "status": "OBSERVED",
+            "evidence_refs": []
+          },
+          {
+            "node_id": "action::iam:CreateAccessKey",
+            "node_type": "aws_action",
+            "label": "iam:CreateAccessKey",
+            "status": "OBSERVED",
+            "evidence_refs": [
+              "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000005"
+            ]
+          },
+          {
+            "node_id": "resource::arn:aws:iam::111122223333:user/deploy-svc",
+            "node_type": "resource",
+            "label": "arn:aws:iam::111122223333:user/deploy-svc",
+            "status": "OBSERVED",
+            "evidence_refs": []
+          }
+        ]
+      },
+      {
+        "path_id": "PATH-009",
+        "title": "deploy-svc \u2192 kms:Decrypt on arn:aws:secretsmanager:us-east-1:111122223333:secret:prod/*",
+        "risk_category": "secret_access",
+        "status": "POTENTIAL",
+        "risk_score": 95,
+        "scoring_rationale": [
+          "Base risk for secret_access: 65",
+          "Path pivots through an assumable role (+10)",
+          "Wildcard resource scope broadens blast radius (+10)",
+          "Target resource is tagged/named as sensitive (+10)"
+        ],
+        "attack_technique_ids": [
+          "T1552.005"
+        ],
+        "contradictions": [],
+        "steps": [
+          {
+            "node_id": "key::AKIACOMPROMISEDKEY01",
+            "node_type": "access_key",
+            "label": "AKIACOMPROMISEDKEY01",
+            "status": "OBSERVED",
+            "evidence_refs": []
+          },
+          {
+            "node_id": "principal::arn:aws:iam::111122223333:user/deploy-svc",
+            "node_type": "iam_user",
+            "label": "deploy-svc",
+            "status": "OBSERVED",
+            "evidence_refs": []
+          },
+          {
+            "node_id": "principal::arn:aws:iam::111122223333:role/prod-data-reader",
+            "node_type": "iam_role",
+            "label": "prod-data-reader",
+            "status": "OBSERVED",
+            "evidence_refs": []
+          },
+          {
+            "node_id": "action::kms:Decrypt",
+            "node_type": "aws_action",
+            "label": "kms:Decrypt",
+            "status": "POTENTIAL",
+            "evidence_refs": []
+          },
+          {
+            "node_id": "resource::arn:aws:secretsmanager:us-east-1:111122223333:secret:prod/*",
+            "node_type": "resource",
+            "label": "arn:aws:secretsmanager:us-east-1:111122223333:secret:prod/*",
+            "status": "POTENTIAL",
+            "evidence_refs": []
+          }
+        ]
+      },
+      {
+        "path_id": "PATH-004",
+        "title": "deploy-svc \u2192 s3:GetObject on arn:aws:s3:::prod-artifacts/*",
+        "risk_category": "storage_access",
+        "status": "POTENTIAL",
+        "risk_score": 75,
+        "scoring_rationale": [
+          "Base risk for storage_access: 55",
+          "Wildcard resource scope broadens blast radius (+10)",
+          "Target resource is tagged/named as sensitive (+10)"
+        ],
+        "attack_technique_ids": [
+          "T1530"
+        ],
+        "contradictions": [],
+        "steps": [
+          {
+            "node_id": "key::AKIACOMPROMISEDKEY01",
+            "node_type": "access_key",
+            "label": "AKIACOMPROMISEDKEY01",
+            "status": "OBSERVED",
+            "evidence_refs": []
+          },
+          {
+            "node_id": "principal::arn:aws:iam::111122223333:user/deploy-svc",
+            "node_type": "iam_user",
+            "label": "deploy-svc",
+            "status": "OBSERVED",
+            "evidence_refs": []
+          },
+          {
+            "node_id": "action::s3:GetObject",
+            "node_type": "aws_action",
+            "label": "s3:GetObject",
+            "status": "POTENTIAL",
+            "evidence_refs": []
+          },
+          {
+            "node_id": "resource::arn:aws:s3:::prod-artifacts/*",
+            "node_type": "resource",
+            "label": "arn:aws:s3:::prod-artifacts/*",
+            "status": "POTENTIAL",
+            "evidence_refs": []
+          }
+        ]
+      },
+      {
+        "path_id": "PATH-005",
+        "title": "deploy-svc \u2192 s3:ListBucket on arn:aws:s3:::prod-artifacts/*",
+        "risk_category": "storage_access",
+        "status": "POTENTIAL",
+        "risk_score": 75,
+        "scoring_rationale": [
+          "Base risk for storage_access: 55",
+          "Wildcard resource scope broadens blast radius (+10)",
+          "Target resource is tagged/named as sensitive (+10)"
+        ],
+        "attack_technique_ids": [
+          "T1530"
+        ],
+        "contradictions": [],
+        "steps": [
+          {
+            "node_id": "key::AKIACOMPROMISEDKEY01",
+            "node_type": "access_key",
+            "label": "AKIACOMPROMISEDKEY01",
+            "status": "OBSERVED",
+            "evidence_refs": []
+          },
+          {
+            "node_id": "principal::arn:aws:iam::111122223333:user/deploy-svc",
+            "node_type": "iam_user",
+            "label": "deploy-svc",
+            "status": "OBSERVED",
+            "evidence_refs": []
+          },
+          {
+            "node_id": "action::s3:ListBucket",
+            "node_type": "aws_action",
+            "label": "s3:ListBucket",
+            "status": "POTENTIAL",
+            "evidence_refs": []
+          },
+          {
+            "node_id": "resource::arn:aws:s3:::prod-artifacts/*",
+            "node_type": "resource",
+            "label": "arn:aws:s3:::prod-artifacts/*",
+            "status": "POTENTIAL",
+            "evidence_refs": []
+          }
+        ]
+      },
+      {
+        "path_id": "PATH-003",
+        "title": "deploy-svc \u2192 ssm:GetParameter on arn:aws:ssm:us-east-1:111122223333:parameter/deploy/*",
+        "risk_category": "secret_access",
+        "status": "UNRESOLVED",
+        "risk_score": 60,
+        "scoring_rationale": [
+          "Base risk for secret_access: 65",
+          "Policy conditions could not be evaluated (-15)",
+          "Wildcard resource scope broadens blast radius (+10)",
+          "Unresolved conditions: Bool"
+        ],
+        "attack_technique_ids": [
+          "T1552.005"
+        ],
+        "contradictions": [],
+        "steps": [
+          {
+            "node_id": "key::AKIACOMPROMISEDKEY01",
+            "node_type": "access_key",
+            "label": "AKIACOMPROMISEDKEY01",
+            "status": "OBSERVED",
+            "evidence_refs": []
+          },
+          {
+            "node_id": "principal::arn:aws:iam::111122223333:user/deploy-svc",
+            "node_type": "iam_user",
+            "label": "deploy-svc",
+            "status": "OBSERVED",
+            "evidence_refs": []
+          },
+          {
+            "node_id": "action::ssm:GetParameter",
+            "node_type": "aws_action",
+            "label": "ssm:GetParameter",
+            "status": "UNRESOLVED",
+            "evidence_refs": []
+          },
+          {
+            "node_id": "resource::arn:aws:ssm:us-east-1:111122223333:parameter/deploy/*",
+            "node_type": "resource",
+            "label": "arn:aws:ssm:us-east-1:111122223333:parameter/deploy/*",
+            "status": "UNRESOLVED",
+            "evidence_refs": []
+          }
+        ]
+      },
+      {
+        "path_id": "PATH-006",
+        "title": "deploy-svc \u2192 cloudtrail:StopLogging on *",
+        "risk_category": "defense_impairment",
+        "status": "BLOCKED",
+        "risk_score": 40,
+        "scoring_rationale": [
+          "Base risk for defense_impairment: 80",
+          "Explicit deny or permissions boundary blocks this path (-50)",
+          "Wildcard resource scope broadens blast radius (+10)"
+        ],
+        "attack_technique_ids": [
+          "T1562.008"
+        ],
+        "contradictions": [
+          "CloudTrail shows cloudtrail:StopLogging occurred, but policy evaluation returned explicit deny. Policy snapshot may post-date the activity, or the call was made by a different principal."
+        ],
+        "steps": [
+          {
+            "node_id": "key::AKIACOMPROMISEDKEY01",
+            "node_type": "access_key",
+            "label": "AKIACOMPROMISEDKEY01",
+            "status": "OBSERVED",
+            "evidence_refs": []
+          },
+          {
+            "node_id": "principal::arn:aws:iam::111122223333:user/deploy-svc",
+            "node_type": "iam_user",
+            "label": "deploy-svc",
+            "status": "OBSERVED",
+            "evidence_refs": []
+          },
+          {
+            "node_id": "action::cloudtrail:StopLogging",
+            "node_type": "aws_action",
+            "label": "cloudtrail:StopLogging",
+            "status": "BLOCKED",
+            "evidence_refs": [
+              "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000006"
+            ]
+          },
+          {
+            "node_id": "resource::*",
+            "node_type": "resource",
+            "label": "*",
+            "status": "BLOCKED",
+            "evidence_refs": []
+          }
+        ]
+      },
+      {
+        "path_id": "PATH-007",
+        "title": "deploy-svc \u2192 cloudtrail:DeleteTrail on *",
+        "risk_category": "defense_impairment",
+        "status": "BLOCKED",
+        "risk_score": 40,
+        "scoring_rationale": [
+          "Base risk for defense_impairment: 80",
+          "Explicit deny or permissions boundary blocks this path (-50)",
+          "Wildcard resource scope broadens blast radius (+10)"
+        ],
+        "attack_technique_ids": [
+          "T1562.008"
+        ],
+        "contradictions": [],
+        "steps": [
+          {
+            "node_id": "key::AKIACOMPROMISEDKEY01",
+            "node_type": "access_key",
+            "label": "AKIACOMPROMISEDKEY01",
+            "status": "OBSERVED",
+            "evidence_refs": []
+          },
+          {
+            "node_id": "principal::arn:aws:iam::111122223333:user/deploy-svc",
+            "node_type": "iam_user",
+            "label": "deploy-svc",
+            "status": "OBSERVED",
+            "evidence_refs": []
+          },
+          {
+            "node_id": "action::cloudtrail:DeleteTrail",
+            "node_type": "aws_action",
+            "label": "cloudtrail:DeleteTrail",
+            "status": "BLOCKED",
+            "evidence_refs": []
+          },
+          {
+            "node_id": "resource::*",
+            "node_type": "resource",
+            "label": "*",
+            "status": "BLOCKED",
+            "evidence_refs": []
+          }
+        ]
+      }
+    ],
+    "attack_path_summary": {
+      "total_paths": 9,
+      "observed": 3,
+      "confirmed_allowed": 0,
+      "potential": 3,
+      "unresolved": 1,
+      "blocked": 2,
+      "contradictions": 1,
+      "highest_risk_score": 100
+    },
+    "iam_graph": {
+      "node_count": 33,
+      "edge_count": 49,
+      "nodes": [
+        {
+          "id": "key::AKIACOMPROMISEDKEY01",
+          "node_type": "access_key",
+          "label": "AKIACOMPROMISEDKEY01"
+        },
+        {
+          "id": "principal::arn:aws:iam::111122223333:user/deploy-svc",
+          "node_type": "iam_user",
+          "label": "deploy-svc",
+          "arn": "arn:aws:iam::111122223333:user/deploy-svc",
+          "account_id": "111122223333"
+        },
+        {
+          "id": "account::111122223333",
+          "node_type": "account",
+          "label": "111122223333"
+        },
+        {
+          "id": "group::deployers",
+          "node_type": "iam_group",
+          "label": "deployers"
+        },
+        {
+          "id": "policy::arn:aws:iam::111122223333:policy/DeployServiceAccess",
+          "node_type": "policy",
+          "label": "DeployServiceAccess",
+          "arn": "arn:aws:iam::111122223333:policy/DeployServiceAccess"
+        },
+        {
+          "id": "stmt::arn:aws:iam::111122223333:policy/DeployServiceAccess::AssumeProdReader",
+          "node_type": "policy_statement",
+          "label": "AssumeProdReader",
+          "effect": "Allow",
+          "conditions": {}
+        },
+        {
+          "id": "action::sts:AssumeRole",
+          "node_type": "aws_action",
+          "label": "sts:AssumeRole",
+          "observed": true
+        },
+        {
+          "id": "resource::arn:aws:iam::111122223333:role/prod-data-reader",
+          "node_type": "resource",
+          "label": "arn:aws:iam::111122223333:role/prod-data-reader"
+        },
+        {
+          "id": "stmt::arn:aws:iam::111122223333:policy/DeployServiceAccess::SelfKeyManagement",
+          "node_type": "policy_statement",
+          "label": "SelfKeyManagement",
+          "effect": "Allow",
+          "conditions": {}
+        },
+        {
+          "id": "action::iam:CreateAccessKey",
+          "node_type": "aws_action",
+          "label": "iam:CreateAccessKey",
+          "observed": true
+        },
+        {
+          "id": "resource::arn:aws:iam::111122223333:user/deploy-svc",
+          "node_type": "resource",
+          "label": "arn:aws:iam::111122223333:user/deploy-svc"
+        },
+        {
+          "id": "action::iam:ListAccessKeys",
+          "node_type": "aws_action",
+          "label": "iam:ListAccessKeys"
+        },
+        {
+          "id": "stmt::arn:aws:iam::111122223333:policy/DeployServiceAccess::ArtifactBucketRead",
+          "node_type": "policy_statement",
+          "label": "ArtifactBucketRead",
+          "effect": "Allow",
+          "conditions": {}
+        },
+        {
+          "id": "action::s3:GetObject",
+          "node_type": "aws_action",
+          "label": "s3:GetObject"
+        },
+        {
+          "id": "resource::arn:aws:s3:::prod-artifacts/*",
+          "node_type": "resource",
+          "label": "arn:aws:s3:::prod-artifacts/*"
+        },
+        {
+          "id": "action::s3:ListBucket",
+          "node_type": "aws_action",
+          "label": "s3:ListBucket"
+        },
+        {
+          "id": "policy::inline::DenyTrailTampering",
+          "node_type": "policy",
+          "label": "DenyTrailTampering",
+          "arn": "inline::DenyTrailTampering"
+        },
+        {
+          "id": "stmt::inline::DenyTrailTampering::ProtectAuditTrail",
+          "node_type": "policy_statement",
+          "label": "ProtectAuditTrail",
+          "effect": "Deny",
+          "conditions": {}
+        },
+        {
+          "id": "action::cloudtrail:StopLogging",
+          "node_type": "aws_action",
+          "label": "cloudtrail:StopLogging",
+          "observed": true
+        },
+        {
+          "id": "resource::*",
+          "node_type": "resource",
+          "label": "*"
+        },
+        {
+          "id": "action::cloudtrail:DeleteTrail",
+          "node_type": "aws_action",
+          "label": "cloudtrail:DeleteTrail"
+        },
+        {
+          "id": "policy::arn:aws:iam::111122223333:policy/DeployerBaseline",
+          "node_type": "policy",
+          "label": "DeployerBaseline",
+          "arn": "arn:aws:iam::111122223333:policy/DeployerBaseline"
+        },
+        {
+          "id": "stmt::arn:aws:iam::111122223333:policy/DeployerBaseline::ReadParameters",
+          "node_type": "policy_statement",
+          "label": "ReadParameters",
+          "effect": "Allow",
+          "conditions": {
+            "Bool": {
+              "aws:MultiFactorAuthPresent": "true"
+            }
+          }
+        },
+        {
+          "id": "action::ssm:GetParameter",
+          "node_type": "aws_action",
+          "label": "ssm:GetParameter"
+        },
+        {
+          "id": "resource::arn:aws:ssm:us-east-1:111122223333:parameter/deploy/*",
+          "node_type": "resource",
+          "label": "arn:aws:ssm:us-east-1:111122223333:parameter/deploy/*"
+        },
+        {
+          "id": "principal::arn:aws:iam::111122223333:role/prod-data-reader",
+          "node_type": "iam_role",
+          "label": "prod-data-reader",
+          "arn": "arn:aws:iam::111122223333:role/prod-data-reader"
+        },
+        {
+          "id": "policy::arn:aws:iam::111122223333:policy/ProdSecretsRead",
+          "node_type": "policy",
+          "label": "ProdSecretsRead",
+          "arn": "arn:aws:iam::111122223333:policy/ProdSecretsRead"
+        },
+        {
+          "id": "stmt::arn:aws:iam::111122223333:policy/ProdSecretsRead::ReadProdSecrets",
+          "node_type": "policy_statement",
+          "label": "ReadProdSecrets",
+          "effect": "Allow",
+          "conditions": {}
+        },
+        {
+          "id": "action::secretsmanager:GetSecretValue",
+          "node_type": "aws_action",
+          "label": "secretsmanager:GetSecretValue",
+          "observed": true
+        },
+        {
+          "id": "resource::arn:aws:secretsmanager:us-east-1:111122223333:secret:prod/*",
+          "node_type": "resource",
+          "label": "arn:aws:secretsmanager:us-east-1:111122223333:secret:prod/*"
+        },
+        {
+          "id": "action::kms:Decrypt",
+          "node_type": "aws_action",
+          "label": "kms:Decrypt"
+        },
+        {
+          "id": "action::sts:GetCallerIdentity",
+          "node_type": "aws_action",
+          "label": "sts:GetCallerIdentity",
+          "observed": true
+        },
+        {
+          "id": "action::iam:ListAttachedUserPolicies",
+          "node_type": "aws_action",
+          "label": "iam:ListAttachedUserPolicies",
+          "observed": true
+        }
+      ],
+      "edges": [
+        {
+          "source": "key::AKIACOMPROMISEDKEY01",
+          "target": "principal::arn:aws:iam::111122223333:user/deploy-svc",
+          "relationship": "belongs_to",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": ""
+        },
+        {
+          "source": "principal::arn:aws:iam::111122223333:user/deploy-svc",
+          "target": "account::111122223333",
+          "relationship": "in_account",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": ""
+        },
+        {
+          "source": "principal::arn:aws:iam::111122223333:user/deploy-svc",
+          "target": "group::deployers",
+          "relationship": "member_of",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": ""
+        },
+        {
+          "source": "principal::arn:aws:iam::111122223333:user/deploy-svc",
+          "target": "policy::arn:aws:iam::111122223333:policy/DeployServiceAccess",
+          "relationship": "has_policy",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": ""
+        },
+        {
+          "source": "policy::arn:aws:iam::111122223333:policy/DeployServiceAccess",
+          "target": "stmt::arn:aws:iam::111122223333:policy/DeployServiceAccess::AssumeProdReader",
+          "relationship": "contains",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": ""
+        },
+        {
+          "source": "stmt::arn:aws:iam::111122223333:policy/DeployServiceAccess::AssumeProdReader",
+          "target": "action::sts:AssumeRole",
+          "relationship": "allows",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": ""
+        },
+        {
+          "source": "action::sts:AssumeRole",
+          "target": "resource::arn:aws:iam::111122223333:role/prod-data-reader",
+          "relationship": "targets",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": ""
+        },
+        {
+          "source": "policy::arn:aws:iam::111122223333:policy/DeployServiceAccess",
+          "target": "stmt::arn:aws:iam::111122223333:policy/DeployServiceAccess::SelfKeyManagement",
+          "relationship": "contains",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": ""
+        },
+        {
+          "source": "stmt::arn:aws:iam::111122223333:policy/DeployServiceAccess::SelfKeyManagement",
+          "target": "action::iam:CreateAccessKey",
+          "relationship": "allows",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": ""
+        },
+        {
+          "source": "action::iam:CreateAccessKey",
+          "target": "resource::arn:aws:iam::111122223333:user/deploy-svc",
+          "relationship": "targets",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": ""
+        },
+        {
+          "source": "stmt::arn:aws:iam::111122223333:policy/DeployServiceAccess::SelfKeyManagement",
+          "target": "action::iam:ListAccessKeys",
+          "relationship": "allows",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": ""
+        },
+        {
+          "source": "action::iam:ListAccessKeys",
+          "target": "resource::arn:aws:iam::111122223333:user/deploy-svc",
+          "relationship": "targets",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": ""
+        },
+        {
+          "source": "policy::arn:aws:iam::111122223333:policy/DeployServiceAccess",
+          "target": "stmt::arn:aws:iam::111122223333:policy/DeployServiceAccess::ArtifactBucketRead",
+          "relationship": "contains",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": ""
+        },
+        {
+          "source": "stmt::arn:aws:iam::111122223333:policy/DeployServiceAccess::ArtifactBucketRead",
+          "target": "action::s3:GetObject",
+          "relationship": "allows",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": ""
+        },
+        {
+          "source": "action::s3:GetObject",
+          "target": "resource::arn:aws:s3:::prod-artifacts/*",
+          "relationship": "targets",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": ""
+        },
+        {
+          "source": "stmt::arn:aws:iam::111122223333:policy/DeployServiceAccess::ArtifactBucketRead",
+          "target": "action::s3:ListBucket",
+          "relationship": "allows",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": ""
+        },
+        {
+          "source": "action::s3:ListBucket",
+          "target": "resource::arn:aws:s3:::prod-artifacts/*",
+          "relationship": "targets",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": ""
+        },
+        {
+          "source": "principal::arn:aws:iam::111122223333:user/deploy-svc",
+          "target": "policy::inline::DenyTrailTampering",
+          "relationship": "has_policy",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": ""
+        },
+        {
+          "source": "policy::inline::DenyTrailTampering",
+          "target": "stmt::inline::DenyTrailTampering::ProtectAuditTrail",
+          "relationship": "contains",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": ""
+        },
+        {
+          "source": "stmt::inline::DenyTrailTampering::ProtectAuditTrail",
+          "target": "action::cloudtrail:StopLogging",
+          "relationship": "denies",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": ""
+        },
+        {
+          "source": "action::cloudtrail:StopLogging",
+          "target": "resource::*",
+          "relationship": "targets",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": ""
+        },
+        {
+          "source": "stmt::inline::DenyTrailTampering::ProtectAuditTrail",
+          "target": "action::cloudtrail:DeleteTrail",
+          "relationship": "denies",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": ""
+        },
+        {
+          "source": "action::cloudtrail:DeleteTrail",
+          "target": "resource::*",
+          "relationship": "targets",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": ""
+        },
+        {
+          "source": "principal::arn:aws:iam::111122223333:user/deploy-svc",
+          "target": "policy::arn:aws:iam::111122223333:policy/DeployerBaseline",
+          "relationship": "has_policy",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": ""
+        },
+        {
+          "source": "policy::arn:aws:iam::111122223333:policy/DeployerBaseline",
+          "target": "stmt::arn:aws:iam::111122223333:policy/DeployerBaseline::ReadParameters",
+          "relationship": "contains",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": ""
+        },
+        {
+          "source": "stmt::arn:aws:iam::111122223333:policy/DeployerBaseline::ReadParameters",
+          "target": "action::ssm:GetParameter",
+          "relationship": "allows",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": ""
+        },
+        {
+          "source": "action::ssm:GetParameter",
+          "target": "resource::arn:aws:ssm:us-east-1:111122223333:parameter/deploy/*",
+          "relationship": "targets",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": ""
+        },
+        {
+          "source": "principal::arn:aws:iam::111122223333:user/deploy-svc",
+          "target": "principal::arn:aws:iam::111122223333:role/prod-data-reader",
+          "relationship": "can_assume",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": "policy allows sts:AssumeRole and role trust policy accepts principal"
+        },
+        {
+          "source": "principal::arn:aws:iam::111122223333:role/prod-data-reader",
+          "target": "policy::arn:aws:iam::111122223333:policy/ProdSecretsRead",
+          "relationship": "has_policy",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": ""
+        },
+        {
+          "source": "policy::arn:aws:iam::111122223333:policy/ProdSecretsRead",
+          "target": "stmt::arn:aws:iam::111122223333:policy/ProdSecretsRead::ReadProdSecrets",
+          "relationship": "contains",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": ""
+        },
+        {
+          "source": "stmt::arn:aws:iam::111122223333:policy/ProdSecretsRead::ReadProdSecrets",
+          "target": "action::secretsmanager:GetSecretValue",
+          "relationship": "allows",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": ""
+        },
+        {
+          "source": "action::secretsmanager:GetSecretValue",
+          "target": "resource::arn:aws:secretsmanager:us-east-1:111122223333:secret:prod/*",
+          "relationship": "targets",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": ""
+        },
+        {
+          "source": "stmt::arn:aws:iam::111122223333:policy/ProdSecretsRead::ReadProdSecrets",
+          "target": "action::kms:Decrypt",
+          "relationship": "allows",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": ""
+        },
+        {
+          "source": "action::kms:Decrypt",
+          "target": "resource::arn:aws:secretsmanager:us-east-1:111122223333:secret:prod/*",
+          "relationship": "targets",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": ""
+        },
+        {
+          "source": "principal::arn:aws:iam::111122223333:user/deploy-svc",
+          "target": "action::sts:GetCallerIdentity",
+          "relationship": "performed",
+          "status": "OBSERVED",
+          "evidence_refs": [
+            "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000001"
+          ],
+          "note": "CloudTrail record confirms this API call occurred"
+        },
+        {
+          "source": "principal::arn:aws:iam::111122223333:user/deploy-svc",
+          "target": "action::iam:ListAttachedUserPolicies",
+          "relationship": "performed",
+          "status": "OBSERVED",
+          "evidence_refs": [
+            "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000002"
+          ],
+          "note": "CloudTrail record confirms this API call occurred"
+        },
+        {
+          "source": "principal::arn:aws:iam::111122223333:user/deploy-svc",
+          "target": "action::sts:AssumeRole",
+          "relationship": "performed",
+          "status": "OBSERVED",
+          "evidence_refs": [
+            "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000003"
+          ],
+          "note": "CloudTrail record confirms this API call occurred"
+        },
+        {
+          "source": "principal::arn:aws:iam::111122223333:user/deploy-svc",
+          "target": "action::secretsmanager:GetSecretValue",
+          "relationship": "performed",
+          "status": "OBSERVED",
+          "evidence_refs": [
+            "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000004"
+          ],
+          "note": "CloudTrail record confirms this API call occurred"
+        },
+        {
+          "source": "principal::arn:aws:iam::111122223333:user/deploy-svc",
+          "target": "action::iam:CreateAccessKey",
+          "relationship": "performed",
+          "status": "OBSERVED",
+          "evidence_refs": [
+            "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000005"
+          ],
+          "note": "CloudTrail record confirms this API call occurred"
+        },
+        {
+          "source": "principal::arn:aws:iam::111122223333:user/deploy-svc",
+          "target": "action::cloudtrail:StopLogging",
+          "relationship": "performed",
+          "status": "OBSERVED",
+          "evidence_refs": [
+            "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000006"
+          ],
+          "note": "CloudTrail record confirms this API call occurred"
+        },
+        {
+          "source": "principal::arn:aws:iam::111122223333:user/deploy-svc",
+          "target": "action::iam:CreateAccessKey",
+          "relationship": "can_perform",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": "graph: allowed"
+        },
+        {
+          "source": "principal::arn:aws:iam::111122223333:user/deploy-svc",
+          "target": "action::sts:AssumeRole",
+          "relationship": "can_perform",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": "graph: allowed"
+        },
+        {
+          "source": "principal::arn:aws:iam::111122223333:user/deploy-svc",
+          "target": "action::ssm:GetParameter",
+          "relationship": "can_perform",
+          "status": "UNRESOLVED",
+          "evidence_refs": [],
+          "note": "graph: unresolved"
+        },
+        {
+          "source": "principal::arn:aws:iam::111122223333:user/deploy-svc",
+          "target": "action::s3:GetObject",
+          "relationship": "can_perform",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": "graph: allowed"
+        },
+        {
+          "source": "principal::arn:aws:iam::111122223333:user/deploy-svc",
+          "target": "action::s3:ListBucket",
+          "relationship": "can_perform",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": "graph: allowed"
+        },
+        {
+          "source": "principal::arn:aws:iam::111122223333:user/deploy-svc",
+          "target": "action::cloudtrail:StopLogging",
+          "relationship": "can_perform",
+          "status": "BLOCKED",
+          "evidence_refs": [],
+          "note": "graph: explicitDeny"
+        },
+        {
+          "source": "principal::arn:aws:iam::111122223333:user/deploy-svc",
+          "target": "action::cloudtrail:DeleteTrail",
+          "relationship": "can_perform",
+          "status": "BLOCKED",
+          "evidence_refs": [],
+          "note": "graph: explicitDeny"
+        },
+        {
+          "source": "principal::arn:aws:iam::111122223333:user/deploy-svc",
+          "target": "action::secretsmanager:GetSecretValue",
+          "relationship": "can_perform",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": "graph: allowed"
+        },
+        {
+          "source": "principal::arn:aws:iam::111122223333:user/deploy-svc",
+          "target": "action::kms:Decrypt",
+          "relationship": "can_perform",
+          "status": "POTENTIAL",
+          "evidence_refs": [],
+          "note": "graph: allowed"
+        }
+      ]
+    },
+    "principal": {
+      "arn": "arn:aws:iam::111122223333:user/deploy-svc",
+      "name": "deploy-svc",
+      "principal_type": "user",
+      "account_id": "111122223333",
+      "attached_policy_arns": [
+        "arn:aws:iam::111122223333:policy/DeployServiceAccess"
+      ],
+      "inline_policy_names": [
+        "DenyTrailTampering"
+      ],
+      "group_names": [
+        "deployers"
+      ],
+      "permissions_boundary_arn": null,
+      "trust_policy": null,
+      "tags": {}
+    },
+    "assumable_roles": [
+      "arn:aws:iam::111122223333:role/prod-data-reader"
+    ],
+    "observed_actions": {
+      "sts:GetCallerIdentity": [
+        "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000001"
+      ],
+      "iam:ListAttachedUserPolicies": [
+        "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000002"
+      ],
+      "sts:AssumeRole": [
+        "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000003"
+      ],
+      "secretsmanager:GetSecretValue": [
+        "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000004"
+      ],
+      "iam:CreateAccessKey": [
+        "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000005"
+      ],
+      "cloudtrail:StopLogging": [
+        "cloudtrail-c9d3e5a7-2222-4b3c-8d4e-000000000006"
+      ]
+    },
+    "permission_evaluations": [
+      {
+        "principal_arn": "arn:aws:iam::111122223333:user/deploy-svc",
+        "action": "iam:CreateAccessKey",
+        "resource_arn": "arn:aws:iam::111122223333:user/deploy-svc",
+        "decision": "allowed",
+        "status": "POTENTIAL",
+        "matched_statements": [
+          "DeployServiceAccess:SelfKeyManagement"
+        ],
+        "unresolved_conditions": [],
+        "evaluation_source": "graph",
+        "via_role_arn": null
+      },
+      {
+        "principal_arn": "arn:aws:iam::111122223333:user/deploy-svc",
+        "action": "sts:AssumeRole",
+        "resource_arn": "arn:aws:iam::111122223333:role/prod-data-reader",
+        "decision": "allowed",
+        "status": "POTENTIAL",
+        "matched_statements": [
+          "DeployServiceAccess:AssumeProdReader"
+        ],
+        "unresolved_conditions": [],
+        "evaluation_source": "graph",
+        "via_role_arn": null
+      },
+      {
+        "principal_arn": "arn:aws:iam::111122223333:user/deploy-svc",
+        "action": "ssm:GetParameter",
+        "resource_arn": "arn:aws:ssm:us-east-1:111122223333:parameter/deploy/*",
+        "decision": "unresolved",
+        "status": "UNRESOLVED",
+        "matched_statements": [
+          "DeployerBaseline:ReadParameters"
+        ],
+        "unresolved_conditions": [
+          "Bool"
+        ],
+        "evaluation_source": "graph",
+        "via_role_arn": null
+      },
+      {
+        "principal_arn": "arn:aws:iam::111122223333:user/deploy-svc",
+        "action": "s3:GetObject",
+        "resource_arn": "arn:aws:s3:::prod-artifacts/*",
+        "decision": "allowed",
+        "status": "POTENTIAL",
+        "matched_statements": [
+          "DeployServiceAccess:ArtifactBucketRead"
+        ],
+        "unresolved_conditions": [],
+        "evaluation_source": "graph",
+        "via_role_arn": null
+      },
+      {
+        "principal_arn": "arn:aws:iam::111122223333:user/deploy-svc",
+        "action": "s3:ListBucket",
+        "resource_arn": "arn:aws:s3:::prod-artifacts/*",
+        "decision": "allowed",
+        "status": "POTENTIAL",
+        "matched_statements": [
+          "DeployServiceAccess:ArtifactBucketRead"
+        ],
+        "unresolved_conditions": [],
+        "evaluation_source": "graph",
+        "via_role_arn": null
+      },
+      {
+        "principal_arn": "arn:aws:iam::111122223333:user/deploy-svc",
+        "action": "cloudtrail:StopLogging",
+        "resource_arn": "*",
+        "decision": "explicitDeny",
+        "status": "BLOCKED",
+        "matched_statements": [
+          "DenyTrailTampering:ProtectAuditTrail"
+        ],
+        "unresolved_conditions": [],
+        "evaluation_source": "graph",
+        "via_role_arn": null
+      },
+      {
+        "principal_arn": "arn:aws:iam::111122223333:user/deploy-svc",
+        "action": "cloudtrail:DeleteTrail",
+        "resource_arn": "*",
+        "decision": "explicitDeny",
+        "status": "BLOCKED",
+        "matched_statements": [
+          "DenyTrailTampering:ProtectAuditTrail"
+        ],
+        "unresolved_conditions": [],
+        "evaluation_source": "graph",
+        "via_role_arn": null
+      },
+      {
+        "principal_arn": "arn:aws:iam::111122223333:user/deploy-svc",
+        "action": "secretsmanager:GetSecretValue",
+        "resource_arn": "arn:aws:secretsmanager:us-east-1:111122223333:secret:prod/*",
+        "decision": "allowed",
+        "status": "POTENTIAL",
+        "matched_statements": [
+          "ProdSecretsRead:ReadProdSecrets",
+          "via-role::arn:aws:iam::111122223333:role/prod-data-reader"
+        ],
+        "unresolved_conditions": [],
+        "evaluation_source": "graph",
+        "via_role_arn": "arn:aws:iam::111122223333:role/prod-data-reader"
+      },
+      {
+        "principal_arn": "arn:aws:iam::111122223333:user/deploy-svc",
+        "action": "kms:Decrypt",
+        "resource_arn": "arn:aws:secretsmanager:us-east-1:111122223333:secret:prod/*",
+        "decision": "allowed",
+        "status": "POTENTIAL",
+        "matched_statements": [
+          "ProdSecretsRead:ReadProdSecrets",
+          "via-role::arn:aws:iam::111122223333:role/prod-data-reader"
+        ],
+        "unresolved_conditions": [],
+        "evaluation_source": "graph",
+        "via_role_arn": "arn:aws:iam::111122223333:role/prod-data-reader"
+      }
+    ]
+  }
+}

@@ -23,10 +23,10 @@
       "review_feedback": "Skeptic Audit complete. Status: REJECTED. Final Confidence: 55%. Injections Blocked: 0. Penalized 1 claims & 0 contradictions.",
       "warnings": [],
       "unsupported_claims": [
-        "Stale indicator 'seed-ip-1168' (198.51.100.99): confidence decayed to 10% due to age (>90 days quiet)."
+        "Stale indicator 'seed-ip-7651' (198.51.100.99): retains only 11% of its original confidence after >90 days quiet."
       ],
       "contradictions": [],
-      "runtime_seconds": 0.0001
+      "runtime_seconds": 0.0002
     },
     {
       "case_id": "DECEPT-02",
@@ -41,7 +41,7 @@
       "review_feedback": "Skeptic Audit complete. Status: REJECTED. Final Confidence: 55%. Injections Blocked: 0. Penalized 1 claims & 0 contradictions.",
       "warnings": [],
       "unsupported_claims": [
-        "Shared hosting/CDN infrastructure detected on node 'seed-ip-7381' (104.21.45.12). High risk of over-attribution."
+        "Shared hosting/CDN infrastructure detected on node 'seed-ip-2125' (104.21.45.12). High risk of over-attribution."
       ],
       "contradictions": [],
       "runtime_seconds": 0.0001
@@ -60,7 +60,7 @@
       "warnings": [],
       "unsupported_claims": [],
       "contradictions": [
-        "Infrastructure spans multiple distinct ASNs (AS15169, AS14061, AS16509, AS24940). Indicates proxy/VPN rotation rather than fixed adversary hosting."
+        "Infrastructure spans multiple distinct ASNs (AS24940, AS16509, AS14061, AS15169). Indicates proxy/VPN rotation rather than fixed adversary hosting."
       ],
       "runtime_seconds": 0.0001
     },
@@ -95,7 +95,7 @@
       "review_feedback": "Skeptic Audit complete. Status: REJECTED. Final Confidence: 55%. Injections Blocked: 0. Penalized 1 claims & 0 contradictions.",
       "warnings": [],
       "unsupported_claims": [
-        "Relationship seed-hash-1761 -> node-repo-malicious-action has low confidence (35%). Demoting attribution strength."
+        "Relationship seed-hash-9264 -> node-repo-malicious-action has low confidence (35%). Demoting attribution strength."
       ],
       "contradictions": [],
       "runtime_seconds": 0.0001
@@ -114,7 +114,7 @@
       "warnings": [],
       "unsupported_claims": [],
       "contradictions": [
-        "Generic free wildcard TLS cert on 'seed-domain-8536' (reused-expired-domain.org). Low attribution specificity."
+        "Generic free wildcard TLS cert on 'seed-domain-8530' (reused-expired-domain.org). Low attribution specificity."
       ],
       "runtime_seconds": 0.0001
     },
@@ -132,7 +132,7 @@
       "warnings": [],
       "unsupported_claims": [],
       "contradictions": [
-        "Generic free wildcard TLS cert on 'seed-domain-7189' (coincidental-cert-app.com). Low attribution specificity."
+        "Generic free wildcard TLS cert on 'seed-domain-0589' (coincidental-cert-app.com). Low attribution specificity."
       ],
       "runtime_seconds": 0.0001
     },
@@ -149,10 +149,10 @@
       "review_feedback": "Skeptic Audit complete. Status: REJECTED. Final Confidence: 10%. Injections Blocked: 4. Penalized 4 claims & 0 contradictions.",
       "warnings": [],
       "unsupported_claims": [
-        "Prompt injection payload detected in indicator metadata for 'seed-ip-0057': pattern match 'ignore (all )?previous instructions'.",
-        "Prompt injection payload detected in indicator metadata for 'seed-ip-0057': pattern match 'system prompt override'.",
-        "Prompt injection payload detected in indicator metadata for 'seed-ip-0057': pattern match 'classify this (ip|domain|hash) as (benign|safe|malicious)'.",
-        "Prompt injection payload detected in indicator metadata for 'seed-ip-0057': pattern match 'override confidence to 100'."
+        "Prompt injection payload detected in indicator metadata for 'seed-ip-0720': pattern match 'ignore (all )?previous instructions'.",
+        "Prompt injection payload detected in indicator metadata for 'seed-ip-0720': pattern match 'system prompt override'.",
+        "Prompt injection payload detected in indicator metadata for 'seed-ip-0720': pattern match 'classify this (ip|domain|hash) as (benign|safe|malicious)'.",
+        "Prompt injection payload detected in indicator metadata for 'seed-ip-0720': pattern match 'override confidence to 100'."
       ],
       "contradictions": [],
       "runtime_seconds": 0.0001

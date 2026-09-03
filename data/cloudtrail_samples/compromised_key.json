@@ -1,0 +1,170 @@
+{
+  "Records": [
+    {
+      "eventVersion": "1.09",
+      "eventID": "c9d3e5a7-2222-4b3c-8d4e-000000000001",
+      "eventTime": "2026-08-28T21:14:02Z",
+      "eventSource": "sts.amazonaws.com",
+      "eventName": "GetCallerIdentity",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "198.51.100.45",
+      "userAgent": "Boto3/1.34.0 Python/3.11.4 Linux/5.15",
+      "readOnly": true,
+      "managementEvent": true,
+      "recipientAccountId": "111122223333",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::111122223333:user/deploy-svc",
+        "accountId": "111122223333",
+        "userName": "deploy-svc",
+        "accessKeyId": "AKIACOMPROMISEDKEY01"
+      },
+      "requestParameters": {},
+      "responseElements": null,
+      "resources": []
+    },
+    {
+      "eventVersion": "1.09",
+      "eventID": "c9d3e5a7-2222-4b3c-8d4e-000000000002",
+      "eventTime": "2026-08-28T21:16:37Z",
+      "eventSource": "iam.amazonaws.com",
+      "eventName": "ListAttachedUserPolicies",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "198.51.100.45",
+      "userAgent": "Boto3/1.34.0 Python/3.11.4 Linux/5.15",
+      "readOnly": true,
+      "managementEvent": true,
+      "recipientAccountId": "111122223333",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::111122223333:user/deploy-svc",
+        "accountId": "111122223333",
+        "userName": "deploy-svc",
+        "accessKeyId": "AKIACOMPROMISEDKEY01"
+      },
+      "requestParameters": { "userName": "deploy-svc" },
+      "responseElements": null,
+      "resources": []
+    },
+    {
+      "eventVersion": "1.09",
+      "eventID": "c9d3e5a7-2222-4b3c-8d4e-000000000003",
+      "eventTime": "2026-08-28T21:22:15Z",
+      "eventSource": "sts.amazonaws.com",
+      "eventName": "AssumeRole",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "203.0.113.88",
+      "userAgent": "Boto3/1.34.0 Python/3.11.4 Linux/5.15",
+      "readOnly": false,
+      "managementEvent": true,
+      "recipientAccountId": "111122223333",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::111122223333:user/deploy-svc",
+        "accountId": "111122223333",
+        "userName": "deploy-svc",
+        "accessKeyId": "AKIACOMPROMISEDKEY01"
+      },
+      "requestParameters": {
+        "roleArn": "arn:aws:iam::111122223333:role/prod-data-reader",
+        "roleSessionName": "s-9182"
+      },
+      "responseElements": {
+        "assumedRoleUser": {
+          "arn": "arn:aws:sts::111122223333:assumed-role/prod-data-reader/s-9182"
+        }
+      },
+      "resources": [
+        {
+          "ARN": "arn:aws:iam::111122223333:role/prod-data-reader",
+          "type": "AWS::IAM::Role"
+        }
+      ]
+    },
+    {
+      "eventVersion": "1.09",
+      "eventID": "c9d3e5a7-2222-4b3c-8d4e-000000000004",
+      "eventTime": "2026-08-28T21:24:48Z",
+      "eventSource": "secretsmanager.amazonaws.com",
+      "eventName": "GetSecretValue",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "203.0.113.88",
+      "userAgent": "Boto3/1.34.0 Python/3.11.4 Linux/5.15",
+      "readOnly": true,
+      "managementEvent": true,
+      "recipientAccountId": "111122223333",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::111122223333:user/deploy-svc",
+        "accountId": "111122223333",
+        "userName": "deploy-svc",
+        "accessKeyId": "AKIACOMPROMISEDKEY01"
+      },
+      "requestParameters": {
+        "secretId": "arn:aws:secretsmanager:us-east-1:111122223333:secret:prod/db/master-AbC123"
+      },
+      "responseElements": null,
+      "resources": [
+        {
+          "ARN": "arn:aws:secretsmanager:us-east-1:111122223333:secret:prod/db/master-AbC123",
+          "type": "AWS::SecretsManager::Secret"
+        }
+      ]
+    },
+    {
+      "eventVersion": "1.09",
+      "eventID": "c9d3e5a7-2222-4b3c-8d4e-000000000005",
+      "eventTime": "2026-08-28T21:31:09Z",
+      "eventSource": "iam.amazonaws.com",
+      "eventName": "CreateAccessKey",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "203.0.113.88",
+      "userAgent": "Boto3/1.34.0 Python/3.11.4 Linux/5.15",
+      "readOnly": false,
+      "managementEvent": true,
+      "recipientAccountId": "111122223333",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::111122223333:user/deploy-svc",
+        "accountId": "111122223333",
+        "userName": "deploy-svc",
+        "accessKeyId": "AKIACOMPROMISEDKEY01"
+      },
+      "requestParameters": { "userName": "deploy-svc" },
+      "responseElements": {
+        "accessKey": { "accessKeyId": "AKIAPERSISTENCEKEY99", "status": "Active" }
+      },
+      "resources": []
+    },
+    {
+      "eventVersion": "1.09",
+      "eventID": "c9d3e5a7-2222-4b3c-8d4e-000000000006",
+      "eventTime": "2026-08-28T21:38:52Z",
+      "eventSource": "cloudtrail.amazonaws.com",
+      "eventName": "StopLogging",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "203.0.113.88",
+      "userAgent": "Boto3/1.34.0 Python/3.11.4 Linux/5.15",
+      "readOnly": false,
+      "managementEvent": true,
+      "recipientAccountId": "111122223333",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::111122223333:user/deploy-svc",
+        "accountId": "111122223333",
+        "userName": "deploy-svc",
+        "accessKeyId": "AKIACOMPROMISEDKEY01"
+      },
+      "requestParameters": {
+        "name": "arn:aws:cloudtrail:us-east-1:111122223333:trail/org-audit-trail"
+      },
+      "responseElements": null,
+      "resources": [
+        {
+          "ARN": "arn:aws:cloudtrail:us-east-1:111122223333:trail/org-audit-trail",
+          "type": "AWS::CloudTrail::Trail"
+        }
+      ]
+    }
+  ]
+}

@@ -18,7 +18,7 @@
       "case_id": "CASE-01",
       "seed_indicator": "AKIAIOSFODNN7EXAMPLE",
       "seed_type": "iam_access_key",
-      "runtime_seconds": 0.0002,
+      "runtime_seconds": 0.0006,
       "nodes_extracted": 4,
       "edges_extracted": 3,
       "extracted_ttps": [
@@ -32,8 +32,8 @@
         "T1552.005"
       ],
       "matched_ttps": [
-        "T1078.004",
-        "T1552.005"
+        "T1552.005",
+        "T1078.004"
       ],
       "confidence_score": 85,
       "accepted": true,
@@ -179,9 +179,9 @@
         "T1530"
       ],
       "matched_ttps": [
+        "T1552.005",
         "T1078.004",
-        "T1530",
-        "T1552.005"
+        "T1530"
       ],
       "confidence_score": 85,
       "accepted": true,
@@ -245,8 +245,8 @@
         "T1552.005"
       ],
       "matched_ttps": [
-        "T1078.004",
-        "T1552.005"
+        "T1552.005",
+        "T1078.004"
       ],
       "confidence_score": 85,
       "accepted": true,
@@ -316,7 +316,7 @@
       "case_id": "CASE-15",
       "seed_indicator": "s3-leak-exfil-bucket.org",
       "seed_type": "domain",
-      "runtime_seconds": 0.0002,
+      "runtime_seconds": 0.0001,
       "nodes_extracted": 3,
       "edges_extracted": 2,
       "extracted_ttps": [
@@ -350,8 +350,8 @@
         "T1552.005"
       ],
       "matched_ttps": [
-        "T1078.004",
-        "T1552.005"
+        "T1552.005",
+        "T1078.004"
       ],
       "confidence_score": 85,
       "accepted": true,
@@ -437,9 +437,9 @@
         "T1530"
       ],
       "matched_ttps": [
+        "T1552.005",
         "T1078.004",
-        "T1530",
-        "T1552.005"
+        "T1530"
       ],
       "confidence_score": 85,
       "accepted": true,

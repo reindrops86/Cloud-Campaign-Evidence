@@ -1,0 +1,143 @@
+{
+  "account_id": "111122223333",
+  "access_keys": [
+    { "AccessKeyId": "AKIACOMPROMISEDKEY01", "UserName": "deploy-svc", "Status": "Active" },
+    { "AccessKeyId": "AKIABENIGNEXAMPLE001", "UserName": "ci-backup-runner", "Status": "Active" }
+  ],
+  "users": [
+    {
+      "Name": "deploy-svc",
+      "Arn": "arn:aws:iam::111122223333:user/deploy-svc",
+      "AccountId": "111122223333",
+      "Groups": ["deployers"],
+      "AttachedPolicies": [
+        {
+          "PolicyName": "DeployServiceAccess",
+          "PolicyArn": "arn:aws:iam::111122223333:policy/DeployServiceAccess",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "AssumeProdReader",
+                "Effect": "Allow",
+                "Action": "sts:AssumeRole",
+                "Resource": "arn:aws:iam::111122223333:role/prod-data-reader"
+              },
+              {
+                "Sid": "SelfKeyManagement",
+                "Effect": "Allow",
+                "Action": ["iam:CreateAccessKey", "iam:ListAccessKeys"],
+                "Resource": "arn:aws:iam::111122223333:user/deploy-svc"
+              },
+              {
+                "Sid": "ArtifactBucketRead",
+                "Effect": "Allow",
+                "Action": ["s3:GetObject", "s3:ListBucket"],
+                "Resource": "arn:aws:s3:::prod-artifacts/*"
+              }
+            ]
+          }
+        }
+      ],
+      "InlinePolicies": [
+        {
+          "PolicyName": "DenyTrailTampering",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "ProtectAuditTrail",
+                "Effect": "Deny",
+                "Action": ["cloudtrail:StopLogging", "cloudtrail:DeleteTrail"],
+                "Resource": "*"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Name": "ci-backup-runner",
+      "Arn": "arn:aws:iam::111122223333:user/ci-backup-runner",
+      "AccountId": "111122223333",
+      "Groups": [],
+      "AttachedPolicies": [
+        {
+          "PolicyName": "BackupReadOnly",
+          "PolicyArn": "arn:aws:iam::111122223333:policy/BackupReadOnly",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "ListOnly",
+                "Effect": "Allow",
+                "Action": ["s3:ListBucket"],
+                "Resource": "arn:aws:s3:::nightly-backups"
+              }
+            ]
+          }
+        }
+      ],
+      "InlinePolicies": []
+    }
+  ],
+  "groups": [
+    {
+      "Name": "deployers",
+      "AttachedPolicies": [
+        {
+          "PolicyName": "DeployerBaseline",
+          "PolicyArn": "arn:aws:iam::111122223333:policy/DeployerBaseline",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "ReadParameters",
+                "Effect": "Allow",
+                "Action": ["ssm:GetParameter"],
+                "Resource": "arn:aws:ssm:us-east-1:111122223333:parameter/deploy/*",
+                "Condition": { "Bool": { "aws:MultiFactorAuthPresent": "true" } }
+              }
+            ]
+          }
+        }
+      ],
+      "InlinePolicies": []
+    }
+  ],
+  "roles": [
+    {
+      "Name": "prod-data-reader",
+      "Arn": "arn:aws:iam::111122223333:role/prod-data-reader",
+      "AccountId": "111122223333",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": { "AWS": "arn:aws:iam::111122223333:user/deploy-svc" },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      },
+      "AttachedPolicies": [
+        {
+          "PolicyName": "ProdSecretsRead",
+          "PolicyArn": "arn:aws:iam::111122223333:policy/ProdSecretsRead",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "ReadProdSecrets",
+                "Effect": "Allow",
+                "Action": ["secretsmanager:GetSecretValue", "kms:Decrypt"],
+                "Resource": "arn:aws:secretsmanager:us-east-1:111122223333:secret:prod/*"
+              }
+            ]
+          }
+        }
+      ],
+      "InlinePolicies": []
+    }
+  ]
+}

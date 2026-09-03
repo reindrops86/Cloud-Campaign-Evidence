@@ -34,6 +34,12 @@ jobs:
       run: |
         python tests/test_pipeline.py
 
+    - name: Run AWS Telemetry & Attack Path Test Suite
+      env:
+        PYTHONPATH: .
+      run: |
+        python tests/test_aws_telemetry.py
+
     - name: Run 20-Case Cloud Campaign Evaluation Benchmark
       env:
         PYTHONPATH: .
