@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import sys
 from datetime import datetime, timezone
@@ -21,6 +22,7 @@ from app.agents.workload_federation import WorkloadFederationAgent
 from app.collectors.aws_cloudtrail import FileCloudTrailSource, build_source
 from app.collectors.aws_identity import AWSIdentityCollector, FileIdentitySource
 from app.graph.evidence_graph import EvidenceGraphEngine, defang_indicator
+from app.reports.analyst_reports import write_analyst_reports
 
 
 def _parse_time(value: Optional[str]) -> Optional[datetime]:
@@ -126,7 +128,9 @@ def run_pipeline(
     review = skeptic.review(hyp)
 
     # Step 6: Report, Detection Rules, & STIX 2.1 Export
-    investigation_id = f"INV-2026-{hash(seed_indicator) % 10000:04d}"
+    # Stable across runs: Python's builtin hash() is randomized per process.
+    seed_digest = hashlib.sha256(seed_indicator.encode("utf-8")).hexdigest()
+    investigation_id = f"INV-2026-{int(seed_digest[:8], 16) % 10000:04d}"
     report = report_builder.build_report(
         investigation_id=investigation_id,
         seed_val=seed_indicator,
@@ -226,6 +230,7 @@ def main() -> None:
     parser.add_argument("--output", "-o", default="data/investigation_output.json", help="Path to write investigation JSON output")
     parser.add_argument("--export-stix", help="Path to write STIX 2.1 JSON bundle")
     parser.add_argument("--export-markdown", help="Path to write Markdown research report")
+    parser.add_argument("--export-reports", help="Directory to write the investigation, response, threat-intel, and executive reports")
     args = parser.parse_args()
 
     print(f"[*] Starting Cloud Campaign Evidence Graph Investigation for seed: {defang_indicator(args.seed)}...")
@@ -265,6 +270,10 @@ def main() -> None:
         with open(md_path, "w", encoding="utf-8") as f:
             f.write(result["markdown_report"])
         print(f"[+] Markdown Research Report written to {args.export_markdown}")
+
+    if args.export_reports:
+        for path in write_analyst_reports(result, args.export_reports):
+            print(f"[+] Analyst report written to {path}")
 
     print("\n" + "=" * 60)
     print("INVESTIGATION SUMMARY")
