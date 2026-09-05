@@ -9,7 +9,7 @@
     "unsupported_claim_rate_per_investigation": 0.0,
     "provenance_coverage_percent": 100.0,
     "circular_reporting_warnings_detected": 0,
-    "average_runtime_seconds": 0.0002,
+    "average_runtime_seconds": 0.0001,
     "total_execution_cost_usd": 0.0,
     "analyst_corrections_required": 0
   },
@@ -18,7 +18,7 @@
       "case_id": "CASE-01",
       "seed_indicator": "AKIAIOSFODNN7EXAMPLE",
       "seed_type": "iam_access_key",
-      "runtime_seconds": 0.0013,
+      "runtime_seconds": 0.0007,
       "nodes_extracted": 4,
       "edges_extracted": 3,
       "extracted_ttps": [
@@ -32,8 +32,8 @@
         "T1552.005"
       ],
       "matched_ttps": [
-        "T1552.005",
-        "T1078.004"
+        "T1078.004",
+        "T1552.005"
       ],
       "confidence_score": 85,
       "accepted": true,
@@ -43,7 +43,7 @@
       "case_id": "CASE-02",
       "seed_indicator": "198.51.100.45",
       "seed_type": "ip",
-      "runtime_seconds": 0.0003,
+      "runtime_seconds": 0.0002,
       "nodes_extracted": 3,
       "edges_extracted": 2,
       "extracted_ttps": [
@@ -63,7 +63,7 @@
       "case_id": "CASE-03",
       "seed_indicator": "github.com/cloud-leak-org/dev-repo",
       "seed_type": "github_repo",
-      "runtime_seconds": 0.0002,
+      "runtime_seconds": 0.0001,
       "nodes_extracted": 2,
       "edges_extracted": 1,
       "extracted_ttps": [
@@ -83,7 +83,7 @@
       "case_id": "CASE-04",
       "seed_indicator": "docker.io/threatcorp/k8s-backdoor:v1",
       "seed_type": "container_image",
-      "runtime_seconds": 0.0002,
+      "runtime_seconds": 0.0001,
       "nodes_extracted": 2,
       "edges_extracted": 1,
       "extracted_ttps": [
@@ -103,7 +103,7 @@
       "case_id": "CASE-05",
       "seed_indicator": "login.secure-cloud-auth.com",
       "seed_type": "domain",
-      "runtime_seconds": 0.0003,
+      "runtime_seconds": 0.0001,
       "nodes_extracted": 3,
       "edges_extracted": 2,
       "extracted_ttps": [
@@ -123,7 +123,7 @@
       "case_id": "CASE-06",
       "seed_indicator": "http://phish-cloud-auth.com/login.php",
       "seed_type": "url",
-      "runtime_seconds": 0.0002,
+      "runtime_seconds": 0.0001,
       "nodes_extracted": 3,
       "edges_extracted": 2,
       "extracted_ttps": [
@@ -179,9 +179,9 @@
         "T1530"
       ],
       "matched_ttps": [
-        "T1552.005",
         "T1530",
-        "T1078.004"
+        "T1078.004",
+        "T1552.005"
       ],
       "confidence_score": 85,
       "accepted": true,
@@ -245,8 +245,8 @@
         "T1552.005"
       ],
       "matched_ttps": [
-        "T1552.005",
-        "T1078.004"
+        "T1078.004",
+        "T1552.005"
       ],
       "confidence_score": 85,
       "accepted": true,
@@ -296,7 +296,7 @@
       "case_id": "CASE-14",
       "seed_indicator": "192.0.2.105",
       "seed_type": "ip",
-      "runtime_seconds": 0.0002,
+      "runtime_seconds": 0.0001,
       "nodes_extracted": 3,
       "edges_extracted": 2,
       "extracted_ttps": [
@@ -350,8 +350,8 @@
         "T1552.005"
       ],
       "matched_ttps": [
-        "T1552.005",
-        "T1078.004"
+        "T1078.004",
+        "T1552.005"
       ],
       "confidence_score": 85,
       "accepted": true,
@@ -437,9 +437,9 @@
         "T1530"
       ],
       "matched_ttps": [
-        "T1552.005",
         "T1530",
-        "T1078.004"
+        "T1078.004",
+        "T1552.005"
       ],
       "confidence_score": 85,
       "accepted": true,

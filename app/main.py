@@ -17,6 +17,7 @@ from app.agents.enrichment import EnrichmentAnalystAgent
 from app.agents.hypothesis import HypothesisAnalystAgent
 from app.agents.report_builder import ReportBuilderAgent
 from app.agents.skeptic import SkepticReviewerAgent
+from app.agents.workload_federation import WorkloadFederationAgent
 from app.collectors.aws_cloudtrail import FileCloudTrailSource, build_source
 from app.collectors.aws_identity import AWSIdentityCollector, FileIdentitySource
 from app.graph.evidence_graph import EvidenceGraphEngine, defang_indicator
@@ -68,6 +69,10 @@ def run_pipeline(
     start_time: Optional[datetime] = None,
     end_time: Optional[datetime] = None,
     simulate: bool = False,
+    federated_roles: Optional[str] = None,
+    k8s_snapshot: Optional[str] = None,
+    k8s_audit_log: Optional[str] = None,
+    github_snapshot: Optional[str] = None,
 ) -> Dict[str, Any]:
     graph_engine = EvidenceGraphEngine()
 
@@ -98,6 +103,18 @@ def run_pipeline(
         )
     else:
         enricher.enrich(coll_res["seed_id"])
+
+    federation_result: Dict[str, Any] = {}
+    if federated_roles:
+        federation_agent = WorkloadFederationAgent(
+            graph_engine,
+            federated_roles,
+            k8s_snapshot=k8s_snapshot,
+            k8s_audit_log=k8s_audit_log,
+            github_snapshot=github_snapshot,
+            cloudtrail_records=_federation_cloudtrail_records(cloudtrail_file, source_mode),
+        )
+        federation_result = federation_agent.analyze()
 
     # Step 3: Cloud-TTP ATT&CK Mapping
     ttps = cloud_ttp.map_ttps()
@@ -167,7 +184,27 @@ def run_pipeline(
     if aws_result:
         result["aws_telemetry"] = aws_result
 
+    if federation_result:
+        result["workload_federation"] = federation_result
+
     return result
+
+
+def _federation_cloudtrail_records(cloudtrail_file: Optional[str], source_mode: str):
+    """Load CloudTrail records so federated trusts can be marked OBSERVED."""
+    if source_mode != "file" or not cloudtrail_file:
+        return []
+    source = FileCloudTrailSource(cloudtrail_file)
+    return [
+        _normalize_all(raw)
+        for raw in source._load_raw_events()  # federation needs every event, not one key
+    ]
+
+
+def _normalize_all(raw: Dict[str, Any]):
+    from app.collectors.aws_cloudtrail import _normalize
+
+    return _normalize(raw, provider_source="cloudtrail_file_export", region=None)
 
 
 def main() -> None:
@@ -182,6 +219,10 @@ def main() -> None:
     parser.add_argument("--start-time", help="ISO-8601 window start, e.g. 2026-08-01T00:00:00Z")
     parser.add_argument("--end-time", help="ISO-8601 window end, e.g. 2026-09-01T00:00:00Z")
     parser.add_argument("--simulate", action="store_true", help="Use IAM SimulatePrincipalPolicy instead of graph-only evaluation")
+    parser.add_argument("--federated-roles", help="Path to OIDC provider + federated role snapshot JSON")
+    parser.add_argument("--k8s-snapshot", help="Path to Kubernetes RBAC/ServiceAccount snapshot JSON")
+    parser.add_argument("--k8s-audit-log", help="Path to Kubernetes audit log export JSON")
+    parser.add_argument("--github-snapshot", help="Path to GitHub org/workflow snapshot JSON")
     parser.add_argument("--output", "-o", default="data/investigation_output.json", help="Path to write investigation JSON output")
     parser.add_argument("--export-stix", help="Path to write STIX 2.1 JSON bundle")
     parser.add_argument("--export-markdown", help="Path to write Markdown research report")
@@ -199,6 +240,10 @@ def main() -> None:
         start_time=_parse_time(args.start_time),
         end_time=_parse_time(args.end_time),
         simulate=args.simulate,
+        federated_roles=args.federated_roles,
+        k8s_snapshot=args.k8s_snapshot,
+        k8s_audit_log=args.k8s_audit_log,
+        github_snapshot=args.github_snapshot,
     )
 
     out_path = Path(args.output)
@@ -238,6 +283,16 @@ def main() -> None:
         print(f"CloudTrail Events: {aws['event_count']} ({aws['management_events']} management, {aws['data_events']} data)")
         print(f"Identity Paths   : {summary['total_paths']} total | {summary['observed']} OBSERVED | {summary['potential']} POTENTIAL | {summary['blocked']} BLOCKED")
         print(f"Highest Risk     : {summary['highest_risk_score']}/100")
+
+    federation = result.get("workload_federation")
+    if federation:
+        fed = federation["federated_summary"]
+        print("-" * 60)
+        print(f"Identity Planes  : {', '.join(fed['planes'])}")
+        print(f"Workloads        : {len(federation['workloads'])} | Trust edges: {len(federation['federated_trusts'])}")
+        print(f"Overly-Broad     : {len(federation['overly_broad_trusts'])} trust condition(s) wider than one workload")
+        print(f"Federated Paths  : {fed['total_paths']} total | {fed['observed']} OBSERVED | {fed['potential']} POTENTIAL | {fed['blocked']} BLOCKED")
+        print(f"Highest Risk     : {fed['highest_risk_score']}/100")
     print("=" * 60)
 
 

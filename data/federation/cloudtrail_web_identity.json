@@ -1,0 +1,116 @@
+{
+  "Records": [
+    {
+      "eventVersion": "1.09",
+      "eventID": "f4e5d6c7-3333-4c5d-9e6f-000000000001",
+      "eventTime": "2026-08-29T02:12:31Z",
+      "eventSource": "sts.amazonaws.com",
+      "eventName": "AssumeRoleWithWebIdentity",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.20.30.41",
+      "userAgent": "aws-sdk-go/1.50.0",
+      "readOnly": true,
+      "managementEvent": true,
+      "recipientAccountId": "111122223333",
+      "userIdentity": {
+        "type": "WebIdentityUser",
+        "principalId": "arn:aws:iam::111122223333:oidc-provider/oidc.eks.us-east-1.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE:sts.amazonaws.com:system:serviceaccount:payments:payments-sa",
+        "accountId": "111122223333",
+        "sessionContext": {
+          "webIdFederationData": {
+            "federatedProvider": "oidc.eks.us-east-1.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE",
+            "attributes": {
+              "sub": "system:serviceaccount:payments:payments-sa",
+              "aud": "sts.amazonaws.com"
+            }
+          }
+        }
+      },
+      "requestParameters": {
+        "roleArn": "arn:aws:iam::111122223333:role/eks-payments-irsa",
+        "roleSessionName": "debug-shell-9x2k"
+      },
+      "responseElements": {
+        "assumedRoleUser": {
+          "arn": "arn:aws:sts::111122223333:assumed-role/eks-payments-irsa/debug-shell-9x2k"
+        }
+      },
+      "resources": [
+        {
+          "ARN": "arn:aws:iam::111122223333:role/eks-payments-irsa",
+          "type": "AWS::IAM::Role"
+        }
+      ]
+    },
+    {
+      "eventVersion": "1.09",
+      "eventID": "f4e5d6c7-3333-4c5d-9e6f-000000000002",
+      "eventTime": "2026-08-29T02:13:07Z",
+      "eventSource": "secretsmanager.amazonaws.com",
+      "eventName": "GetSecretValue",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "10.20.30.41",
+      "userAgent": "aws-sdk-go/1.50.0",
+      "readOnly": true,
+      "managementEvent": true,
+      "recipientAccountId": "111122223333",
+      "userIdentity": {
+        "type": "AssumedRole",
+        "arn": "arn:aws:sts::111122223333:assumed-role/eks-payments-irsa/debug-shell-9x2k",
+        "accountId": "111122223333"
+      },
+      "requestParameters": {
+        "secretId": "arn:aws:secretsmanager:us-east-1:111122223333:secret:prod/payments/stripe-key-Xy9Z"
+      },
+      "responseElements": null,
+      "resources": [
+        {
+          "ARN": "arn:aws:secretsmanager:us-east-1:111122223333:secret:prod/payments/stripe-key-Xy9Z",
+          "type": "AWS::SecretsManager::Secret"
+        }
+      ]
+    },
+    {
+      "eventVersion": "1.09",
+      "eventID": "f4e5d6c7-3333-4c5d-9e6f-000000000003",
+      "eventTime": "2026-08-30T14:05:19Z",
+      "eventSource": "sts.amazonaws.com",
+      "eventName": "AssumeRoleWithWebIdentity",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "20.201.28.151",
+      "userAgent": "aws-sdk-nodejs/3.500.0",
+      "readOnly": true,
+      "managementEvent": true,
+      "recipientAccountId": "111122223333",
+      "userIdentity": {
+        "type": "WebIdentityUser",
+        "principalId": "arn:aws:iam::111122223333:oidc-provider/token.actions.githubusercontent.com:sts.amazonaws.com:repo:example-org/web-frontend:pull_request",
+        "accountId": "111122223333",
+        "sessionContext": {
+          "webIdFederationData": {
+            "federatedProvider": "token.actions.githubusercontent.com",
+            "attributes": {
+              "sub": "repo:example-org/web-frontend:pull_request",
+              "aud": "sts.amazonaws.com"
+            }
+          }
+        }
+      },
+      "requestParameters": {
+        "roleArn": "arn:aws:iam::111122223333:role/gha-deploy-role",
+        "roleSessionName": "GitHubActions"
+      },
+      "responseElements": {
+        "assumedRoleUser": {
+          "arn": "arn:aws:sts::111122223333:assumed-role/gha-deploy-role/GitHubActions"
+        }
+      },
+      "resources": [
+        {
+          "ARN": "arn:aws:iam::111122223333:role/gha-deploy-role",
+          "type": "AWS::IAM::Role"
+        }
+      ]
+    }
+  ]
+}

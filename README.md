@@ -107,6 +107,81 @@ An explicit deny is never overridden by telemetry. When CloudTrail shows an acti
 | `compromised_key.json` | 6 | 9 | 3 | 2 | 100/100 |
 | `benign_automation.json` | 3 | 1 | 0 | 0 | 55/100 |
 
+## 🌐 Workload Identity Federation Attack Paths
+
+Federated trust conditions are where cloud identity actually breaks. A Kubernetes ServiceAccount or a GitHub Actions workflow exchanges an OIDC token for real cloud credentials, and the only thing standing between "one workload" and "every workload" is a `sub` condition on the role's trust policy.
+
+```
+RBAC subject / CI trigger  →  workload identity  →  OIDC sub condition
+                                                          ↓
+                                              IAM role  →  action  →  resource
+```
+
+### Run cross-plane analysis
+
+```powershell
+python app/main.py --seed "AKIACOMPROMISEDKEY01" --seed-type iam_access_key `
+  --source file --cloudtrail-file data/federation/cloudtrail_web_identity.json `
+  --federated-roles data/federation/aws_federated_roles.json `
+  --k8s-snapshot data/federation/k8s_cluster_prod_east.json `
+  --k8s-audit-log data/federation/k8s_audit_prod_east.json `
+  --github-snapshot data/federation/github_org_example.json
+```
+
+### The bug class, in both planes
+
+| Plane | Over-broad condition | What it actually grants |
+|---|---|---|
+| **EKS / IRSA** | `StringLike` `...:sub` = `system:serviceaccount:*:*` | Any ServiceAccount in any namespace. Pod-create rights anywhere in the cluster become production cloud permissions. |
+| **EKS / IRSA** | `system:serviceaccount:*:app-sa` | Any namespace containing a ServiceAccount with that name. |
+| **GitHub Actions** | `StringLike` `...:sub` = `repo:org/*` | Every repository in the organization, including public ones accepting pull requests. |
+| **GitHub Actions** | `repo:org/repo` with no `:ref:` | Any branch, tag, or PR workflow in that repo. |
+| **Either** | No `:sub` condition at all | Every workload holding a token from the provider. |
+
+### Worked example from the fixtures
+
+`eks-payments-irsa` is meant for one ServiceAccount but its trust policy uses `system:serviceaccount:*:*`:
+
+```
+2 RBAC subject(s) can obtain this ServiceAccount token
+  → system:serviceaccount:payments:payments-sa
+  → https://oidc.eks.us-east-1.amazonaws.com/id/EXAMPLE...
+  → eks-payments-irsa
+  → secretsmanager:GetSecretValue
+  → arn:aws:secretsmanager:...:secret:prod/payments/*        [OBSERVED, risk 100/100]
+
+  Base risk for secret_access: 65
+  Path crosses an identity plane into cloud IAM (+15)
+  CloudTrail confirms this role was assumed via OIDC (+25)
+  Trust condition is broader than one workload (+20)
+    - `StringLike` on `...:sub` uses catch-all `system:serviceaccount:*:*`:
+      every workload behind this provider can assume the role.
+  Same condition also admits 2 other workload(s): observability/fluentbit-sa, ci/build-runner-sa
+  Reachable entry point into the workload (+15)
+    - Group `platform-engineering` — create pods with serviceAccountName
+    - Group `platform-engineering` — pods/exec
+  Wildcard resource scope broadens blast radius (+10)
+```
+
+That path is `OBSERVED` end to end: a Kubernetes audit event proves the pod ran as the ServiceAccount, a CloudTrail `AssumeRoleWithWebIdentity` proves the role was assumed by that exact subject, and a further CloudTrail event proves the assumed-role session read the secret.
+
+### Evidence rules that apply here too
+
+- A trust edge is `OBSERVED` only when CloudTrail shows **that subject** assuming **that role** — not merely that the role was used.
+- A path is `OBSERVED` only when every hop has evidence; a proven role assumption with an unproven action stays `POTENTIAL`.
+- A subject that fails every `:sub` condition is recorded as a `BLOCKED` refuted path at risk 0, so the report shows what was ruled out.
+- An audience condition that cannot be checked against the provider's registered audiences yields `UNRESOLVED`, never a pass.
+
+### Kubernetes RBAC routes to a ServiceAccount token
+
+The analyzer reports which verb enables each route, so a pod-create pivot is distinguishable from a direct secret read:
+
+- `create pods` + `serviceAccountName` — mounts the token into an attacker-controlled pod
+- `pods/exec`, `pods/attach`, `pods/portforward` — executes inside a pod already running as the SA
+- `get`/`list secrets` — reads the token directly
+- `create serviceaccounts/token` — mints one via the TokenRequest API
+- `escalate`, `bind`, `impersonate` — grants itself the rights to do any of the above
+
 ## 🛡️ CTI Quality & Deception Benchmark Evaluator
 
 Security teams require proof that agentic research systems resist manipulation, detect circular reporting, and reject over-attribution.

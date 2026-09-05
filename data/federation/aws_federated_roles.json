@@ -1,0 +1,200 @@
+{
+  "account_id": "111122223333",
+  "oidc_providers": [
+    {
+      "provider_arn": "arn:aws:iam::111122223333:oidc-provider/oidc.eks.us-east-1.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE",
+      "issuer_url": "https://oidc.eks.us-east-1.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE",
+      "plane": "kubernetes",
+      "cluster_name": "prod-east",
+      "audiences": ["sts.amazonaws.com"]
+    },
+    {
+      "provider_arn": "arn:aws:iam::111122223333:oidc-provider/token.actions.githubusercontent.com",
+      "issuer_url": "https://token.actions.githubusercontent.com",
+      "plane": "github_actions",
+      "audiences": ["sts.amazonaws.com"]
+    }
+  ],
+  "federated_roles": [
+    {
+      "Name": "eks-payments-irsa",
+      "Arn": "arn:aws:iam::111122223333:role/eks-payments-irsa",
+      "AccountId": "111122223333",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Federated": "arn:aws:iam::111122223333:oidc-provider/oidc.eks.us-east-1.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE"
+            },
+            "Action": "sts:AssumeRoleWithWebIdentity",
+            "Condition": {
+              "StringLike": {
+                "oidc.eks.us-east-1.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE:sub": "system:serviceaccount:*:*"
+              },
+              "StringEquals": {
+                "oidc.eks.us-east-1.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE:aud": "sts.amazonaws.com"
+              }
+            }
+          }
+        ]
+      },
+      "AttachedPolicies": [
+        {
+          "PolicyName": "PaymentsDataAccess",
+          "PolicyArn": "arn:aws:iam::111122223333:policy/PaymentsDataAccess",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "ReadPaymentSecrets",
+                "Effect": "Allow",
+                "Action": ["secretsmanager:GetSecretValue", "kms:Decrypt"],
+                "Resource": "arn:aws:secretsmanager:us-east-1:111122223333:secret:prod/payments/*"
+              },
+              {
+                "Sid": "ReadCustomerBucket",
+                "Effect": "Allow",
+                "Action": ["s3:GetObject", "s3:ListBucket"],
+                "Resource": "arn:aws:s3:::prod-customer-data/*"
+              }
+            ]
+          }
+        }
+      ],
+      "InlinePolicies": []
+    },
+    {
+      "Name": "eks-logging-irsa",
+      "Arn": "arn:aws:iam::111122223333:role/eks-logging-irsa",
+      "AccountId": "111122223333",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Federated": "arn:aws:iam::111122223333:oidc-provider/oidc.eks.us-east-1.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE"
+            },
+            "Action": "sts:AssumeRoleWithWebIdentity",
+            "Condition": {
+              "StringEquals": {
+                "oidc.eks.us-east-1.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE:sub": "system:serviceaccount:observability:fluentbit-sa",
+                "oidc.eks.us-east-1.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE:aud": "sts.amazonaws.com"
+              }
+            }
+          }
+        ]
+      },
+      "AttachedPolicies": [
+        {
+          "PolicyName": "LogShipping",
+          "PolicyArn": "arn:aws:iam::111122223333:policy/LogShipping",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "WriteLogs",
+                "Effect": "Allow",
+                "Action": ["s3:PutObject"],
+                "Resource": "arn:aws:s3:::prod-log-archive/*"
+              }
+            ]
+          }
+        }
+      ],
+      "InlinePolicies": []
+    },
+    {
+      "Name": "gha-deploy-role",
+      "Arn": "arn:aws:iam::111122223333:role/gha-deploy-role",
+      "AccountId": "111122223333",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Federated": "arn:aws:iam::111122223333:oidc-provider/token.actions.githubusercontent.com"
+            },
+            "Action": "sts:AssumeRoleWithWebIdentity",
+            "Condition": {
+              "StringLike": {
+                "token.actions.githubusercontent.com:sub": "repo:example-org/*"
+              },
+              "StringEquals": {
+                "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
+              }
+            }
+          }
+        ]
+      },
+      "AttachedPolicies": [
+        {
+          "PolicyName": "DeployProduction",
+          "PolicyArn": "arn:aws:iam::111122223333:policy/DeployProduction",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "DeployArtifacts",
+                "Effect": "Allow",
+                "Action": ["s3:PutObject", "s3:GetObject"],
+                "Resource": "arn:aws:s3:::prod-deploy-artifacts/*"
+              },
+              {
+                "Sid": "AttachPolicies",
+                "Effect": "Allow",
+                "Action": ["iam:AttachRolePolicy", "iam:PassRole"],
+                "Resource": "*"
+              }
+            ]
+          }
+        }
+      ],
+      "InlinePolicies": []
+    },
+    {
+      "Name": "gha-release-role",
+      "Arn": "arn:aws:iam::111122223333:role/gha-release-role",
+      "AccountId": "111122223333",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Federated": "arn:aws:iam::111122223333:oidc-provider/token.actions.githubusercontent.com"
+            },
+            "Action": "sts:AssumeRoleWithWebIdentity",
+            "Condition": {
+              "StringEquals": {
+                "token.actions.githubusercontent.com:sub": "repo:example-org/release-pipeline:environment:production",
+                "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
+              }
+            }
+          }
+        ]
+      },
+      "AttachedPolicies": [
+        {
+          "PolicyName": "PublishReleases",
+          "PolicyArn": "arn:aws:iam::111122223333:policy/PublishReleases",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "PublishArtifacts",
+                "Effect": "Allow",
+                "Action": ["s3:PutObject"],
+                "Resource": "arn:aws:s3:::prod-release-artifacts/*"
+              }
+            ]
+          }
+        }
+      ],
+      "InlinePolicies": []
+    }
+  ]
+}

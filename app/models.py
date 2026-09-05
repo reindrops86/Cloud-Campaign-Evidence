@@ -98,7 +98,8 @@ class PermissionEvaluation:
 @dataclass
 class AttackPathStep:
     node_id: str
-    node_type: str  # access_key, iam_user, iam_role, aws_action, resource
+    node_type: str  # access_key, iam_user, iam_role, aws_action, resource,
+                    # k8s_subject, k8s_serviceaccount, gha_workflow, ecs_task, oidc_provider
     label: str
     status: str  # POTENTIAL, CONFIRMED_ALLOWED, OBSERVED, BLOCKED, UNRESOLVED
     evidence_refs: List[str] = field(default_factory=list)
@@ -115,6 +116,76 @@ class AttackPath:
     scoring_rationale: List[str] = field(default_factory=list)
     attack_technique_ids: List[str] = field(default_factory=list)
     contradictions: List[str] = field(default_factory=list)
+    identity_planes: List[str] = field(default_factory=list)  # aws, kubernetes, github_actions, ecs
+
+
+@dataclass
+class TrustCondition:
+    """One condition entry on a federated IAM role trust policy.
+
+    The operator matters as much as the value: StringLike with a wildcard is the
+    difference between one workload and every workload in the provider.
+    """
+
+    operator: str  # StringEquals, StringLike, ForAnyValue:StringLike
+    claim: str  # e.g. oidc.eks.../id/ABC:sub, token.actions.githubusercontent.com:sub
+    values: List[str]
+
+    @property
+    def is_wildcard(self) -> bool:
+        return any("*" in v or "?" in v for v in self.values)
+
+    @property
+    def is_exact_match(self) -> bool:
+        return self.operator.endswith("StringEquals") and not self.is_wildcard
+
+
+@dataclass
+class OIDCProvider:
+    """An identity provider federated into a cloud account."""
+
+    provider_arn: str
+    issuer_url: str
+    plane: str  # kubernetes, github_actions
+    audiences: List[str] = field(default_factory=list)
+    cluster_name: Optional[str] = None
+
+
+@dataclass
+class WorkloadIdentity:
+    """A non-human principal that can exchange an OIDC token for cloud credentials."""
+
+    workload_id: str
+    plane: str  # kubernetes, github_actions, ecs
+    subject: str  # system:serviceaccount:ns:sa | repo:org/repo:ref:refs/heads/main
+    display_name: str
+    namespace: Optional[str] = None
+    metadata: Dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass
+class FederatedTrust:
+    """Result of evaluating whether a workload may assume a cloud role."""
+
+    workload_id: str
+    role_arn: str
+    provider_arn: str
+    status: str  # POTENTIAL, CONFIRMED_ALLOWED, OBSERVED, BLOCKED, UNRESOLVED
+    matched_conditions: List[TrustCondition] = field(default_factory=list)
+    overly_broad: bool = False
+    broadening_reasons: List[str] = field(default_factory=list)
+    evidence_refs: List[str] = field(default_factory=list)
+
+
+@dataclass
+class K8sSubject:
+    """A principal in the Kubernetes RBAC plane."""
+
+    name: str
+    kind: str  # User, Group, ServiceAccount
+    namespace: Optional[str] = None
+    verbs_by_resource: Dict[str, List[str]] = field(default_factory=dict)
+    binding_names: List[str] = field(default_factory=list)
 
 
 @dataclass

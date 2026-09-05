@@ -1,0 +1,63 @@
+{
+  "items": [
+    {
+      "auditID": "a1b2c3d4-0001-4000-8000-000000000001",
+      "verb": "create",
+      "requestReceivedTimestamp": "2026-08-29T02:11:44Z",
+      "sourceIPs": ["10.20.30.41"],
+      "user": {
+        "username": "system:serviceaccount:ci:build-runner-sa",
+        "groups": ["system:serviceaccounts", "system:serviceaccounts:ci"]
+      },
+      "objectRef": {
+        "resource": "pods",
+        "namespace": "payments",
+        "name": "debug-shell-9x2k"
+      },
+      "requestObject": {
+        "spec": {
+          "serviceAccountName": "payments-sa",
+          "containers": [{ "name": "shell", "image": "alpine:3.19" }]
+        }
+      },
+      "responseStatus": { "code": 201 }
+    },
+    {
+      "auditID": "a1b2c3d4-0001-4000-8000-000000000002",
+      "verb": "get",
+      "requestReceivedTimestamp": "2026-08-29T02:12:03Z",
+      "sourceIPs": ["10.20.30.41"],
+      "user": {
+        "username": "system:serviceaccount:ci:build-runner-sa"
+      },
+      "objectRef": {
+        "resource": "pods",
+        "subresource": "exec",
+        "namespace": "payments",
+        "name": "debug-shell-9x2k"
+      },
+      "responseStatus": { "code": 101 }
+    },
+    {
+      "auditID": "a1b2c3d4-0001-4000-8000-000000000003",
+      "verb": "create",
+      "requestReceivedTimestamp": "2026-08-27T09:00:12Z",
+      "sourceIPs": ["10.20.30.9"],
+      "user": {
+        "username": "system:serviceaccount:kube-system:deployment-controller"
+      },
+      "objectRef": {
+        "resource": "pods",
+        "namespace": "observability",
+        "name": "fluentbit-xk2p"
+      },
+      "requestObject": {
+        "spec": {
+          "serviceAccountName": "fluentbit-sa",
+          "containers": [{ "name": "fluentbit", "image": "fluent/fluent-bit:3.0" }]
+        }
+      },
+      "responseStatus": { "code": 201 }
+    }
+  ]
+}

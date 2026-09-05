@@ -60,6 +60,25 @@ def main() -> None:
             "This tool never accepts a secret access key."
         )
 
+    st.sidebar.divider()
+    st.sidebar.subheader("Workload Federation")
+    analyze_federation = st.sidebar.checkbox("Analyze OIDC trust conditions", value=True)
+
+    federated_roles = k8s_snapshot = k8s_audit_log = github_snapshot = None
+    if analyze_federation:
+        federated_roles = st.sidebar.text_input(
+            "Federated Roles", value="data/federation/aws_federated_roles.json"
+        )
+        k8s_snapshot = st.sidebar.text_input(
+            "K8s Snapshot", value="data/federation/k8s_cluster_prod_east.json"
+        )
+        k8s_audit_log = st.sidebar.text_input(
+            "K8s Audit Log", value="data/federation/k8s_audit_prod_east.json"
+        )
+        github_snapshot = st.sidebar.text_input(
+            "GitHub Snapshot", value="data/federation/github_org_example.json"
+        )
+
     run_button = st.sidebar.button("Run Campaign Investigation", type="primary")
 
     if run_button or seed:
@@ -74,6 +93,10 @@ def main() -> None:
                 profile=profile,
                 region=region,
                 simulate=simulate,
+                federated_roles=federated_roles,
+                k8s_snapshot=k8s_snapshot,
+                k8s_audit_log=k8s_audit_log,
+                github_snapshot=github_snapshot,
             )
 
         # Overview Header
@@ -89,6 +112,7 @@ def main() -> None:
         (
             tab_summary,
             tab_paths,
+            tab_federation,
             tab_graph,
             tab_ttps,
             tab_skeptic,
@@ -98,6 +122,7 @@ def main() -> None:
             [
                 "📋 Research Report",
                 "🔑 Identity Attack Paths",
+                "🌐 Workload Federation",
                 "🕸️ Evidence Graph",
                 "🎯 ATT&CK Mappings",
                 "🔍 Skeptic Audit",
@@ -162,6 +187,75 @@ def main() -> None:
                 if aws.get("iam_graph", {}).get("node_count"):
                     st.subheader("Permission Graph")
                     st.dataframe(aws["iam_graph"]["edges"], use_container_width=True)
+
+        with tab_federation:
+            fed = res.get("workload_federation")
+            if not fed:
+                st.info(
+                    "Enable **Analyze OIDC trust conditions** in the sidebar to trace paths "
+                    "from Kubernetes and GitHub Actions into cloud IAM."
+                )
+            else:
+                summary = fed["federated_summary"]
+                c1, c2, c3, c4 = st.columns(4)
+                c1.metric("Workloads", len(fed["workloads"]))
+                c2.metric("Trust Edges", len(fed["federated_trusts"]))
+                c3.metric(
+                    "Overly Broad",
+                    len(fed["overly_broad_trusts"]),
+                    help="Trust conditions admitting more than the intended workload",
+                )
+                c4.metric("OBSERVED Paths", summary["observed"])
+
+                st.caption(f"Identity planes analyzed: {', '.join(summary['planes'])}")
+
+                st.subheader("Overly-Broad Trust Conditions")
+                for trust in fed["overly_broad_trusts"]:
+                    with st.expander(
+                        f"⚠️ {trust['workload_subject']} → {trust['role_arn'].rsplit('/', 1)[-1]}"
+                    ):
+                        for reason in trust["broadening_reasons"]:
+                            st.warning(reason)
+                        if trust["blast_radius"]:
+                            st.write(
+                                "**Also admits:** " + ", ".join(trust["blast_radius"])
+                            )
+                        for condition in trust["matched_conditions"]:
+                            st.code(
+                                f"{condition['operator']}  {condition['claim']}\n"
+                                f"  {condition['values']}"
+                            )
+
+                st.subheader("Cross-Plane Attack Paths")
+                for path in fed["federated_paths"][:25]:
+                    badge = {
+                        "OBSERVED": "🔴",
+                        "POTENTIAL": "🟡",
+                        "UNRESOLVED": "⚪",
+                        "BLOCKED": "🟢",
+                    }.get(path["status"], "⚪")
+
+                    with st.expander(
+                        f"{badge} [{path['status']}] {path['title']} — risk {path['risk_score']}/100"
+                    ):
+                        st.write(
+                            " → ".join(f"`{s['label']}`" for s in path["steps"])
+                        )
+                        st.write(
+                            "**Planes crossed:** " + " → ".join(path["identity_planes"])
+                        )
+                        st.write("**Scoring rationale:**")
+                        for reason in path["scoring_rationale"]:
+                            st.write(f"- {reason}")
+
+                        refs = [r for s in path["steps"] for r in s["evidence_refs"]]
+                        if refs:
+                            st.write("**Evidence references:**")
+                            st.code("\n".join(sorted(set(refs))))
+
+                        st.write(
+                            f"**ATT&CK:** {', '.join(path['attack_technique_ids']) or 'n/a'}"
+                        )
 
         with tab_graph:
             st.subheader("Evidence Graph & Timeline")

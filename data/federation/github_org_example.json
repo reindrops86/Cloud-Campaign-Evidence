@@ -1,0 +1,53 @@
+{
+  "organization": "example-org",
+  "repositories": [
+    {
+      "full_name": "example-org/web-frontend",
+      "private": false,
+      "protected_environments": [],
+      "branch_protection": { "required_reviewers": 0 },
+      "workflows": [
+        {
+          "name": "pr-preview.yml",
+          "on": ["pull_request_target"],
+          "ref": "refs/heads/main",
+          "environment": null,
+          "self_hosted": false,
+          "uses": ["actions/checkout@v4", "some-vendor/deploy-action@main"]
+        }
+      ]
+    },
+    {
+      "full_name": "example-org/release-pipeline",
+      "private": true,
+      "protected_environments": ["production"],
+      "branch_protection": { "required_reviewers": 2 },
+      "workflows": [
+        {
+          "name": "release.yml",
+          "on": ["workflow_dispatch"],
+          "ref": "refs/heads/main",
+          "environment": "production",
+          "self_hosted": false,
+          "uses": ["actions/checkout@8f4b7f84864484a7bf31766abe9204da3cbe65b3"]
+        }
+      ]
+    },
+    {
+      "full_name": "example-org/internal-tools",
+      "private": true,
+      "protected_environments": [],
+      "branch_protection": { "required_reviewers": 1 },
+      "workflows": [
+        {
+          "name": "nightly.yml",
+          "on": ["schedule"],
+          "ref": "refs/heads/main",
+          "environment": null,
+          "self_hosted": true,
+          "uses": ["actions/checkout@v4"]
+        }
+      ]
+    }
+  ]
+}

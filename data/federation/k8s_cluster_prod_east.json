@@ -1,0 +1,114 @@
+{
+  "cluster_name": "prod-east",
+  "oidc_issuer": "https://oidc.eks.us-east-1.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE",
+  "service_accounts": [
+    {
+      "name": "payments-sa",
+      "namespace": "payments",
+      "automountServiceAccountToken": true,
+      "annotations": {
+        "eks.amazonaws.com/role-arn": "arn:aws:iam::111122223333:role/eks-payments-irsa"
+      }
+    },
+    {
+      "name": "fluentbit-sa",
+      "namespace": "observability",
+      "automountServiceAccountToken": true,
+      "annotations": {
+        "eks.amazonaws.com/role-arn": "arn:aws:iam::111122223333:role/eks-logging-irsa"
+      }
+    },
+    {
+      "name": "build-runner-sa",
+      "namespace": "ci",
+      "automountServiceAccountToken": true,
+      "annotations": {}
+    }
+  ],
+  "roles": [
+    {
+      "name": "ci-deployer",
+      "namespace": "ci",
+      "rules": [
+        {
+          "apiGroups": [""],
+          "resources": ["pods", "configmaps"],
+          "verbs": ["get", "list", "create", "delete"]
+        }
+      ]
+    },
+    {
+      "name": "payments-viewer",
+      "namespace": "payments",
+      "rules": [
+        {
+          "apiGroups": [""],
+          "resources": ["pods"],
+          "verbs": ["get", "list"]
+        }
+      ]
+    }
+  ],
+  "cluster_roles": [
+    {
+      "name": "namespace-operator",
+      "rules": [
+        {
+          "apiGroups": [""],
+          "resources": ["pods", "pods/exec", "serviceaccounts"],
+          "verbs": ["get", "list", "create"]
+        }
+      ]
+    },
+    {
+      "name": "secret-reader",
+      "rules": [
+        {
+          "apiGroups": [""],
+          "resources": ["secrets"],
+          "verbs": ["get", "list"]
+        }
+      ]
+    }
+  ],
+  "role_bindings": [
+    {
+      "name": "ci-deployer-binding",
+      "namespace": "ci",
+      "roleRef": { "kind": "Role", "name": "ci-deployer" },
+      "subjects": [
+        { "kind": "ServiceAccount", "name": "build-runner-sa", "namespace": "ci" }
+      ]
+    },
+    {
+      "name": "payments-viewer-binding",
+      "namespace": "payments",
+      "roleRef": { "kind": "Role", "name": "payments-viewer" },
+      "subjects": [
+        { "kind": "User", "name": "oncall@example.com", "namespace": "payments" }
+      ]
+    }
+  ],
+  "cluster_role_bindings": [
+    {
+      "name": "platform-operators",
+      "roleRef": { "kind": "ClusterRole", "name": "namespace-operator" },
+      "subjects": [
+        { "kind": "Group", "name": "platform-engineering" },
+        { "kind": "ServiceAccount", "name": "build-runner-sa", "namespace": "ci" }
+      ]
+    }
+  ],
+  "pods": [
+    {
+      "name": "payments-api-7d9f",
+      "namespace": "payments",
+      "serviceAccountName": "payments-sa"
+    },
+    {
+      "name": "fluentbit-xk2p",
+      "namespace": "observability",
+      "serviceAccountName": "fluentbit-sa"
+    }
+  ]
+}
