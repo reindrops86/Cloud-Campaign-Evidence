@@ -1,0 +1,506 @@
+{
+  "investigation_id": "INV-2026-0034",
+  "seed_indicator": "AKIAIOSFODNN7EXAMPLE",
+  "defanged_indicator": "AKIAIOSFODNN7EXAMPLE",
+  "seed_type": "iam_access_key",
+  "timestamp": "2026-09-06T21:10:05+00:00",
+  "evidence_graph": {
+    "node_count": 4,
+    "edge_count": 3,
+    "nodes": [
+      {
+        "id": "seed-iam_access_key-5293",
+        "value": "AKIAIOSFODNN7EXAMPLE",
+        "defanged_value": "AKIAIOSFODNN7EXAMPLE",
+        "indicator_type": "iam_access_key",
+        "first_seen": "2026-09-06T21:10:05+00:00",
+        "last_seen": "2026-09-06T21:10:05+00:00",
+        "reputation_score": 75,
+        "decayed_reputation": 74,
+        "sources": [
+          "seed_collector"
+        ],
+        "metadata": {
+          "seed_role": "primary_investigation_target"
+        }
+      },
+      {
+        "id": "node-ip-198-51-100-45",
+        "value": "198.51.100.45",
+        "defanged_value": "198[\\.]51[\\.]100[\\.]45",
+        "indicator_type": "ip",
+        "first_seen": "2026-09-06T21:10:05+00:00",
+        "last_seen": "2026-09-06T21:10:05+00:00",
+        "reputation_score": 85,
+        "decayed_reputation": 84,
+        "sources": [
+          "cloudtrail_logs"
+        ],
+        "metadata": {
+          "asn": "AS24940",
+          "country": "DE",
+          "isp": "Hetzner Online"
+        }
+      },
+      {
+        "id": "node-ip-203-0-113-88",
+        "value": "203.0.113.88",
+        "defanged_value": "203[\\.]0[\\.]113[\\.]88",
+        "indicator_type": "ip",
+        "first_seen": "2026-09-06T21:10:05+00:00",
+        "last_seen": "2026-09-06T21:10:05+00:00",
+        "reputation_score": 90,
+        "decayed_reputation": 89,
+        "sources": [
+          "cloudtrail_logs"
+        ],
+        "metadata": {
+          "asn": "AS14061",
+          "country": "US",
+          "isp": "DigitalOcean"
+        }
+      },
+      {
+        "id": "node-dom-exfil-c2",
+        "value": "exfil-cloud-storage.net",
+        "defanged_value": "exfil-cloud-storage.net",
+        "indicator_type": "domain",
+        "first_seen": "2026-09-06T21:10:05+00:00",
+        "last_seen": "2026-09-06T21:10:05+00:00",
+        "reputation_score": 80,
+        "decayed_reputation": 79,
+        "sources": [
+          "shodan_censys_cert"
+        ],
+        "metadata": {
+          "subject_cn": "exfil-cloud-storage.net",
+          "issuer": "Let's Encrypt"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "source_id": "seed-iam_access_key-5293",
+        "target_id": "node-ip-198-51-100-45",
+        "relation_type": "leveraged_by",
+        "confidence": 95,
+        "evidence_basis": "CloudTrail AssumeRole / GetCallerIdentity API calls from IP",
+        "first_observed": "2026-09-06T21:10:05+00:00",
+        "last_observed": "2026-09-06T21:10:05+00:00",
+        "evidence_refs": [],
+        "observed": false
+      },
+      {
+        "source_id": "node-ip-198-51-100-45",
+        "target_id": "node-dom-exfil-c2",
+        "relation_type": "resolved_to",
+        "confidence": 85,
+        "evidence_basis": "Passive DNS resolution & TLS cert colocation",
+        "first_observed": "2026-09-06T21:10:05+00:00",
+        "last_observed": "2026-09-06T21:10:05+00:00",
+        "evidence_refs": [],
+        "observed": false
+      },
+      {
+        "source_id": "seed-iam_access_key-5293",
+        "target_id": "node-ip-203-0-113-88",
+        "relation_type": "leveraged_by",
+        "confidence": 90,
+        "evidence_basis": "CloudTrail S3 GetObject & PutBucketPolicy calls",
+        "first_observed": "2026-09-06T21:10:05+00:00",
+        "last_observed": "2026-09-06T21:10:05+00:00",
+        "evidence_refs": [],
+        "observed": false
+      }
+    ],
+    "timeline": [
+      {
+        "timestamp": "2026-09-06T21:10:05+00:00",
+        "event_type": "indicator_first_seen",
+        "id": "seed-iam_access_key-5293",
+        "summary": "First observed iam_access_key (AKIAIOSFODNN7EXAMPLE)",
+        "sources": [
+          "seed_collector"
+        ]
+      },
+      {
+        "timestamp": "2026-09-06T21:10:05+00:00",
+        "event_type": "indicator_first_seen",
+        "id": "node-ip-198-51-100-45",
+        "summary": "First observed ip (198[\\.]51[\\.]100[\\.]45)",
+        "sources": [
+          "cloudtrail_logs"
+        ]
+      },
+      {
+        "timestamp": "2026-09-06T21:10:05+00:00",
+        "event_type": "indicator_first_seen",
+        "id": "node-ip-203-0-113-88",
+        "summary": "First observed ip (203[\\.]0[\\.]113[\\.]88)",
+        "sources": [
+          "cloudtrail_logs"
+        ]
+      },
+      {
+        "timestamp": "2026-09-06T21:10:05+00:00",
+        "event_type": "indicator_first_seen",
+        "id": "node-dom-exfil-c2",
+        "summary": "First observed domain (exfil-cloud-storage.net)",
+        "sources": [
+          "shodan_censys_cert"
+        ]
+      },
+      {
+        "timestamp": "2026-09-06T21:10:05+00:00",
+        "event_type": "relationship_observed",
+        "id": "seed-iam_access_key-5293->node-ip-198-51-100-45",
+        "summary": "Relationship [leveraged_by]: AKIAIOSFODNN7EXAMPLE -> 198[\\.]51[\\.]100[\\.]45 (CloudTrail AssumeRole / GetCallerIdentity API calls from IP)",
+        "confidence": 95
+      },
+      {
+        "timestamp": "2026-09-06T21:10:05+00:00",
+        "event_type": "relationship_observed",
+        "id": "node-ip-198-51-100-45->node-dom-exfil-c2",
+        "summary": "Relationship [resolved_to]: 198[\\.]51[\\.]100[\\.]45 -> exfil-cloud-storage.net (Passive DNS resolution & TLS cert colocation)",
+        "confidence": 85
+      },
+      {
+        "timestamp": "2026-09-06T21:10:05+00:00",
+        "event_type": "relationship_observed",
+        "id": "seed-iam_access_key-5293->node-ip-203-0-113-88",
+        "summary": "Relationship [leveraged_by]: AKIAIOSFODNN7EXAMPLE -> 203[\\.]0[\\.]113[\\.]88 (CloudTrail S3 GetObject & PutBucketPolicy calls)",
+        "confidence": 90
+      }
+    ]
+  },
+  "ttp_mappings": [
+    {
+      "technique_id": "T1078.004",
+      "technique_name": "Valid Accounts: Cloud Accounts",
+      "tactic": "Initial Access / Defense Evasion",
+      "platform": "AWS / Azure IAM",
+      "confidence": 95
+    },
+    {
+      "technique_id": "T1552.005",
+      "technique_name": "Unsecured Credentials: Cloud Credentials",
+      "tactic": "Credential Access",
+      "platform": "AWS S3 / Azure Key Vault / GitHub",
+      "confidence": 90
+    },
+    {
+      "technique_id": "T1530",
+      "technique_name": "Data from Cloud Storage Object",
+      "tactic": "Exfiltration / Collection",
+      "platform": "AWS S3 / Azure Blob Storage",
+      "confidence": 85
+    },
+    {
+      "technique_id": "T1071.001",
+      "technique_name": "Application Layer Protocol: Web Protocols",
+      "tactic": "Command and Control",
+      "platform": "Web / Cloud Hosting",
+      "confidence": 88
+    }
+  ],
+  "hypothesis": {
+    "id": "HYP-2026-CLOUD-01",
+    "primary_claim": "Adversary activity cluster leveraging compromised cloud assets (AKIAIOSFODNN7EXAMPLE, 198.51.100.45) to execute automated recon, credential access, and potential storage exfiltration across targeted cloud tenants.",
+    "alternative_hypotheses": [
+      "Legitimate developer key leakage without malicious exploitation (false positive alert trigger).",
+      "Third-party CI/CD automation tool misconfiguration exposing public read permissions.",
+      "Independent opportunistic scanner activity reusing public cloud infrastructure rather than a single coordinated campaign."
+    ],
+    "threat_actor": "UNC-CLOUD-HARVESTER"
+  },
+  "skeptic_review": {
+    "accepted": true,
+    "final_confidence": 85,
+    "unsupported_claims": [],
+    "circular_reporting_warnings": [],
+    "contradictions": [],
+    "feedback": "Skeptic Audit complete. Status: ACCEPTED. Final Confidence: 85%. Injections Blocked: 0. Penalized 0 claims & 0 contradictions."
+  },
+  "detection_rules": [
+    {
+      "rule_id": "SIGMA-AWS-IAM-001",
+      "title": "Suspicious API Activity from Compromised Cloud Credentials",
+      "format": "Sigma",
+      "target": "CloudTrail",
+      "content": "title: Suspicious API Activity from Compromised Cloud Credentials\nid: c1a7a0b1-4b89-4e5c-9c12-3a5678901234\nstatus: experimental\ndescription: Detects API calls originating from known compromised IAM access key AKIAIOSFODNN7EXAMPLE across unapproved ASNs.\nlogsource:\n  product: aws\n  service: cloudtrail\ndetection:\n  selection:\n    userIdentity.accessKeyId: 'AKIAIOSFODNN7EXAMPLE'\n  condition: selection\nfalsepositives:\n  - Authorized cloud infrastructure automation scripts.\nlevel: high\ntags:\n  - attack.initial_access\n  - attack.t1078.004\n"
+    },
+    {
+      "rule_id": "KQL-AWS-IAM-001",
+      "title": "CloudTrail IAM Key Reuse Investigation Query",
+      "format": "KQL",
+      "target": "AzureActivity / AWSCloudTrail",
+      "content": "// KQL Query for Sentinel / Defender for Cloud\nAWSCloudTrail\n| where AccessKeyId == \"AKIAIOSFODNN7EXAMPLE\"\n| summarize Count=count(), FirstSeen=min(TimeGenerated), LastSeen=max(TimeGenerated) by SourceIPAddress, EventName, UserIdentityArn\n| order by Count desc\n"
+    }
+  ],
+  "stix_bundle": {
+    "type": "bundle",
+    "id": "bundle--4c134a5b-7777-4000-8000-000000000000",
+    "spec_version": "2.1",
+    "objects": [
+      {
+        "type": "threat-actor",
+        "spec_version": "2.1",
+        "id": "threat-actor--fede2172-1111-4000-8000-000000000000",
+        "created": "2026-09-06T21:10:05+00:00",
+        "modified": "2026-09-06T21:10:05+00:00",
+        "name": "UNC-CLOUD-HARVESTER",
+        "description": "Adversary activity cluster leveraging compromised cloud assets (AKIAIOSFODNN7EXAMPLE, 198.51.100.45) to execute automated recon, credential access, and potential storage exfiltration across targeted cloud tenants.",
+        "threat_actor_types": [
+          "crime-syndicate",
+          "cyberespionage"
+        ],
+        "confidence": 85
+      },
+      {
+        "type": "attack-pattern",
+        "spec_version": "2.1",
+        "id": "attack-pattern--8cad5f14-2222-4000-8000-000000000000",
+        "created": "2026-09-06T21:10:05+00:00",
+        "modified": "2026-09-06T21:10:05+00:00",
+        "name": "Valid Accounts: Cloud Accounts",
+        "description": "MITRE ATT&CK Cloud Technique T1078.004 (Initial Access / Defense Evasion)",
+        "external_references": [
+          {
+            "source_name": "mitre-attack",
+            "external_id": "T1078.004",
+            "url": "https://attack.mitre.org/techniques/T1078/004/"
+          }
+        ]
+      },
+      {
+        "type": "attack-pattern",
+        "spec_version": "2.1",
+        "id": "attack-pattern--b5dd3f21-2222-4000-8000-000000000000",
+        "created": "2026-09-06T21:10:05+00:00",
+        "modified": "2026-09-06T21:10:05+00:00",
+        "name": "Unsecured Credentials: Cloud Credentials",
+        "description": "MITRE ATT&CK Cloud Technique T1552.005 (Credential Access)",
+        "external_references": [
+          {
+            "source_name": "mitre-attack",
+            "external_id": "T1552.005",
+            "url": "https://attack.mitre.org/techniques/T1552/005/"
+          }
+        ]
+      },
+      {
+        "type": "attack-pattern",
+        "spec_version": "2.1",
+        "id": "attack-pattern--e13d0c79-2222-4000-8000-000000000000",
+        "created": "2026-09-06T21:10:05+00:00",
+        "modified": "2026-09-06T21:10:05+00:00",
+        "name": "Data from Cloud Storage Object",
+        "description": "MITRE ATT&CK Cloud Technique T1530 (Exfiltration / Collection)",
+        "external_references": [
+          {
+            "source_name": "mitre-attack",
+            "external_id": "T1530",
+            "url": "https://attack.mitre.org/techniques/T1530/"
+          }
+        ]
+      },
+      {
+        "type": "attack-pattern",
+        "spec_version": "2.1",
+        "id": "attack-pattern--2cc76419-2222-4000-8000-000000000000",
+        "created": "2026-09-06T21:10:05+00:00",
+        "modified": "2026-09-06T21:10:05+00:00",
+        "name": "Application Layer Protocol: Web Protocols",
+        "description": "MITRE ATT&CK Cloud Technique T1071.001 (Command and Control)",
+        "external_references": [
+          {
+            "source_name": "mitre-attack",
+            "external_id": "T1071.001",
+            "url": "https://attack.mitre.org/techniques/T1071/001/"
+          }
+        ]
+      },
+      {
+        "type": "indicator",
+        "spec_version": "2.1",
+        "id": "indicator--295fff58-3333-4000-8000-000000000000",
+        "created": "2026-09-06T21:10:05+00:00",
+        "modified": "2026-09-06T21:10:05+00:00",
+        "name": "IAM_ACCESS_KEY: AKIAIOSFODNN7EXAMPLE",
+        "indicator_types": [
+          "malicious-activity",
+          "anomalous-activity"
+        ],
+        "pattern": "[user-account:user_id = 'AKIAIOSFODNN7EXAMPLE']",
+        "pattern_type": "stix",
+        "valid_from": "2026-09-06T21:10:05+00:00",
+        "confidence": 75
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--af5e9e5d-4444-4000-8000-000000000000",
+        "created": "2026-09-06T21:10:05+00:00",
+        "modified": "2026-09-06T21:10:05+00:00",
+        "relationship_type": "uses",
+        "source_ref": "threat-actor--fede2172-1111-4000-8000-000000000000",
+        "target_ref": "indicator--295fff58-3333-4000-8000-000000000000"
+      },
+      {
+        "type": "indicator",
+        "spec_version": "2.1",
+        "id": "indicator--a60bcb1b-3333-4000-8000-000000000000",
+        "created": "2026-09-06T21:10:05+00:00",
+        "modified": "2026-09-06T21:10:05+00:00",
+        "name": "IP: 198.51.100.45",
+        "indicator_types": [
+          "malicious-activity",
+          "anomalous-activity"
+        ],
+        "pattern": "[ipv4-addr:value = '198.51.100.45']",
+        "pattern_type": "stix",
+        "valid_from": "2026-09-06T21:10:05+00:00",
+        "confidence": 85
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--1d18dcf6-4444-4000-8000-000000000000",
+        "created": "2026-09-06T21:10:05+00:00",
+        "modified": "2026-09-06T21:10:05+00:00",
+        "relationship_type": "uses",
+        "source_ref": "threat-actor--fede2172-1111-4000-8000-000000000000",
+        "target_ref": "indicator--a60bcb1b-3333-4000-8000-000000000000"
+      },
+      {
+        "type": "indicator",
+        "spec_version": "2.1",
+        "id": "indicator--9e5d2292-3333-4000-8000-000000000000",
+        "created": "2026-09-06T21:10:05+00:00",
+        "modified": "2026-09-06T21:10:05+00:00",
+        "name": "IP: 203.0.113.88",
+        "indicator_types": [
+          "malicious-activity",
+          "anomalous-activity"
+        ],
+        "pattern": "[ipv4-addr:value = '203.0.113.88']",
+        "pattern_type": "stix",
+        "valid_from": "2026-09-06T21:10:05+00:00",
+        "confidence": 90
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--1065499b-4444-4000-8000-000000000000",
+        "created": "2026-09-06T21:10:05+00:00",
+        "modified": "2026-09-06T21:10:05+00:00",
+        "relationship_type": "uses",
+        "source_ref": "threat-actor--fede2172-1111-4000-8000-000000000000",
+        "target_ref": "indicator--9e5d2292-3333-4000-8000-000000000000"
+      },
+      {
+        "type": "indicator",
+        "spec_version": "2.1",
+        "id": "indicator--4953dfba-3333-4000-8000-000000000000",
+        "created": "2026-09-06T21:10:05+00:00",
+        "modified": "2026-09-06T21:10:05+00:00",
+        "name": "DOMAIN: exfil-cloud-storage.net",
+        "indicator_types": [
+          "malicious-activity",
+          "anomalous-activity"
+        ],
+        "pattern": "[domain-name:value = 'exfil-cloud-storage.net']",
+        "pattern_type": "stix",
+        "valid_from": "2026-09-06T21:10:05+00:00",
+        "confidence": 80
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--901eeafb-4444-4000-8000-000000000000",
+        "created": "2026-09-06T21:10:05+00:00",
+        "modified": "2026-09-06T21:10:05+00:00",
+        "relationship_type": "uses",
+        "source_ref": "threat-actor--fede2172-1111-4000-8000-000000000000",
+        "target_ref": "indicator--4953dfba-3333-4000-8000-000000000000"
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--872c0404-5555-4000-8000-000000000000",
+        "created": "2026-09-06T21:10:05+00:00",
+        "modified": "2026-09-06T21:10:05+00:00",
+        "relationship_type": "leveraged_by",
+        "source_ref": "indicator--295fff58-3333-4000-8000-000000000000",
+        "target_ref": "indicator--a60bcb1b-3333-4000-8000-000000000000",
+        "description": "CloudTrail AssumeRole / GetCallerIdentity API calls from IP",
+        "confidence": 95
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--006e8552-5555-4000-8000-000000000000",
+        "created": "2026-09-06T21:10:05+00:00",
+        "modified": "2026-09-06T21:10:05+00:00",
+        "relationship_type": "resolved_to",
+        "source_ref": "indicator--a60bcb1b-3333-4000-8000-000000000000",
+        "target_ref": "indicator--4953dfba-3333-4000-8000-000000000000",
+        "description": "Passive DNS resolution & TLS cert colocation",
+        "confidence": 85
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--1178a5d5-5555-4000-8000-000000000000",
+        "created": "2026-09-06T21:10:05+00:00",
+        "modified": "2026-09-06T21:10:05+00:00",
+        "relationship_type": "leveraged_by",
+        "source_ref": "indicator--295fff58-3333-4000-8000-000000000000",
+        "target_ref": "indicator--9e5d2292-3333-4000-8000-000000000000",
+        "description": "CloudTrail S3 GetObject & PutBucketPolicy calls",
+        "confidence": 90
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--e5a3c2d4-6666-4000-8000-000000000000",
+        "created": "2026-09-06T21:10:05+00:00",
+        "modified": "2026-09-06T21:10:05+00:00",
+        "relationship_type": "uses",
+        "source_ref": "threat-actor--fede2172-1111-4000-8000-000000000000",
+        "target_ref": "attack-pattern--8cad5f14-2222-4000-8000-000000000000"
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--61ffa9e1-6666-4000-8000-000000000000",
+        "created": "2026-09-06T21:10:05+00:00",
+        "modified": "2026-09-06T21:10:05+00:00",
+        "relationship_type": "uses",
+        "source_ref": "threat-actor--fede2172-1111-4000-8000-000000000000",
+        "target_ref": "attack-pattern--b5dd3f21-2222-4000-8000-000000000000"
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--513a4822-6666-4000-8000-000000000000",
+        "created": "2026-09-06T21:10:05+00:00",
+        "modified": "2026-09-06T21:10:05+00:00",
+        "relationship_type": "uses",
+        "source_ref": "threat-actor--fede2172-1111-4000-8000-000000000000",
+        "target_ref": "attack-pattern--e13d0c79-2222-4000-8000-000000000000"
+      },
+      {
+        "type": "relationship",
+        "spec_version": "2.1",
+        "id": "relationship--7d03fb9e-6666-4000-8000-000000000000",
+        "created": "2026-09-06T21:10:05+00:00",
+        "modified": "2026-09-06T21:10:05+00:00",
+        "relationship_type": "uses",
+        "source_ref": "threat-actor--fede2172-1111-4000-8000-000000000000",
+        "target_ref": "attack-pattern--2cc76419-2222-4000-8000-000000000000"
+      }
+    ]
+  },
+  "markdown_report": "# Cloud Threat Investigation Report: INV-2026-0034\n**Date:** 2026-09-06T21:10:05+00:00  |  **Seed Indicator:** `AKIAIOSFODNN7EXAMPLE` (`iam_access_key`)  |  **Confidence Score:** 85%\n\n## Executive Summary\nAdversary activity cluster leveraging compromised cloud assets (AKIAIOSFODNN7EXAMPLE, 198.51.100.45) to execute automated recon, credential access, and potential storage exfiltration across targeted cloud tenants.\n\n## Analytical Judgments & Skeptic Audit\n**Review Status:** `ACCEPTED`\n- **Analyst Feedback:** Skeptic Audit complete. Status: ACCEPTED. Final Confidence: 85%. Injections Blocked: 0. Penalized 0 claims & 0 contradictions.\n\n## Competing Hypotheses (ACH Analysis)\n### Alternative Explanations Evaluated\n- Legitimate developer key leakage without malicious exploitation (false positive alert trigger).\n- Third-party CI/CD automation tool misconfiguration exposing public read permissions.\n- Independent opportunistic scanner activity reusing public cloud infrastructure rather than a single coordinated campaign.\n\n## MITRE ATT&CK Cloud Mappings\n- **[T1078.004] Valid Accounts: Cloud Accounts** (Initial Access / Defense Evasion) - Platform: `AWS / Azure IAM` (Confidence: 95%)\n- **[T1552.005] Unsecured Credentials: Cloud Credentials** (Credential Access) - Platform: `AWS S3 / Azure Key Vault / GitHub` (Confidence: 90%)\n- **[T1530] Data from Cloud Storage Object** (Exfiltration / Collection) - Platform: `AWS S3 / Azure Blob Storage` (Confidence: 85%)\n- **[T1071.001] Application Layer Protocol: Web Protocols** (Command and Control) - Platform: `Web / Cloud Hosting` (Confidence: 88%)\n\n## Evidence Graph & Timeline\n- `2026-09-06T21:10:05+00:00`: First observed iam_access_key (AKIAIOSFODNN7EXAMPLE)\n- `2026-09-06T21:10:05+00:00`: First observed ip (198[\\.]51[\\.]100[\\.]45)\n- `2026-09-06T21:10:05+00:00`: First observed ip (203[\\.]0[\\.]113[\\.]88)\n- `2026-09-06T21:10:05+00:00`: First observed domain (exfil-cloud-storage.net)\n- `2026-09-06T21:10:05+00:00`: Relationship [leveraged_by]: AKIAIOSFODNN7EXAMPLE -> 198[\\.]51[\\.]100[\\.]45 (CloudTrail AssumeRole / GetCallerIdentity API calls from IP)\n- `2026-09-06T21:10:05+00:00`: Relationship [resolved_to]: 198[\\.]51[\\.]100[\\.]45 -> exfil-cloud-storage.net (Passive DNS resolution & TLS cert colocation)\n- `2026-09-06T21:10:05+00:00`: Relationship [leveraged_by]: AKIAIOSFODNN7EXAMPLE -> 203[\\.]0[\\.]113[\\.]88 (CloudTrail S3 GetObject & PutBucketPolicy calls)\n\n## Detection Rules\n### Suspicious API Activity from Compromised Cloud Credentials (Sigma)\n```yaml\ntitle: Suspicious API Activity from Compromised Cloud Credentials\nid: c1a7a0b1-4b89-4e5c-9c12-3a5678901234\nstatus: experimental\ndescription: Detects API calls originating from known compromised IAM access key AKIAIOSFODNN7EXAMPLE across unapproved ASNs.\nlogsource:\n  product: aws\n  service: cloudtrail\ndetection:\n  selection:\n    userIdentity.accessKeyId: 'AKIAIOSFODNN7EXAMPLE'\n  condition: selection\nfalsepositives:\n  - Authorized cloud infrastructure automation scripts.\nlevel: high\ntags:\n  - attack.initial_access\n  - attack.t1078.004\n\n```\n\n### CloudTrail IAM Key Reuse Investigation Query (KQL)\n```yaml\n// KQL Query for Sentinel / Defender for Cloud\nAWSCloudTrail\n| where AccessKeyId == \"AKIAIOSFODNN7EXAMPLE\"\n| summarize Count=count(), FirstSeen=min(TimeGenerated), LastSeen=max(TimeGenerated) by SourceIPAddress, EventName, UserIdentityArn\n| order by Count desc\n\n```\n"
+}

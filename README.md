@@ -53,6 +53,18 @@ Report & Artifact Generator (STIX 2.1 bundle, Sigma/KQL rules, markdown report)
 python app/main.py --seed "AKIAIOSFODNN7EXAMPLE" --seed-type "iam_access_key" --output data/investigation_output.json
 ```
 
+### Generate Daily Reports
+
+The GitHub Actions workflow at `.github/workflows/daily-reports.yml` runs every
+day at 09:00 UTC and can also be started from the repository's **Actions** tab.
+It uses the safe synthetic seed, generates investigation, response, threat-intel,
+executive, STIX, and Markdown artifacts, uploads them to the workflow run, and
+commits updated report files only when their content changes.
+
+The daily job deliberately does not use live AWS credentials. To schedule
+read-only live collection, create a separate hardened workflow using OIDC and a
+least-privileged role; do not store long-lived cloud keys in repository secrets.
+
 ### Run the Evaluation Benchmark (20 Cloud Threat Cases)
 
 ```powershell
