@@ -16,10 +16,10 @@
 
 | Indicator | Type | Reputation | Decayed | First seen | Sources |
 |---|---|---|---|---|---|
-| AKIAIOSFODNN7EXAMPLE | iam_access_key | 75 | 74 | 2026-09-07T14:31:27+00:00 | seed_collector |
-| 198[\.]51[\.]100[\.]45 | ip | 85 | 84 | 2026-09-07T14:31:27+00:00 | cloudtrail_logs |
-| 203[\.]0[\.]113[\.]88 | ip | 90 | 89 | 2026-09-07T14:31:27+00:00 | cloudtrail_logs |
-| exfil-cloud-storage.net | domain | 80 | 79 | 2026-09-07T14:31:27+00:00 | shodan_censys_cert |
+| AKIAIOSFODNN7EXAMPLE | iam_access_key | 75 | 74 | 2026-09-08T13:07:41+00:00 | seed_collector |
+| 198[\.]51[\.]100[\.]45 | ip | 85 | 84 | 2026-09-08T13:07:41+00:00 | cloudtrail_logs |
+| 203[\.]0[\.]113[\.]88 | ip | 90 | 89 | 2026-09-08T13:07:41+00:00 | cloudtrail_logs |
+| exfil-cloud-storage.net | domain | 80 | 79 | 2026-09-08T13:07:41+00:00 | shodan_censys_cert |
 
 _Decayed reputation reflects half-life ageing. Prefer it over the raw score when deciding whether an indicator is still actionable._
 
