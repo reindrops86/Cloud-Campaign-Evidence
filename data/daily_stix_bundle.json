@@ -1,14 +1,14 @@
 {
   "type": "bundle",
-  "id": "bundle--6e63c738-7777-4000-8000-000000000000",
+  "id": "bundle--55ad29d2-7777-4000-8000-000000000000",
   "spec_version": "2.1",
   "objects": [
     {
       "type": "threat-actor",
       "spec_version": "2.1",
-      "id": "threat-actor--33c904f8-1111-4000-8000-000000000000",
-      "created": "2026-10-26T15:32:59+00:00",
-      "modified": "2026-10-26T15:32:59+00:00",
+      "id": "threat-actor--77394fe5-1111-4000-8000-000000000000",
+      "created": "2026-10-27T14:58:40+00:00",
+      "modified": "2026-10-27T14:58:40+00:00",
       "name": "UNC-CLOUD-HARVESTER",
       "description": "Adversary activity cluster leveraging compromised cloud assets (AKIAIOSFODNN7EXAMPLE, 198.51.100.45) to execute automated recon, credential access, and potential storage exfiltration across targeted cloud tenants.",
       "threat_actor_types": [
@@ -20,9 +20,9 @@
     {
       "type": "attack-pattern",
       "spec_version": "2.1",
-      "id": "attack-pattern--f8eefc2b-2222-4000-8000-000000000000",
-      "created": "2026-10-26T15:32:59+00:00",
-      "modified": "2026-10-26T15:32:59+00:00",
+      "id": "attack-pattern--8e874d99-2222-4000-8000-000000000000",
+      "created": "2026-10-27T14:58:40+00:00",
+      "modified": "2026-10-27T14:58:40+00:00",
       "name": "Valid Accounts: Cloud Accounts",
       "description": "MITRE ATT&CK Cloud Technique T1078.004 (Initial Access / Defense Evasion)",
       "external_references": [
@@ -36,9 +36,9 @@
     {
       "type": "attack-pattern",
       "spec_version": "2.1",
-      "id": "attack-pattern--d7089b30-2222-4000-8000-000000000000",
-      "created": "2026-10-26T15:32:59+00:00",
-      "modified": "2026-10-26T15:32:59+00:00",
+      "id": "attack-pattern--e6de26df-2222-4000-8000-000000000000",
+      "created": "2026-10-27T14:58:40+00:00",
+      "modified": "2026-10-27T14:58:40+00:00",
       "name": "Unsecured Credentials: Cloud Credentials",
       "description": "MITRE ATT&CK Cloud Technique T1552.005 (Credential Access)",
       "external_references": [
@@ -52,9 +52,9 @@
     {
       "type": "attack-pattern",
       "spec_version": "2.1",
-      "id": "attack-pattern--fb85c353-2222-4000-8000-000000000000",
-      "created": "2026-10-26T15:32:59+00:00",
-      "modified": "2026-10-26T15:32:59+00:00",
+      "id": "attack-pattern--2e4073d4-2222-4000-8000-000000000000",
+      "created": "2026-10-27T14:58:40+00:00",
+      "modified": "2026-10-27T14:58:40+00:00",
       "name": "Data from Cloud Storage Object",
       "description": "MITRE ATT&CK Cloud Technique T1530 (Exfiltration / Collection)",
       "external_references": [
@@ -68,9 +68,9 @@
     {
       "type": "attack-pattern",
       "spec_version": "2.1",
-      "id": "attack-pattern--d01df1bb-2222-4000-8000-000000000000",
-      "created": "2026-10-26T15:32:59+00:00",
-      "modified": "2026-10-26T15:32:59+00:00",
+      "id": "attack-pattern--7d346487-2222-4000-8000-000000000000",
+      "created": "2026-10-27T14:58:40+00:00",
+      "modified": "2026-10-27T14:58:40+00:00",
       "name": "Application Layer Protocol: Web Protocols",
       "description": "MITRE ATT&CK Cloud Technique T1071.001 (Command and Control)",
       "external_references": [
@@ -84,9 +84,9 @@
     {
       "type": "indicator",
       "spec_version": "2.1",
-      "id": "indicator--f4c57290-3333-4000-8000-000000000000",
-      "created": "2026-10-26T15:32:59+00:00",
-      "modified": "2026-10-26T15:32:59+00:00",
+      "id": "indicator--884fdae6-3333-4000-8000-000000000000",
+      "created": "2026-10-27T14:58:40+00:00",
+      "modified": "2026-10-27T14:58:40+00:00",
       "name": "IAM_ACCESS_KEY: AKIAIOSFODNN7EXAMPLE",
       "indicator_types": [
         "malicious-activity",
@@ -94,25 +94,25 @@
       ],
       "pattern": "[user-account:user_id = 'AKIAIOSFODNN7EXAMPLE']",
       "pattern_type": "stix",
-      "valid_from": "2026-10-26T15:32:59+00:00",
+      "valid_from": "2026-10-27T14:58:40+00:00",
       "confidence": 75
     },
     {
       "type": "relationship",
       "spec_version": "2.1",
-      "id": "relationship--1caa0a21-4444-4000-8000-000000000000",
-      "created": "2026-10-26T15:32:59+00:00",
-      "modified": "2026-10-26T15:32:59+00:00",
+      "id": "relationship--ac6fa3ea-4444-4000-8000-000000000000",
+      "created": "2026-10-27T14:58:40+00:00",
+      "modified": "2026-10-27T14:58:40+00:00",
       "relationship_type": "uses",
-      "source_ref": "threat-actor--33c904f8-1111-4000-8000-000000000000",
-      "target_ref": "indicator--f4c57290-3333-4000-8000-000000000000"
+      "source_ref": "threat-actor--77394fe5-1111-4000-8000-000000000000",
+      "target_ref": "indicator--884fdae6-3333-4000-8000-000000000000"
     },
     {
       "type": "indicator",
       "spec_version": "2.1",
-      "id": "indicator--bd7e2626-3333-4000-8000-000000000000",
-      "created": "2026-10-26T15:32:59+00:00",
-      "modified": "2026-10-26T15:32:59+00:00",
+      "id": "indicator--e5fcf85d-3333-4000-8000-000000000000",
+      "created": "2026-10-27T14:58:40+00:00",
+      "modified": "2026-10-27T14:58:40+00:00",
       "name": "IP: 198.51.100.45",
       "indicator_types": [
         "malicious-activity",
@@ -120,25 +120,25 @@
       ],
       "pattern": "[ipv4-addr:value = '198.51.100.45']",
       "pattern_type": "stix",
-      "valid_from": "2026-10-26T15:32:59+00:00",
+      "valid_from": "2026-10-27T14:58:40+00:00",
       "confidence": 85
     },
     {
       "type": "relationship",
       "spec_version": "2.1",
-      "id": "relationship--f834711b-4444-4000-8000-000000000000",
-      "created": "2026-10-26T15:32:59+00:00",
-      "modified": "2026-10-26T15:32:59+00:00",
+      "id": "relationship--eed2f999-4444-4000-8000-000000000000",
+      "created": "2026-10-27T14:58:40+00:00",
+      "modified": "2026-10-27T14:58:40+00:00",
       "relationship_type": "uses",
-      "source_ref": "threat-actor--33c904f8-1111-4000-8000-000000000000",
-      "target_ref": "indicator--bd7e2626-3333-4000-8000-000000000000"
+      "source_ref": "threat-actor--77394fe5-1111-4000-8000-000000000000",
+      "target_ref": "indicator--e5fcf85d-3333-4000-8000-000000000000"
     },
     {
       "type": "indicator",
       "spec_version": "2.1",
-      "id": "indicator--7b5a6a84-3333-4000-8000-000000000000",
-      "created": "2026-10-26T15:32:59+00:00",
-      "modified": "2026-10-26T15:32:59+00:00",
+      "id": "indicator--9af97470-3333-4000-8000-000000000000",
+      "created": "2026-10-27T14:58:40+00:00",
+      "modified": "2026-10-27T14:58:40+00:00",
       "name": "IP: 203.0.113.88",
       "indicator_types": [
         "malicious-activity",
@@ -146,25 +146,25 @@
       ],
       "pattern": "[ipv4-addr:value = '203.0.113.88']",
       "pattern_type": "stix",
-      "valid_from": "2026-10-26T15:32:59+00:00",
+      "valid_from": "2026-10-27T14:58:40+00:00",
       "confidence": 90
     },
     {
       "type": "relationship",
       "spec_version": "2.1",
-      "id": "relationship--914a230c-4444-4000-8000-000000000000",
-      "created": "2026-10-26T15:32:59+00:00",
-      "modified": "2026-10-26T15:32:59+00:00",
+      "id": "relationship--232d6387-4444-4000-8000-000000000000",
+      "created": "2026-10-27T14:58:40+00:00",
+      "modified": "2026-10-27T14:58:40+00:00",
       "relationship_type": "uses",
-      "source_ref": "threat-actor--33c904f8-1111-4000-8000-000000000000",
-      "target_ref": "indicator--7b5a6a84-3333-4000-8000-000000000000"
+      "source_ref": "threat-actor--77394fe5-1111-4000-8000-000000000000",
+      "target_ref": "indicator--9af97470-3333-4000-8000-000000000000"
     },
     {
       "type": "indicator",
       "spec_version": "2.1",
-      "id": "indicator--90a5bfee-3333-4000-8000-000000000000",
-      "created": "2026-10-26T15:32:59+00:00",
-      "modified": "2026-10-26T15:32:59+00:00",
+      "id": "indicator--307a7978-3333-4000-8000-000000000000",
+      "created": "2026-10-27T14:58:40+00:00",
+      "modified": "2026-10-27T14:58:40+00:00",
       "name": "DOMAIN: exfil-cloud-storage.net",
       "indicator_types": [
         "malicious-activity",
@@ -172,94 +172,94 @@
       ],
       "pattern": "[domain-name:value = 'exfil-cloud-storage.net']",
       "pattern_type": "stix",
-      "valid_from": "2026-10-26T15:32:59+00:00",
+      "valid_from": "2026-10-27T14:58:40+00:00",
       "confidence": 80
     },
     {
       "type": "relationship",
       "spec_version": "2.1",
-      "id": "relationship--5033b5f5-4444-4000-8000-000000000000",
-      "created": "2026-10-26T15:32:59+00:00",
-      "modified": "2026-10-26T15:32:59+00:00",
+      "id": "relationship--6891275b-4444-4000-8000-000000000000",
+      "created": "2026-10-27T14:58:40+00:00",
+      "modified": "2026-10-27T14:58:40+00:00",
       "relationship_type": "uses",
-      "source_ref": "threat-actor--33c904f8-1111-4000-8000-000000000000",
-      "target_ref": "indicator--90a5bfee-3333-4000-8000-000000000000"
+      "source_ref": "threat-actor--77394fe5-1111-4000-8000-000000000000",
+      "target_ref": "indicator--307a7978-3333-4000-8000-000000000000"
     },
     {
       "type": "relationship",
       "spec_version": "2.1",
-      "id": "relationship--64b0e578-5555-4000-8000-000000000000",
-      "created": "2026-10-26T15:32:59+00:00",
-      "modified": "2026-10-26T15:32:59+00:00",
+      "id": "relationship--1b0db21a-5555-4000-8000-000000000000",
+      "created": "2026-10-27T14:58:40+00:00",
+      "modified": "2026-10-27T14:58:40+00:00",
       "relationship_type": "leveraged_by",
-      "source_ref": "indicator--f4c57290-3333-4000-8000-000000000000",
-      "target_ref": "indicator--bd7e2626-3333-4000-8000-000000000000",
+      "source_ref": "indicator--884fdae6-3333-4000-8000-000000000000",
+      "target_ref": "indicator--e5fcf85d-3333-4000-8000-000000000000",
       "description": "CloudTrail AssumeRole / GetCallerIdentity API calls from IP",
       "confidence": 95
     },
     {
       "type": "relationship",
       "spec_version": "2.1",
-      "id": "relationship--9b5a8746-5555-4000-8000-000000000000",
-      "created": "2026-10-26T15:32:59+00:00",
-      "modified": "2026-10-26T15:32:59+00:00",
+      "id": "relationship--f77b66b3-5555-4000-8000-000000000000",
+      "created": "2026-10-27T14:58:40+00:00",
+      "modified": "2026-10-27T14:58:40+00:00",
       "relationship_type": "resolved_to",
-      "source_ref": "indicator--bd7e2626-3333-4000-8000-000000000000",
-      "target_ref": "indicator--90a5bfee-3333-4000-8000-000000000000",
+      "source_ref": "indicator--e5fcf85d-3333-4000-8000-000000000000",
+      "target_ref": "indicator--307a7978-3333-4000-8000-000000000000",
       "description": "Passive DNS resolution & TLS cert colocation",
       "confidence": 85
     },
     {
       "type": "relationship",
       "spec_version": "2.1",
-      "id": "relationship--b7ef0235-5555-4000-8000-000000000000",
-      "created": "2026-10-26T15:32:59+00:00",
-      "modified": "2026-10-26T15:32:59+00:00",
+      "id": "relationship--41a7fc54-5555-4000-8000-000000000000",
+      "created": "2026-10-27T14:58:40+00:00",
+      "modified": "2026-10-27T14:58:40+00:00",
       "relationship_type": "leveraged_by",
-      "source_ref": "indicator--f4c57290-3333-4000-8000-000000000000",
-      "target_ref": "indicator--7b5a6a84-3333-4000-8000-000000000000",
+      "source_ref": "indicator--884fdae6-3333-4000-8000-000000000000",
+      "target_ref": "indicator--9af97470-3333-4000-8000-000000000000",
       "description": "CloudTrail S3 GetObject & PutBucketPolicy calls",
       "confidence": 90
     },
     {
       "type": "relationship",
       "spec_version": "2.1",
-      "id": "relationship--18559f84-6666-4000-8000-000000000000",
-      "created": "2026-10-26T15:32:59+00:00",
-      "modified": "2026-10-26T15:32:59+00:00",
+      "id": "relationship--211c8cf0-6666-4000-8000-000000000000",
+      "created": "2026-10-27T14:58:40+00:00",
+      "modified": "2026-10-27T14:58:40+00:00",
       "relationship_type": "uses",
-      "source_ref": "threat-actor--33c904f8-1111-4000-8000-000000000000",
-      "target_ref": "attack-pattern--f8eefc2b-2222-4000-8000-000000000000"
+      "source_ref": "threat-actor--77394fe5-1111-4000-8000-000000000000",
+      "target_ref": "attack-pattern--8e874d99-2222-4000-8000-000000000000"
     },
     {
       "type": "relationship",
       "spec_version": "2.1",
-      "id": "relationship--8a18e468-6666-4000-8000-000000000000",
-      "created": "2026-10-26T15:32:59+00:00",
-      "modified": "2026-10-26T15:32:59+00:00",
+      "id": "relationship--8c0b2d3c-6666-4000-8000-000000000000",
+      "created": "2026-10-27T14:58:40+00:00",
+      "modified": "2026-10-27T14:58:40+00:00",
       "relationship_type": "uses",
-      "source_ref": "threat-actor--33c904f8-1111-4000-8000-000000000000",
-      "target_ref": "attack-pattern--d7089b30-2222-4000-8000-000000000000"
+      "source_ref": "threat-actor--77394fe5-1111-4000-8000-000000000000",
+      "target_ref": "attack-pattern--e6de26df-2222-4000-8000-000000000000"
     },
     {
       "type": "relationship",
       "spec_version": "2.1",
-      "id": "relationship--cd08f997-6666-4000-8000-000000000000",
-      "created": "2026-10-26T15:32:59+00:00",
-      "modified": "2026-10-26T15:32:59+00:00",
+      "id": "relationship--df1d4be3-6666-4000-8000-000000000000",
+      "created": "2026-10-27T14:58:40+00:00",
+      "modified": "2026-10-27T14:58:40+00:00",
       "relationship_type": "uses",
-      "source_ref": "threat-actor--33c904f8-1111-4000-8000-000000000000",
-      "target_ref": "attack-pattern--fb85c353-2222-4000-8000-000000000000"
+      "source_ref": "threat-actor--77394fe5-1111-4000-8000-000000000000",
+      "target_ref": "attack-pattern--2e4073d4-2222-4000-8000-000000000000"
     },
     {
       "type": "relationship",
       "spec_version": "2.1",
-      "id": "relationship--168c00d7-6666-4000-8000-000000000000",
-      "created": "2026-10-26T15:32:59+00:00",
-      "modified": "2026-10-26T15:32:59+00:00",
+      "id": "relationship--f9f97ed7-6666-4000-8000-000000000000",
+      "created": "2026-10-27T14:58:40+00:00",
+      "modified": "2026-10-27T14:58:40+00:00",
       "relationship_type": "uses",
-      "source_ref": "threat-actor--33c904f8-1111-4000-8000-000000000000",
-      "target_ref": "attack-pattern--d01df1bb-2222-4000-8000-000000000000"
+      "source_ref": "threat-actor--77394fe5-1111-4000-8000-000000000000",
+      "target_ref": "attack-pattern--7d346487-2222-4000-8000-000000000000"
     }
   ]
 }
